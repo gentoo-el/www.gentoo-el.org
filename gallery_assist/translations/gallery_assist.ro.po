@@ -1,0 +1,340 @@
+# $Id: gallery_assist.ro.po,v 1.2 2010/05/18 22:27:33 jcmc Exp $
+#
+# Romanian translation of Drupal (general)
+# Copyright 2009 Juan Morejón <jcmc.devel@google.com>
+# Generated from files:
+#  gallery_assist.module, v 1.5 2009/06/05 20:00:00 jcmc
+#  gallery_assist.info, v 1.5 2009/06/05 20:00:00 jcmc
+#  gallery_assist.install, v 1.5 2009/06/05 20:00:00 jcmc
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.5\n"
+"POT-Creation-Date: 2009-07-04 03:32+0200\n"
+"PO-Revision-Date: 2009-07-04 03:32+0200\n"
+"Last-Translator: Ioana Schwarz <jcmc.devel@google.com>\n"
+"Language-Team: Romanian <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: gallery_assist.admin.inc:33
+msgid "Upload"
+msgstr "Încarcă"
+
+#: gallery_assist.admin.inc:38
+msgid "Resize thumbnails to"
+msgstr "Resize imagini pentru a"
+
+#: gallery_assist.admin.inc:44
+msgid "Resize preview to"
+msgstr "Resize Previzualizare pentru a"
+
+#: gallery_assist.admin.inc:53
+msgid "Pager options"
+msgstr "Pager opţiuni"
+
+#: gallery_assist.admin.inc:58
+msgid "1. Pager position"
+msgstr "1. Pager poziţie"
+
+#: gallery_assist.admin.inc:61
+msgid "top"
+msgstr "sus"
+
+#: gallery_assist.admin.inc:61
+msgid "bottom"
+msgstr "sus"
+
+#: gallery_assist.admin.inc:61
+msgid "both"
+msgstr ""
+
+#: gallery_assist.admin.inc:66
+msgid "Quantity of visible links"
+msgstr "Cantitatea de legături vizibile"
+
+#: gallery_assist.admin.inc:72
+msgid "Symbol"
+msgstr "Simbol"
+
+#: gallery_assist.admin.inc:91
+msgid "Layout"
+msgstr "Design"
+
+#: gallery_assist.admin.inc:97
+msgid "Thumbnails box size"
+msgstr "Miniaturi caseta de dimensiune"
+
+#: gallery_assist.admin.inc:104
+msgid "Images size"
+msgstr "Images dimensiune"
+
+#: gallery_assist.admin.inc:111
+msgid "Thumbnails per row"
+msgstr "Miniaturi pe rând"
+
+#: gallery_assist.admin.inc:116
+msgid "Rows per page"
+msgstr "Rânduri pe pagină"
+
+#: gallery_assist.admin.inc:124
+msgid "Margin betwen items"
+msgstr "Marjă între elemente"
+
+#: gallery_assist.admin.inc:131
+msgid "Padding of items"
+msgstr "padding de articole"
+
+#: gallery_assist.admin.inc:137
+msgid "Border of items"
+msgstr "Frontieră de articole"
+
+#: gallery_assist.admin.inc:144
+msgid "Border color"
+msgstr ""
+
+#: gallery_assist.module:23
+msgid "GAllery"
+msgstr "GAlerie"
+
+#: gallery_assist.module:25 gallery_assist.info:0
+msgid "Drupal node type with gallery funtionality."
+msgstr "Drupal nod tip cu galeria funtionality."
+
+#: gallery_assist.module:27
+msgid "Gallery title"
+msgstr ""
+
+#: gallery_assist.module:29
+msgid "Gallery body"
+msgstr ""
+
+#: gallery_assist.module:79 gallery_assist.info:0
+msgid "Gallery Assist"
+msgstr "Galerie de Asistent"
+
+#: gallery_assist.module:150
+msgid "Settings to this Gallery"
+msgstr "Setări pentru a acestui Galerie"
+
+#: gallery_assist.module:157
+msgid "Show titles"
+msgstr "Arată titlurile"
+
+#: gallery_assist.module:159
+msgid "By enable display gallery_assist the item title as image capture."
+msgstr ""
+"Prin permite afişarea gallery_assist elementul ca titlu de captare a "
+"imaginii."
+
+#: gallery_assist.module:163
+msgid "Description (255 characters)"
+msgstr "Descrierea (255 de caractere)"
+
+#: gallery_assist.module:187
+msgid "Add and edit gallery items"
+msgstr "Add şi edita articole galerie"
+
+#: gallery_assist.module:193
+msgid "Click Update to upload a new file or to save your changes in this section."
+msgstr ""
+"Faceţi clic pe Actualizează pentru a încărca un fişier nou sau "
+"pentru a salva modificările în această secţiune."
+
+#: gallery_assist.module:248
+msgid "Add new item"
+msgstr "Add nou element"
+
+#: gallery_assist.module:254
+msgid "Update"
+msgstr "Actualizează"
+
+#: gallery_assist.module:259
+msgid "Please wait..."
+msgstr "Vă rugăm să aşteptaţi ..."
+
+#: gallery_assist.module:430;439;538
+msgid "next ›"
+msgstr "următor ›"
+
+#: gallery_assist.module:437;537
+msgid "‹ previous"
+msgstr "‹ anterior"
+
+#: gallery_assist.module:486
+msgid "D, m/d/Y — h:i"
+msgstr ""
+
+#: gallery_assist.module:536
+msgid "« first"
+msgstr "« primul"
+
+#: gallery_assist.module:539
+msgid "last »"
+msgstr "ultima »"
+
+#: gallery_assist.module:616
+msgid "Delete"
+msgstr "Şterge"
+
+#: gallery_assist.module:616
+msgid "Item"
+msgstr "Element"
+
+#: gallery_assist.module:616
+msgid "Image capture"
+msgstr ""
+
+#: gallery_assist.module:616
+msgid "Weight"
+msgstr "Greutate"
+
+#: gallery_assist.module:819
+msgid "Validation error, please try again. If this error persists, please contact the site administrator."
+msgstr ""
+"Eroare de validare, vă rugăm să reîncercaţi. Dacă eroarea "
+"persistă, vă rugăm să contactaţi administratorul sitului."
+
+#: gallery_assist.module:39
+msgid "administer gallery_assist"
+msgstr ""
+
+#: gallery_assist.module:40
+msgid "view gallery_assist content"
+msgstr ""
+
+#: gallery_assist.module:41
+msgid "create gallery_assist content"
+msgstr ""
+
+#: gallery_assist.module:42
+msgid "delete own gallery_assist content"
+msgstr ""
+
+#: gallery_assist.module:43
+msgid "delete any gallery_assist content"
+msgstr ""
+
+#: gallery_assist.module:44
+msgid "edit own gallery_assist content"
+msgstr ""
+
+#: gallery_assist.module:45
+msgid "edit any gallery_assist content"
+msgstr ""
+
+#: gallery_assist.module:0
+msgid "gallery_assist"
+msgstr ""
+
+#: gallery_assist.install:52;209
+msgid "Table for manage the fields of this node type."
+msgstr ""
+
+#: gallery_assist.install:55;222;227;232
+msgid "The primary identifier for a GAllery."
+msgstr ""
+
+#: gallery_assist.install:60
+msgid "The reference identifier for the gallery."
+msgstr ""
+
+#: gallery_assist.install:65
+msgid "The reference identifier for the node."
+msgstr ""
+
+#: gallery_assist.install:70;88;237;243;249;255
+msgid "The DB-Name of the GAllery."
+msgstr ""
+
+#: gallery_assist.install:76;82
+msgid "The primary identifier for a node."
+msgstr ""
+
+#: gallery_assist.install:94
+msgid "plain text."
+msgstr ""
+
+#: gallery_assist.install:100
+msgid "Apears in the section of user profile -My Pictures-"
+msgstr ""
+
+#: gallery_assist.install:106
+msgid "Allow post coments authenticate users."
+msgstr ""
+
+#: gallery_assist.install:112
+msgid "Show images titles by gallery group view."
+msgstr ""
+
+#: gallery_assist.install:121
+msgid "Table for manage the items of this node type."
+msgstr ""
+
+#: gallery_assist.install:124
+msgid "The primary identifier for a GAllery_item."
+msgstr ""
+
+#: gallery_assist.install:129
+msgid "The node id of the gallery."
+msgstr ""
+
+#: gallery_assist.install:135
+msgid "The revition id of the node."
+msgstr ""
+
+#: gallery_assist.install:141;147
+msgid "The GAllery id."
+msgstr ""
+
+#: gallery_assist.install:153
+msgid "1 - published, 0 - unpublished."
+msgstr ""
+
+#: gallery_assist.install:160
+msgid "The owner id."
+msgstr ""
+
+#: gallery_assist.install:166
+msgid "The file id in the table files."
+msgstr ""
+
+#: gallery_assist.install:172
+msgid "filename in the table files."
+msgstr ""
+
+#: gallery_assist.install:178
+msgid "The path to the original images."
+msgstr ""
+
+#: gallery_assist.install:184
+msgid "The path to the previews images."
+msgstr ""
+
+#: gallery_assist.install:190
+msgid "The path to the thumbnails images."
+msgstr ""
+
+#: gallery_assist.install:196
+msgid "set order."
+msgstr ""
+
+#: gallery_assist.install:200
+msgid "Allow comments."
+msgstr ""
+
+#: gallery_assist.install:212
+msgid "The primary identifier for a translation."
+msgstr ""
+
+#: gallery_assist.install:217
+msgid "The primary identifier for a node"
+msgstr ""
+
+#: gallery_assist.info:0
+msgid "gallery"
+msgstr ""
+

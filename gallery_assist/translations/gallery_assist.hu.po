@@ -1,0 +1,1315 @@
+# $Id: gallery_assist.hu.po,v 1.2 2010/05/18 22:27:33 jcmc Exp $
+#
+# Hungarian translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  gallery_assist.admin.inc,v 1.1.2.16 2010/04/06 00:48:47 jcmc
+#  gallery_assist.module,v 1.1.2.37 2010/04/14 06:06:56 jcmc
+#  gallery_assist.info,v 1.1.2.21 2010/04/13 14:51:13 jcmc
+#  gallery_assist_node_settings.inc,v 1.1.2.4 2010/04/06 00:48:48 jcmc
+#  gallery_assist_display.inc,v 1.1.2.14 2010/03/29 15:46:27 jcmc
+#  gallery_assist_list_display.inc,v 1.0 2009/11/22 03:09:34 jcmc
+#  gallery_assist.install,v 1.1.2.14 2010/04/13 14:51:13 jcmc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0 ALPHA\n"
+"POT-Creation-Date: 2010-04-18 13:03+0200\n"
+"PO-Revision-Date: 2010-04-18 14:01+0100\n"
+"Last-Translator: HunContrib\n"
+"Language-Team: Hungarian <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: gallery_assist.admin.inc:21
+msgid "enabled"
+msgstr "bekapcsolva"
+
+#: gallery_assist.admin.inc:21
+msgid "disabled"
+msgstr "kikapcsolva"
+
+#: gallery_assist.admin.inc:23
+#: gallery_assist.module:462;534;406;417
+#: gallery_assist.info:0
+msgid "Gallery Assist"
+msgstr "Galériasegéd"
+
+#: gallery_assist.admin.inc:23
+msgid "Gallery Assist on @typename"
+msgstr "Galerieassistent in @typename"
+
+#: gallery_assist.admin.inc:60;276
+msgid "Layout"
+msgstr "Megjelenés"
+
+#: gallery_assist.admin.inc:67
+msgid "Thumbnails per row"
+msgstr "Miniatűrök száma soronként"
+
+#: gallery_assist.admin.inc:68
+msgid "unlimited"
+msgstr "korlátlan"
+
+#: gallery_assist.admin.inc:74
+msgid "Rows per page"
+msgstr "Sorok száma oldalanként"
+
+#: gallery_assist.admin.inc:83
+msgid "Thumbnails per row for the teaser"
+msgstr "Miniatűrök száma soronként a bevezetőben"
+
+#: gallery_assist.admin.inc:86
+msgid "Default is 0. Use this value to overwrite the teaser nummber of thumbnails pro row."
+msgstr "Az alapértelmezett érték 0. Ezzel az értékkel állíthatja át a bevezetőben megjelenített miniatűrök soronkénti számát."
+
+#: gallery_assist.admin.inc:91
+msgid "Thumbnails"
+msgstr "Miniatűrök"
+
+#: gallery_assist.admin.inc:99
+msgid "Items margin"
+msgstr "Elem margó"
+
+#: gallery_assist.admin.inc:107
+msgid "Items padding"
+msgstr "Elem kitöltés"
+
+#: gallery_assist.admin.inc:115
+msgid "Items border"
+msgstr "Elem keret"
+
+#: gallery_assist.admin.inc:124
+msgid "Items border color"
+msgstr "Elem keretszín"
+
+#: gallery_assist.admin.inc:130
+msgid "Titles and Help links"
+msgstr "Cím és súgó linkek"
+
+#: gallery_assist.admin.inc:133
+msgid "Enable this parameter to display a back link if the breadcrumb is disabled."
+msgstr "Kapcsolja be ezt a paramétert, ha szeretne egy visszamutató linket megjeleníteni, amennyiben a morzsa ki van kapcsolva."
+
+#: gallery_assist.admin.inc:136
+msgid "Back link"
+msgstr "Visszamutató link"
+
+#: gallery_assist.admin.inc:137;146;164
+msgid "off"
+msgstr "ki"
+
+#: gallery_assist.admin.inc:137;146;164
+msgid "on"
+msgstr "be"
+
+#: gallery_assist.admin.inc:142
+msgid "With creation of the article are images-titles shown."
+msgstr "Itt állíthatja be, hogy a tartalom létrehozásakor a képcímek megjelenjenek-e."
+
+#: gallery_assist.admin.inc:145
+msgid "Display titles"
+msgstr "Képcímek megjelenítése"
+
+#: gallery_assist.admin.inc:151
+msgid "Adjust the length of the titles to the width of the miniatures."
+msgstr "Képcímek hosszának igazítása a miniatűrök szélességéhez."
+
+#: gallery_assist.admin.inc:153
+msgid "Cut item title text for display"
+msgstr "Cím rövidítése"
+
+#: gallery_assist.admin.inc:160
+msgid "Toggle to show or hide the images titles."
+msgstr "Itt állíthatja be, hogy a képcím-linkek megjelenjenek-e."
+
+#: gallery_assist.admin.inc:163
+msgid "Title links toggle"
+msgstr "Képcím linkek megjelenítése"
+
+#: gallery_assist.admin.inc:169
+msgid "The link can be possisioned acord your goal bellow or above of the gallery  container."
+msgstr "Itt állíthatja be, hogy a képcímlinkek a galériadoboz alatt vagy fölött jelenjenek-e meg"
+
+#: gallery_assist.admin.inc:172
+msgid "Title links position"
+msgstr "Képcím linkek helyzete"
+
+#: gallery_assist.admin.inc:173
+msgid "Above of the gallery container"
+msgstr "Galériadoboz előtt"
+
+#: gallery_assist.admin.inc:173
+msgid "Below of the gallery container"
+msgstr "Galériadoboz után"
+
+#: gallery_assist.admin.inc:181;1028
+#: gallery_assist_node_settings.inc:149
+msgid "Teaser container"
+msgstr "Bevezetődoboz"
+
+#: gallery_assist.admin.inc:188;1036
+#: gallery_assist_node_settings.inc:157
+msgid "Page container"
+msgstr "Oldaldoboz"
+
+#: gallery_assist.admin.inc:195
+msgid "Node settings defaults"
+msgstr "Tartalomra vonatkozó alapértelmezett beállítások"
+
+#: gallery_assist.admin.inc:202
+msgid "Teaser container align"
+msgstr "Bevezetődoboz igazítása"
+
+#: gallery_assist.admin.inc:203;210;217;224
+#: gallery_assist_node_settings.inc:176;183;190;197
+#: gallery_assist.module:3706
+msgid "none"
+msgstr "nincs"
+
+#: gallery_assist.admin.inc:203;210;217;224
+#: gallery_assist_node_settings.inc:176;183;190;197
+msgid "left"
+msgstr "bal"
+
+#: gallery_assist.admin.inc:203;217
+#: gallery_assist_node_settings.inc:176;190
+msgid "center"
+msgstr "közép"
+
+#: gallery_assist.admin.inc:203;210;217;224
+#: gallery_assist_node_settings.inc:176;183;190;197
+msgid "right"
+msgstr "jobb"
+
+#: gallery_assist.admin.inc:209
+msgid "Teaser container float"
+msgstr "Bevezetődoboz lebegtetése"
+
+#: gallery_assist.admin.inc:216
+msgid "Page container align"
+msgstr "Oldaldoboz igazítása"
+
+#: gallery_assist.admin.inc:223
+msgid "Page container float"
+msgstr "Oldaldoboz lebegtetése"
+
+#: gallery_assist.admin.inc:257
+msgid "Pager"
+msgstr "Lapozó"
+
+#: gallery_assist.admin.inc:263
+msgid "The pager can be numeric or graphic. <br />If graphic enabled it shows mini thumnails. The Gallery Assist Pager is customizable through a template."
+msgstr "A lapozó lehet számalapú vagy grafikus.<br />A grafikus lapozó miniatűröket mutat. A Galériasegéd lapozója sablonnal formázható."
+
+#: gallery_assist.admin.inc:265
+msgid "Type"
+msgstr "Típus"
+
+#: gallery_assist.admin.inc:268
+msgid "Numeric"
+msgstr "Számok"
+
+#: gallery_assist.admin.inc:268
+msgid "Icons"
+msgstr "Ikonok"
+
+#: gallery_assist.admin.inc:274
+msgid "Choose a layout."
+msgstr "Megjelenés kiválasztása"
+
+#: gallery_assist.admin.inc:274
+msgid "To obtain the list of avaiable skins create a folder ga_pager in your theme folder and copy there the wanted skins from your_contributed_modules/gallery_assist/ga_pager to."
+msgstr "A rendelkezésre álló megjelenések kilistázásához hozzon létre egy \"ga_pager\"  mappát az aktív smink mappájában, majd másolja át ide a kívánt megjelenéseket a modules/gallery_assist/ga_pager mappából."
+
+#: gallery_assist.admin.inc:283
+msgid "Weight of the gallery pager in the GA Image View relative to the image-container."
+msgstr "A galérialapozó helyzete a képmegjelenítőben a képdobozhoz képest."
+
+#: gallery_assist.admin.inc:285
+msgid "Position"
+msgstr "Pozíció"
+
+#: gallery_assist.admin.inc:288
+msgid "top"
+msgstr "Felül"
+
+#: gallery_assist.admin.inc:288
+msgid "bottom"
+msgstr "Alul"
+
+#: gallery_assist.admin.inc:288
+msgid "both"
+msgstr "Felül is, alul is"
+
+#: gallery_assist.admin.inc:293
+msgid "Choose how many items should having the GA-pager on this node type."
+msgstr "Válassza ki hány elem alkossa a lapozót."
+
+#: gallery_assist.admin.inc:295
+msgid "Quantity of visible links"
+msgstr "Látható linkek száma"
+
+#: gallery_assist.admin.inc:304
+msgid "Thumbnail height"
+msgstr "Miniatűrök magassága"
+
+#: gallery_assist.admin.inc:314
+msgid "Thumbnail height: active"
+msgstr "Aktív miniatűrök magassága"
+
+#: gallery_assist.admin.inc:331
+msgid "ImageCache preset"
+msgstr "ImageCache alapértelemezett formátum"
+
+#: gallery_assist.admin.inc:335
+msgid "Current used setting: @pager_thm_presetname"
+msgstr "Jelenleg használt beállítás: @pager_thm_presetname"
+
+#: gallery_assist.admin.inc:342;597
+msgid "Others"
+msgstr "Egyéb"
+
+#: gallery_assist.admin.inc:353;1065
+#: gallery_assist_node_settings.inc:216
+msgid "Display the download link"
+msgstr "Letöltési link megjelenítése"
+
+#: gallery_assist.admin.inc:355
+msgid "If cheked the download link is displayed. The value can be setted for each node and for each gallery item."
+msgstr "Ha ezt a lehetőséget kipipálja, a letöltési link megjelenik. A beállítás alkalmazható tartalomtípusokra, tartalmakra és képekre."
+
+#: gallery_assist.admin.inc:360;948
+#: gallery_assist_node_settings.inc:48
+msgid "privat: <em>Only the owner can see the gallery.</em>"
+msgstr "Magán: <em>Csak a tulajdonos láthatja a galériát.</em>"
+
+#: gallery_assist.admin.inc:361;949
+#: gallery_assist_node_settings.inc:49
+msgid "public: <em>Public for all authenticated users.</em>"
+msgstr "Nyilvános: <em>Minden bejelentkezett felhasználó láthatja a galériát.</em>"
+
+#: gallery_assist.admin.inc:362;950
+#: gallery_assist_node_settings.inc:50
+msgid "public for all: <em>Public for all users and anonymous.</em>"
+msgstr "Teljesen nyilvános: <em>Minden bejelentkezett vagy névtelen felhasználó láthatja a galériát.</em>"
+
+#: gallery_assist.admin.inc:366;954
+#: gallery_assist_node_settings.inc:54
+msgid "Gallery Public Status"
+msgstr "Galéria közzétételi beállítások"
+
+#: gallery_assist.admin.inc:368;956
+#: gallery_assist_node_settings.inc:56
+msgid "privat"
+msgstr "Magán"
+
+#: gallery_assist.admin.inc:368;956
+#: gallery_assist_node_settings.inc:56
+msgid "public"
+msgstr "Nyilvános"
+
+#: gallery_assist.admin.inc:368;956
+#: gallery_assist_node_settings.inc:56
+msgid "public for all"
+msgstr "Teljesen nyilvános"
+
+#: gallery_assist.admin.inc:374
+msgid "Images per node"
+msgstr "Képszám tartalmanként"
+
+#: gallery_assist.admin.inc:377
+msgid "Allowed amount of images per article (node)"
+msgstr "Maximális képszám tartalmanként."
+
+#: gallery_assist.admin.inc:382
+msgid "Amount of uploads fields"
+msgstr "Feltöltési mezők száma"
+
+#: gallery_assist.admin.inc:385
+msgid "Allowed amount of form upload fields per article (node)"
+msgstr "Itt beállíthatja, hány feltöltési mező jelenjen meg egy tartalomban."
+
+#: gallery_assist.admin.inc:391
+msgid "Comments"
+msgstr "Hozzászólások"
+
+#: gallery_assist.admin.inc:393
+msgid "If cheked, comment functionalty for gallery items is enable."
+msgstr "Ezzel engedélyezheti a hozzászólásokat a galériaelemeknél."
+
+#: gallery_assist.admin.inc:400
+msgid "Display-Item Effects"
+msgstr "Elemeffektek megjelenítése"
+
+#: gallery_assist.admin.inc:409
+msgid "Settings permissions."
+msgstr "Beállításokra vonatkozó jogosultságok"
+
+#: gallery_assist.admin.inc:412
+msgid "Allow gallery owners the configuration of some settings on their nodes with gallerie functionality."
+msgstr "Beállítások módosításának engedélyezése galériafunkcionalitással rendelkező tartalmak tulajdonosai számára."
+
+#: gallery_assist.admin.inc:417
+msgid "<strong>Settings to this Gallery::Common</strong>"
+msgstr "<strong>Erre vonatkozó beállítások: Galéria::Általános</strong>"
+
+#: gallery_assist.admin.inc:423
+msgid "Settings to this Gallery::Common::Gallery Public Status"
+msgstr "Erre vonatkozó beállítások: Galéria::Általános::Galéria közzétételi állapota"
+
+#: gallery_assist.admin.inc:429
+msgid "Settings to this Gallery::Common::Display this gallery as"
+msgstr "Erre vonatkozó beállítások: Galéria::Általános::Galéria megjelenítési módja"
+
+#: gallery_assist.admin.inc:435
+msgid "Settings to this Gallery::Common::Gallery container weight"
+msgstr "Erre vonatkozó beállítások: Galéria::Általános::Galériadoboz súlya"
+
+#: gallery_assist.admin.inc:441
+msgid "Settings to this Gallery::Common::Show in block"
+msgstr "Erre vonatkozó beállítások: Galéria::Általános::Megjelenítése blokkban"
+
+#: gallery_assist.admin.inc:447
+msgid "Settings to this Gallery::Common::Show in user profile"
+msgstr "Erre vonatkozó beállítások: Galéria::Általános::Megjelenítés a felhasználói profilban"
+
+#: gallery_assist.admin.inc:453
+msgid "Settings to this Gallery::Common::Show titles"
+msgstr "Erre vonatkozó beállítások: Galéria::Általános::Címek megjelenítése"
+
+#: gallery_assist.admin.inc:459
+msgid "Settings to this Gallery::Common::Shadow"
+msgstr "Erre vonatkozó beállítások: Galéria::Általános::Árnyék"
+
+#: gallery_assist.admin.inc:465
+msgid "<strong>Settings to this Gallery::Extra Layout</strong>"
+msgstr "<strong>Erre vonatkozó beállítások: Galéria::Extra megjelenés</strong>"
+
+#: gallery_assist.admin.inc:471
+msgid "Settings to this Gallery::Extra-layout-Teaser::Hide gallery container"
+msgstr "Erre vonatkozó beállítások: Galéria::Extra-Megjelenés-Bevezető::Galériadoboz elrejtése"
+
+#: gallery_assist.admin.inc:477
+msgid "Settings to this Gallery::Extra-layout-Preview::Display download link"
+msgstr "Erre vonatkozó beállítások: Galéria::Extra-Megjelenés-Előnézet::Letöltési link megjelenítése"
+
+#: gallery_assist.admin.inc:498;638
+#: gallery_assist.module:1489
+msgid "Save"
+msgstr "Mentés"
+
+#: gallery_assist.admin.inc:551
+msgid "Gallery Assist Extras"
+msgstr "Galériasegéd extrák"
+
+#: gallery_assist.admin.inc:559
+msgid "Upload proccess"
+msgstr "Feltöltési folyamat"
+
+#: gallery_assist.admin.inc:567
+msgid "Files save method"
+msgstr "Fájlok mentésének módja"
+
+#: gallery_assist.admin.inc:569
+msgid "Rename files"
+msgstr "Fájlok átnevezése"
+
+#: gallery_assist.admin.inc:569
+msgid "Replace files"
+msgstr "Fájlok áthelyezése"
+
+#: gallery_assist.admin.inc:577
+msgid "Gallery functionality assigments"
+msgstr "Galériafunkcionalitás-hozzárendelések"
+
+#: gallery_assist.admin.inc:581
+msgid "Assign the gallery functionality to other content types."
+msgstr "Galériafunkcionalitás hozzárendelése más tartalomtípusokhoz."
+
+#: gallery_assist.admin.inc:605
+msgid "Pager limit in the node edit form"
+msgstr "A lapozó elemeinek maximális száma"
+
+#: gallery_assist.admin.inc:606
+msgid "Limit of the number of listed images in the edit form."
+msgstr "A listázott képek számának korlátozása az űrlapban."
+
+#: gallery_assist.admin.inc:613
+msgid "Gallery Assist form fiedsets weight"
+msgstr "Galériasegéd űrlapelemeinek súlya"
+
+#: gallery_assist.admin.inc:614
+msgid "A little help tu set the weight of fieldsets."
+msgstr "Egy kis segítség a mezők súlyának beállításához."
+
+#: gallery_assist.admin.inc:621
+msgid "Clear cached data from Gallery Assist"
+msgstr "Gyorsítótárazott adatok törlése a Galériasegédből"
+
+#: gallery_assist.admin.inc:623
+msgid "Warning: high-traffic sites with many galleries will experience performance slowdowns while cached data is rebuilt."
+msgstr "Figyelem: Sok galériával rendelkező nagy forgalmú oldalak  teljesítménycsökkenést tapasztalhatnak a gyorsítótár újraépítése közben."
+
+#: gallery_assist.admin.inc:629;631
+msgid "Clear the Gallery Assist cached data"
+msgstr "Galériasegéd gyorsítótárának ürítése"
+
+#: gallery_assist.admin.inc:683
+msgid "Sizes"
+msgstr "Méretek"
+
+#: gallery_assist.admin.inc:690
+msgid "Upload"
+msgstr "Feltöltés"
+
+#: gallery_assist.admin.inc:699
+msgid "Thumbnail upload size"
+msgstr "Miniatűrök mérete feltöltéskor"
+
+#: gallery_assist.admin.inc:706
+msgid "Preview upload size"
+msgstr "Előnézet mérete feltöltéskor"
+
+#: gallery_assist.admin.inc:714
+msgid "Display"
+msgstr "Megjelenítés"
+
+#: gallery_assist.admin.inc:727
+msgid "Thumbnail display size"
+msgstr "Miniatűrök mérete megjelenítéskor"
+
+#: gallery_assist.admin.inc:734
+msgid "Preview display size"
+msgstr "Előnézet mérete megjelenítéskor"
+
+#: gallery_assist.admin.inc:741;820
+msgid "Extra thumbnail custom size"
+msgstr "Extra miniatűr egyedi méret"
+
+#: gallery_assist.admin.inc:744;823
+msgid "Extend the width of thumbnails needed for layout."
+msgstr "Képek szélességének nyújtása, hogy illeszkedjen a megjelenéshez."
+
+#: gallery_assist.admin.inc:749;805
+msgid "Force image height"
+msgstr "Képmagasság erőltetése"
+
+#: gallery_assist.admin.inc:757;812
+#: gallery_assist.module:3883
+msgid "Disable margin-top"
+msgstr "Kikapcsolás: margin-top"
+
+#: gallery_assist.admin.inc:777
+msgid "ImagaCache presets"
+msgstr "ImageCache beállítások"
+
+#: gallery_assist.admin.inc:789
+#: gallery_assist.module:3868
+msgid "Thumbnail preset"
+msgstr "Miniatűrbeállítások"
+
+#: gallery_assist.admin.inc:792
+#: gallery_assist.module:3871
+msgid "Current used setting: @thm_presetname"
+msgstr "Jelenleg használt beállítás: @thm_presetname"
+
+#: gallery_assist.admin.inc:797
+msgid "Preview preset"
+msgstr "Előnézet beállítás"
+
+#: gallery_assist.admin.inc:800
+msgid "Current used setting: @prev_presetname"
+msgstr "Jelenleg használt beállítás: @prev_presetname"
+
+#: gallery_assist.admin.inc:835
+msgid "Module developed by <a target=\"_blank\" href=\"@ga_creator_link\">Juan Morejón</a> from the <a target=\"_blank\" href=\"@qtg_link\">Quiptime Group</a>"
+msgstr "A Galériasegéd modul fejlesztője <a target=\"_blank\" href=\"@ga_creator_link\">Juan Morejón</a>, a <a target=\"_blank\" href=\"@qtg_link\">Quiptime Csoport</a> tagja."
+
+#: gallery_assist.admin.inc:857
+msgid "Node type upload settings"
+msgstr "Tartalomtípus feltöltési beállításai"
+
+#: gallery_assist.admin.inc:863
+msgid "The maximum allowed image size (e.g. 640x480). Set to 0 for no restriction. If an <a href=\"!image-toolkit-link\">image toolkit</a> is installed, files exceeding this value will be scaled down to fit."
+msgstr "A legnagyobb engedélyezett képméret (pl. 640x480). A korlátozás kikapcsolásához állítsa az értéket 0-ra. Ha később telepít egy képeszköztárat, a képek, amelyek nagysága ezt az értéket túllépik, át lesznek méretezve."
+
+#: gallery_assist.admin.inc:866
+msgid "Maximum resolution for uploaded images"
+msgstr "A feltöltött képek maximális mérete"
+
+#: gallery_assist.admin.inc:871
+msgid "WIDTHxHEIGHT"
+msgstr "SZÉLESSÉGxMAGASSÁG"
+
+#: gallery_assist.admin.inc:874
+msgid "Extensions that users can upload. Separate extensions with a space and do not include the leading dot. Alloved are jpg jpeg gif png."
+msgstr "Felhasználók számára engedélyezett fájltípusok. A fájlkiterjesztéseket a kezdő pont nélkül adja meg, és szóközzel válassza el őket. Engedélyezettek: jpg, jpeg, gif, png."
+
+#: gallery_assist.admin.inc:877
+msgid "Default permitted file extensions"
+msgstr "Alapértelmezett engedélyezett fájltípusok"
+
+#: gallery_assist.admin.inc:883
+msgid "The default maximum file size a user can upload. If an image is uploaded and a maximum resolution is set, the size will be checked after the file has been resized. Use dot and number (.5) for an file size smoll as 1MB."
+msgstr "Alapértelmezésben a felhasználó maximálisan ekkora méretű fájlokat képes feltölteni. Ha van beállítva alapértelmezett képméretkorlát, a fájlméret a kép átméretezése után kerül ellenőrzésre. 1MB-nál kisebb fájlméret megadására használjon pontot a szám előtt. (Pl.: <strong>.5</strong> = fél MB)."
+
+#: gallery_assist.admin.inc:886
+msgid "Default maximum file size per upload"
+msgstr "Alapértelmezett legnagyobb fájlméret"
+
+#: gallery_assist.admin.inc:891;902
+msgid "MB"
+msgstr "MB"
+
+#: gallery_assist.admin.inc:894
+msgid "The default maximum size of all files a user can have on the site."
+msgstr "A fájlméretek összegének maximális értéke, felhasználónként."
+
+#: gallery_assist.admin.inc:897
+msgid "Default total file size per user"
+msgstr "Alapértelmezett legnagyobb összfájlméret felhasználónként"
+
+#: gallery_assist.admin.inc:905
+msgid "Your PHP settings limit the maximum file size per upload to %size."
+msgstr "A PHP beállításai a maximális fájlméretet  %size -ban szabják meg."
+
+#: gallery_assist.admin.inc:915
+#: gallery_assist_node_settings.inc:14
+msgid "Items order"
+msgstr "Elemsorrend"
+
+#: gallery_assist.admin.inc:920
+#: gallery_assist_node_settings.inc:19
+msgid "Field to order"
+msgstr "Rendezés módja"
+
+#: gallery_assist.admin.inc:929
+#: gallery_assist_node_settings.inc:28
+msgid "Order type"
+msgstr "Rendezés típusa"
+
+#: gallery_assist.admin.inc:938
+#: gallery_assist_node_settings.inc:37
+msgid "Common"
+msgstr "Általános"
+
+#: gallery_assist.admin.inc:962
+#: gallery_assist_node_settings.inc:63
+msgid "Gallery container weight"
+msgstr "Galériadoboz súlya"
+
+#: gallery_assist.admin.inc:965
+#: gallery_assist_node_settings.inc:66
+msgid "Choose the gallery container position on this node."
+msgstr "Itt állíthatja be a galériadoboz súlyát."
+
+#: gallery_assist.admin.inc:970
+#: gallery_assist_node_settings.inc:72
+msgid "Show this gallery as"
+msgstr "Galéria megjelenítési módja"
+
+#: gallery_assist.admin.inc:972
+#: gallery_assist_node_settings.inc:74
+msgid "List"
+msgstr "Lista"
+
+#: gallery_assist.admin.inc:972
+#: gallery_assist_node_settings.inc:74
+msgid "Grid"
+msgstr "Rács"
+
+#: gallery_assist.admin.inc:980
+#: gallery_assist_node_settings.inc:83
+msgid "Uncheck to hide the images titles."
+msgstr "A képcímek elrejtéséhez törölje a pipát."
+
+#: gallery_assist.admin.inc:980
+#: gallery_assist_node_settings.inc:83
+msgid "Check to display the image titles."
+msgstr "A képcímek megjelenítéséhez pipálja ki."
+
+#: gallery_assist.admin.inc:983
+#: gallery_assist_node_settings.inc:86
+#: gallery_assist.module:2573
+msgid "Show titles"
+msgstr "Címek megjelenítése"
+
+#: gallery_assist.admin.inc:990
+#: gallery_assist_node_settings.inc:105
+msgid "Show in user profile"
+msgstr "Megjelenítés a felhasználói profilban"
+
+#: gallery_assist.admin.inc:998
+#: gallery_assist_node_settings.inc:116
+msgid "Check to display this Gallery in the Site Galleries Block."
+msgstr "Pipálja ki, ha szeretné, hogy a galéria megjelenjen az Oldal Galériái blokkban."
+
+#: gallery_assist.admin.inc:1003
+#: gallery_assist_node_settings.inc:121
+msgid "Show in block"
+msgstr "Mutatás a blokkban"
+
+#: gallery_assist.admin.inc:1020
+#: gallery_assist_node_settings.inc:140
+msgid "Extra layout settings"
+msgstr "Extra megjelenés-beállítások."
+
+#: gallery_assist.admin.inc:1031
+#: gallery_assist_node_settings.inc:152
+msgid "Settings of the gallery container in the teaser view."
+msgstr "Galériadoboz beállításai bevezetőnézetben."
+
+#: gallery_assist.admin.inc:1039
+#: gallery_assist_node_settings.inc:160
+msgid "Settings of the gallery container in the page view."
+msgstr "Galériadoboz beállításai oldalnézetben."
+
+#: gallery_assist.admin.inc:1044
+#: gallery_assist_node_settings.inc:165
+msgid "Preview"
+msgstr "Előnézet"
+
+#: gallery_assist.admin.inc:1047
+#: gallery_assist_node_settings.inc:168
+msgid "Settings of the gallery container in the image preview."
+msgstr "Galériadoboz beállításai képelőnézetben."
+
+#: gallery_assist.admin.inc:1053
+#: gallery_assist_node_settings.inc:203
+msgid "If checked Gallery Assist will not show the gallery container in the teaser view."
+msgstr "Ha ki van pipálva, a bevezetőnézetben nem jelenik meg a galériadoboz."
+
+#: gallery_assist.admin.inc:1058
+#: gallery_assist_node_settings.inc:208
+msgid "Hide container in teaser"
+msgstr "Doboz elrejtése a bevezetőben"
+
+#: gallery_assist.admin.inc:1079
+#: gallery_assist_node_settings.inc:232
+msgid "Enable or disable comments for the items of this gallery"
+msgstr "Hozzászólások be- vagy kikapcsolása a galéria elemeinél."
+
+#: gallery_assist_display.inc:64
+#: gallery_assist_list_display.inc:67
+#: gallery_assist.module:3014
+msgid "next ›"
+msgstr "Következő >"
+
+#: gallery_assist_display.inc:67
+#: gallery_assist_list_display.inc:70
+#: gallery_assist.module:3012
+msgid "‹ previous"
+msgstr "‹ Előző"
+
+#: gallery_assist_node_settings.inc:94
+msgid "Uncheck to desable the items shadow. (only win)"
+msgstr "Az árnyék-effekt elrejtéséhez törölje a pipát (csak Windows alatt)."
+
+#: gallery_assist_node_settings.inc:94
+msgid "Check to enable the items shadow. (only win)"
+msgstr "Az árnyék-effekt megjelenítéséhez pipálja ki (csak Windows alatt)."
+
+#: gallery_assist_node_settings.inc:97
+msgid "Shadow"
+msgstr "Árnyékok (csak Windows)"
+
+#: gallery_assist_node_settings.inc:174;188
+msgid "Align"
+msgstr "Igazítás"
+
+#: gallery_assist_node_settings.inc:181;195
+msgid "Float"
+msgstr "Lebegtetés"
+
+#: gallery_assist.module:63
+msgid "Gallery Assist Help."
+msgstr "Galériasegéd súgó"
+
+#: gallery_assist.module:76
+msgid ""
+"<p>Gallery is a module which allows you to create galleries and allows you to assign this gallery functionality to other node types.</p>\n"
+"<p>Gallery Assist provide you a broad spectrum of use and layout options.</p>\n"
+"<h2 class=\"book-heading\">Install Gallery Assist</h2>\n"
+"<ol>\n"
+"  <li>Download Gallery Assist from Drupal Projects: <a target=\"_blank\" href=\"@ga\">Gallery Assist</a> <span class=\"print-footnote\"></span>.</li>\n"
+"  <li>Move the unpacked Gallery Assist folder (<strong>gallery_assist</strong>) to the place you have your contributed modules.</li>\n"
+"  <li>Go to Administer &gt; Modules, search in the list for the Gallery Assist entry, check to activate and save the settings.</li>\n"
+"</ol>\n"
+"<p>The folder /sites/default/files/<strong>gallery_assist</strong> will be created.<br />At this moment Gallery Assist create for each user with permissions at /sites/default/files/<strong>gallery_assist</strong> a user folder called with the <strong>User-ID</strong>.</p>\n"
+"<p>I recomende after install and&nbsp; before <a href=\"@configure\">configure</a> <span class=\"print-footnote\"></span>, to create a test gallery, so you have a nosion about default settings.</p>\n"
+"\n"
+"<h2 class=\"book-heading\"><a name=\"configure\"></a>Configure Gallery Assist</h2>\n"
+"<p>The Gallery Assist node type can be configured global and some settings options are integrated in the node.</p>\n"
+"<p>This mean, a Gallery Assist gallery have a global configuration. Tthe owner or administrator can  separately overwrite this settings in the node edit form.</p>\n"
+"\n"
+"<h2 class=\"book-heading\">Gallery Assist global settings</h2>\n"
+"<p>The module Gallery Assist provide for each node type a settings page where the owners, moderators or admins can set the glogal configuration of the in groups ordered parameters:</p>\n"
+"\n"
+"<h2 class=\"book-heading\"><a name=\"node_settings\">Fieldset: Settings to this Gallery</h2>\n"
+"<p>I tried to make everything as intuitive as possible, but there may be always someone who does not understand.<br />\n"
+"Here a little explanation to the fields.</p>\n"
+"<p>\t<strong>Fieldset</strong>: Settings to this Gallery</p>\n"
+"<ul>\n"
+"  <li>show in block: <em>Show the first image of this Gallery in the Gallery Block (<a href=\"@block_op\">read more about Gallery Assist Blocks</a> <span class=\"print-footnote\"></span>)</em></li>\n"
+"  <li>Gallery container weight: <em>Allow the gallery owner, moderator or administrator to set the posittion of the Gallery Assist container in relation to the others node fields such as body or added cck fields</em>.</li>\n"
+"</ul>\n"
+"<p>\t<strong>Sub-fieldset</strong>: Common</p>\n"
+"<ul>\n"
+"  <li>Show this gallery as: <em>Allow to set the layout of the gallery as a <strong>grid</strong> (default) or as a <strong>list</strong> (<a target=\"_blank\" href=\"@list_format\">see examples</a> <span class=\"print-footnote\"></span>). </em></li>\n"
+"  <li>Show titles: <em>Show permanent the titles in the views.</em></li>\n"
+"  <li>Shadow: <em>CSS formated shadows. Currently it is only supported in the windows system.</em></li>\n"
+"</ul>\n"
+"<p>\t<strong>Sub-fieldset</strong>s: Teaser container &amp; Page container</p>\n"
+"<ul>\n"
+"  <li>Align</li>\n"
+"  <li>Float</li>\n"
+"</ul>\n"
+"<p>\tI think the last two parameters are self-explanatory. This is not a html guide ;.).</p>\n"
+"\n"
+"<h2 class=\"book-heading\">Create a Gallery Assist gallery</h2>\n"
+"<p>Go to <em>Create content</em> and select the <a href=\"@assigments\">Gallery Assist node type</a> <span class=\"print-footnote\"></span> called \"<strong>Gallery</strong>\" or other node type with <a href=\"@assigments\">Gallery Assist Assigment</a> <span class=\"print-footnote\"></span>.<br />\n"
+"Give a name to your article and save. Gallery Assist extend the article with a new field or object (the gallery container) so the module need the NID as argument for the creation of the <a href=\"@folders\">gallery folder structure</a> <span class=\"print-footnote\"></span>.</p>\n"
+"<p>Once the article is saved click to edit it.<br />\n"
+"Two new fieldsets are added to the node edit form:</p>\n"
+"<ol>\n"
+"  <li>Fieldset &quot;<a href=\"@node_settings\">Settingst to this Gallery</a>&quot;</li>\n"
+"  <li>The Fieldset &quot;<strong>Gallery: Add and edit gallery items</strong>&quot; wich will be just explained.</li>\n"
+"</ol>\n"
+"<p>Select the files you want to add to this gallery and click update to upload.<br />\n"
+"If the pictures have a copyright use the field <strong>Temp copyright</strong> to avoid unnecessary work.</p>\n"
+"<p>In the background, the folder structure will be created if not exist, images are stored, copied and new formatted as necessary.<br />\n"
+"<!--<em>If this process failed, please read the <a target=\"_blank\" href=\"http://simple.puntolatinoclub.de/content/posible-causes-errors\">list of posible causes</a> for this issue and pubilc the issue through the Drupal Issues Reporting System (at your accout profile in drupal.org).</em>--></p>\n"
+"<p>If images were successfully uploaded, the form will be rebuild with the new changes.</p>\n"
+"<p>Now you can:</p>\n"
+"<ol>\n"
+"  <li>Add new images to the gallery.</li>\n"
+"  <li>Change the captions and the copyright information as wanted.</li>\n"
+"  <li>Change the order of the pictures thanks to the functionality of tabledrag.</li>\n"
+"  <li>Add a description to each image.</li>\n"
+"</ol>\n"
+"<p>You can to add a description to the gallery, task that belong only the Drupal node process.</p>\n"
+"<p>Are you satisfied with the results, save the node and view it.</p>\n"
+"\n"
+"<h2 class=\"book-heading\"><a name=\"node-type-and-assigments\"></a>Gallery Assist node type and assigments</h2>\n"
+"<p>The module Gallery Assist provide the node type \"Gallery\" prepared with gallery functionality.</p>\n"
+"<p>The gallery functionality can be assigned to all other node types.<br />\n"
+"In this case and for the documentation I call these <strong>assigment</strong>(<strong>s</strong>).</p>\n"
+"<p>You can manage the Gallery Assist permissions and combine them using all the possibilities offered by Drupal.</p>\n"
+"<p>Please pay close atension when sharing permissions to assigments.<br />\n"
+"Users with permissions to create galleries in an assignment need permissions to create the node type.</p>\n"
+"<p>Each assignment can be managed separately.</p>\n"
+"<p>This module provide you a broad spectrum of layout options.</p>\n"
+"\n"
+"<h2 class=\"book-heading\"><a name=\"folder-structure\"></a>Gallery Assist folder structure</h2>\n"
+"<p>The folder structure of Gallery Assist is easy to understand (my opinion). It consists of:prev: Contains the thumbnails of the Gallery so long Gallery Assist.</p>\n"
+"<p>ImageCache is not installed.</p>\n"
+"<p>A global gallery folder (<strong>gallery_assist</strong>) wich contains all galleries created through this module.<br />\n"
+"A gallery user folder (called with the <strong>User-ID</strong>) wich contains the galleries belongin to the respectively user.<br />\n"
+"\n"
+"The gallery preset folders.</p>\n"
+"<ul>\n"
+"  <li><strong>img</strong>: <em>Contains mini thumbnails for the Gallery Assist pager.</em></li>\n"
+"  <li><strong>thm</strong>: <em>Contains the thumbnails of the Gallery so long Gallery Assist ImageCache is not installed.</em></li>\n"
+"  <li><strong>prev</strong>: <em>Contains the preview images of the Gallery so long Gallery Assist ImageCache is not installed.</em></li>\n"
+"</ul>\n"
+"<p>\tOnce Gallery Assist ImageCache <em>is </em><em>installed, Gallery Assist thumbnails and preview images are no longer produced from the Gallery Assist module.<br />\n"
+"At this point is ImageCache responsible for this task.<br />\n"
+"</em></p>\n"
+"\n"
+"<h2 class=\"book-heading\">Optional modules Documentation</h2>\n"
+"<p>Documentations about optional modules which can extend the functionality of Gallery Assist.</p>\n"
+"\n"
+"<h2 class=\"book-heading\">Gallery Assist ImageCache</h2>\n"
+"<p>The installation is equal as by the other modules. </p>\n"
+"<p>Dependencies are Gallery Assist and ImageCache.</p>\n"
+"<p>Once activated \"Gallery Assist ImageCache\" create a default ImageCache preset for Gallery Assist and a preset for each node type with the Gallery Assist functionality (assigment). </p>\n"
+"<p>The module manage in the background the size settings variables wich Gallery Assist need to build and display the gallery container.</p>\n"
+"<p>You should consider:<br />\n"
+"At the moment this module is installed and activated ImageCache takeover the creation from thumbnails and preview images.<br />\n"
+"You should manage the images sizes through ImageCache.</p>\n"
+"\n"
+"<h2 class=\"book-heading\">Gallery Assist Lightboxes</h2>\n"
+"<p>* The lightbox folders inside sites/.../gallery_assist_lightboxes/lightboxes need to be named carefully. In particular, they should not have any sort of version information, like what is generally present after you unzip the distributions. For me, the folders for the lightboxes I mentioned above had to be named (exactly) \"lightbox\", \"lytebox\", and \"highslide\". The \"choose a lightbox variant\" pulldown in admin/settings/gallery/assist/extras will happily handle names with versioning information, but the code will break if the names aren't right.</p>\n"
+"<p>* Some lightboxes (*cough* highslide *cough*) put their REAL code inside a second folder within the distribution folder, along with examples, help files, or other stuff. Make sure the real code is in the right place -- right inside the folder directly under the lightboxes folder.</p>\n"
+"<p>* After you've done all this, go back to admin/settings/gallery/assist/extras and pick a lightbox from the pulldown. If you've done this right, you should get some new options in response to your selection. \"Show copyright\" and \"Show description\" checkboxes are common in the lightboxes I've used; highslide presents a slew of checkboxes that let (er, require) you to pick which js and css files should be loaded with the page. <strike>If you don't see these new options, you've probably done something wrong. (I don't know what's going on inside the code, but this would be an obvious place for a \"configuration error\" message to get raised -- if the code doesn't add any options, it should know that something's wrong.)</strike><br />\n"
+"<em>writed by drupal.org user jim_at_miramontes - January 7, 2010 - 00:42 <a target=\"_blank\" href=\"http://drupal.org/node/656878#comment-2443992\">original post</a> <span class=\"print-footnote\"></span><em></em></em></p>\n"
+"<p>The last striked oration is product of a mistake and missing Information caused by me.<br />\n"
+"Some light boxes are constantly being changed and this is the reason why Gallery-Assist-Lightboxes imports the needed files internally and in the right sequence. JCMC</p>\n"
+"<p><b>About the import of needed files from the supported Lightboxes</b></p>\n"
+"<dl>\n"
+"  <dt>Lightboxes where Gallery Assist Lightboxes imports self the required files.</dt>\n"
+"    <dd>lightbox</dd>\n"
+"    <dd>thickbox</dd>\n"
+"    <dd>litebox</dd>\n"
+"    <dd>liteshow</dd>\n"
+"    <dd>prettyPhoto*</dd>\n"
+"    <dd>interface</dd>\n"
+"  <dt>Lightboxes where the admin have to choose the required files.</dt>\n"
+"    <dd>fancybox*</dd>\n"
+"    <dd>colorbox*</dd>\n"
+"    <dd>shadowbox</dd>\n"
+"    <dd>highslide*</dd>\n"
+"    <dd>slimbox*</dd>\n"
+"</dl>\n"
+"<p><sub>* Customizable through the Gallery Assist Lightboxes UI</sub></p>\n"
+"\n"
+"<h2 class=\"book-heading\">Gallery Assist Upload and Import Helper</h2>\n"
+"<p>The module creates a folder named import and in which a folder called tmp.</p>\n"
+"<p><strong>import folder</strong><br />\n"
+"The import folder will be created in the Gallery-User-Folder: files/gallery_assist/<strong>[UID]</strong>/import.<br />\n"
+"In combination with the IMCE module you can give rights and users can upload theirs images packed in zip-files.<br />\n"
+"Otherway you can configure your ftp as multiuser. The path to the user-ftp-directory should be are \"\"</p>\n"
+"<p>In a multiuser system the ftp server can  be configured as multiuser the path for the user ftp directories should be are: your_root_path/sites/files/gallery_assist/[User-ID]/import<br />\n"
+"This is the current and the once posible way. I am working on better solutions for this cases.</p>\n"
+"<p><strong>tmp folder</strong><br />\n"
+"Reserved folder for the upload of zip files throug the node edit formular.<br />\n"
+"Once a zip file is uploaded, the module extract the content in to the tmp folder.<br />\n"
+"The module validate the file types, move the files to the gallery folder and the needed informations will be  entered into the database.</p>\n"
+"<p>The current three posibilities for upload.</p>\n"
+"<dl>\n"
+"  <dt>Through ftp</dt>\n"
+"    <dd>Upload image files.</dd>\n"
+"    <dd>Upload folders containing image  files.</dd>\n"
+"    <dd>Upload zip  files.</dd>\n"
+"  <dt>Through the node edit form.</dt>\n"
+"    <dd>Upload folders containing image  files.</dd>\n"
+"    <dd>Upload zip  files.</dd>\n"
+"</dl>\n"
+"\n"
+"<h2 class=\"book-heading\">Gallery Assist for the Cooliris viewer</h2>\n"
+"<p>* documentation coming soon...</p>\n"
+"\n"
+"<h2 class=\"book-heading\">The Pager</h2>\n"
+"<p>You can choose between a numerical or a graphical pager.</p>\n"
+"<p>To obtain that all pager-skins be available:</p>\n"
+"<ol>\n"
+"  <li>Create a folder called <strong>ga_pager</strong> in your theme directory.</li>\n"
+"  <li>The layout variants are to find at path/to/your/contributed_modules/gallery_assist/ga_pager.</li>\n"
+"  <li>Copy the layout variants you want to use to the <strong>ga_pager</strong> folder in the theme directory.<br />(Not copy or move the default folder).</li>\n"
+"</ol>\n"
+"<p>You can create your own pager skins. You should only call the files with the right names.</p>\n"
+"<p>The pager for the Item view is themeable. See templates example files in the Gallery Assist module folder.</p>\n"
+"<p>See the <a target=\"_blank\" href=\"http://simple.puntolatinoclub.de/portfolio/gallery-assist-pager-1\">screencast</a> <span class=\"print-footnote\"></span>.</p>\n"
+"\n"
+"<h2 class=\"book-heading\"><a name=\"block-options\"></a>Gallery Assist Block Options</h2>\n"
+"<dl>\n"
+"  <dt>Three Gallery Assist block options are available.</dt>\n"
+"    <dd>&nbsp;</dd>\n"
+"    <dd><u>The <strong>My Galleries</strong> block display the own galleries as covers or as list</u></dd>\n"
+"    <dd><em>more description coming soon...</em></dd>\n"
+"    <dd>&nbsp;</dd>\n"
+"    <dd><u>The <strong>Galleries</strong> block is similar to the \"My Galleries\" block. It shows only the galleries with enabled \"show in block\"</u></dd>\n"
+"    <dd><em>more description coming soon...</em></dd>\n"
+"    <dd>&nbsp;</dd>\n"
+"    <dd><u>The <strong>Block Gallery</strong> presents a gallery. You can enter one or more NID's. If several galleries have been entered, one will be shown randomly</u></dd>\n"
+"    <dd><em>more description coming soon...</em></dd>\n"
+"    <dd>&nbsp;</dd>\n"
+"</dl>\n"
+"\n"
+"<h2>Why save the node before add items to the gallery?</h2>\n"
+"<p>The node id is needed in order to generate the gallery folder name. Thereby we avoid unnecessary transfer in case the editor breaks the creation process without saving.</p>"
+msgstr ""
+
+#: gallery_assist.module:299
+msgid "Gallery"
+msgstr "Galéria"
+
+#: gallery_assist.module:301
+msgid "Drupal content type with gallery functionality. It allows the assignment of this gallery functionality to other node types."
+msgstr "Drupal tartalomtípus galériafunkcionalitással. Ez a funkcionalitás más tartalomtípusokhoz is hozzárendelhető."
+
+#: gallery_assist.module:303
+msgid "Gallery title"
+msgstr "Galéria címe"
+
+#: gallery_assist.module:305
+msgid "Gallery Description"
+msgstr "Galéria leírása"
+
+#: gallery_assist.module:483;493
+msgid "Extras"
+msgstr "Extrák"
+
+#: gallery_assist.module:591
+msgid "Count"
+msgstr "Mennyiség"
+
+#: gallery_assist.module:592
+msgid "Cover"
+msgstr "Borító"
+
+#: gallery_assist.module:593
+msgid "Updated"
+msgstr "Frissítve"
+
+#: gallery_assist.module:594
+msgid "Gallery node title"
+msgstr "Galériatartalom címe"
+
+#: gallery_assist.module:609
+msgid "Y/m/d"
+msgstr "Y.m.d."
+
+#: gallery_assist.module:735
+msgid "Gallery Assist user settings"
+msgstr "Galériasegéd felhasználói beállítások"
+
+#: gallery_assist.module:771
+msgid "<div id=\"ga-devel-by\">Edit the settings from Gallery Assist for this content type -> <a href=\"@myPath\">%contenType</a></div>"
+msgstr "<div id=\"ga-devel-by\">Erre a tartalomtípusra vonatkozó beállításokat a Galériasegédben szerkesztheti -> <a href=\"@myPath\">%contenType</a></div>"
+
+#: gallery_assist.module:786
+msgid "This node must be saved FIRST before you can add IMAGES to the gallery. Read more about in the <a href=\"@help_link\">help</a>."
+msgstr "KÉPEK hozzáadásához a tartalmat ELŐSZÖR le kell menteni. További információ a <a href=\"@help_link\">súgóban</a>."
+
+#: gallery_assist.module:796
+msgid "Read the short help in case you are not secure by this settings."
+msgstr "Amennyiben nem biztos ezekben a beállításokban, keresse fel a súgót."
+
+#: gallery_assist.module:801
+msgid "Settings to this Gallery"
+msgstr "Galéria beállításai"
+
+#: gallery_assist.module:814
+msgid "Gallery: Add and edit gallery items"
+msgstr "Galéria: Elemek hozzáadása és szerkesztése"
+
+#: gallery_assist.module:820
+msgid "Click Update to upload a new file or to save your changes in this section."
+msgstr "Új fájl feltöltéséhez vagy a változtatások elmentéséhez kattintson a Frissítésre."
+
+#: gallery_assist.module:911
+msgid "Title"
+msgstr "Cím"
+
+#: gallery_assist.module:912
+msgid "Copyright"
+msgstr "Szerzői jogok"
+
+#: gallery_assist.module:913
+msgid "Caption"
+msgstr "Kép alcím"
+
+#: gallery_assist.module:932
+msgid "Permitted formats: jpg-, jpeg-, png-, gif-images and zip packages."
+msgstr "Engedélyezett fájlformátumok: Képek (jpg, jpeg, png, gif) és Zip csomagok."
+
+#: gallery_assist.module:932
+msgid "Permitted formats: jpg-, jpeg-, png-, gif-images."
+msgstr "Engedélyezett fájlformátumok: Képek (jpg, jpeg, png, gif)."
+
+#: gallery_assist.module:964
+msgid "Add new item"
+msgstr "Új elem hozzáadása"
+
+#: gallery_assist.module:973
+msgid "Enter here the copyright in case all pictures you will just upload and all should having the same copyright."
+msgstr "Itt megadhatók a szerzői jog(ok) tulajdonosai, amennyiben az összes feltöltendő kép ugyanazon szerzői jogok alá tartozik."
+
+#: gallery_assist.module:977
+msgid "Temp copyright"
+msgstr "Szerzői jogok"
+
+#: gallery_assist.module:987
+msgid "The maximum allowed number of uploads (@max-amount) was achieved."
+msgstr "Elérte a maximális feltöltések korlátját: (@max-amount)."
+
+#: gallery_assist.module:999
+msgid "Update"
+msgstr "Frissítés"
+
+#: gallery_assist.module:1004;1483
+msgid "Please wait..."
+msgstr "Kérem várjon..."
+
+#: gallery_assist.module:1041
+msgid "X"
+msgstr "X"
+
+#: gallery_assist.module:1042
+msgid "Image"
+msgstr "Kép"
+
+#: gallery_assist.module:1043
+msgid "Image info"
+msgstr "Kép adatok"
+
+#: gallery_assist.module:1046;1049
+msgid "Weight"
+msgstr "Súly"
+
+#: gallery_assist.module:1329
+msgid "The gallery places had to be recreated. Possible causes: The gallery feature was assigned to this content type after the creation of this article or the gallery-assist module has been reinstalled. In order to be able to upload pictures you have to save this node."
+msgstr "A galériát újra létre kell hozni. Lehetséges okok: A tartalom már a galériafunkcionalitás hozzárendelése előtt létezett vagy a Galériasegédet újratelepítették. Képek feltöltéséhez a tartalmat előbb menteni kell."
+
+#: gallery_assist.module:1365
+msgid "Back to @ptitle"
+msgstr "Vissza ide: @ptitle"
+
+#: gallery_assist.module:1458
+msgid "Set this image to the gallery cover."
+msgstr "Kép beállítása a galéria borítójának."
+
+#: gallery_assist.module:1478
+msgid "Save and edit"
+msgstr "Mentés és szerkesztés"
+
+#: gallery_assist.module:1571
+msgid "<span class=\"messages status\">Changes sucessfull saved.</span>"
+msgstr "<span class=\"messages status\">Változtatások sikeresen elmentve.</span>"
+
+#: gallery_assist.module:1972
+msgid "A error is ocurred by Gallery Assist owner change"
+msgstr "Hiba történt a tulajdonos  megváltoztatása során"
+
+#: gallery_assist.module:1996
+msgid "<b>The new owner of this gallery is user: @uname</b>"
+msgstr "<b>A tartalom új tulajdonosa a következő felhasználó: @uname</b>"
+
+#: gallery_assist.module:2005
+msgid "<strong>A T T E N T I O N !</strong><br /> The user @uname haven't the needed permissions to create or edit this node type."
+msgstr "<strong>F I G Y E L E L E M !</strong><br /> Ez a felhasználó: @uname nem rendelkezik a megfelelő jogosultsággal ennek a tartalomtípusnak a létrehozásához vagy szerkesztéséhez."
+
+#: gallery_assist.module:2091
+msgid "@title has been successful deleted."
+msgstr "@title sikeresen törölve."
+
+#: gallery_assist.module:2165
+msgid "Archive @zip_name but the module <a href=\"@upport_url\">Gallery Assist Upport</a> is not installed. The archiv would uploaded to the specific folder and is ready to import to a gallery by upport installing."
+msgstr ""
+
+#: gallery_assist.module:2568
+msgid "Hide titles"
+msgstr "Címek elrejtése"
+
+#: gallery_assist.module:2735;2901
+msgid "D, m/d/Y - h:i"
+msgstr "Y.m.d. - h:i"
+
+#: gallery_assist.module:2832
+msgid "Back to the gallery"
+msgstr "Vissza a galériához"
+
+#: gallery_assist.module:2838;2842
+msgid "Edit this item"
+msgstr "Elem szerkesztése"
+
+#: gallery_assist.module:2898
+msgid "Submitted by !username on @datetime"
+msgstr "Beküldte: !username. Beküldés dátuma: @datetime"
+
+#: gallery_assist.module:2997
+msgid "go to the first"
+msgstr "Ugrás az elsőhöz"
+
+#: gallery_assist.module:3000
+msgid "go to the previous"
+msgstr "Ugrás az előzőhöz"
+
+#: gallery_assist.module:3006
+msgid "go to the next"
+msgstr "Ugrás az következőhöz"
+
+#: gallery_assist.module:3009
+msgid "go to the last"
+msgstr "Ugrás az utolsóhoz"
+
+#: gallery_assist.module:3011
+msgid "« first"
+msgstr "« Első oldal"
+
+#: gallery_assist.module:3015
+msgid "last »"
+msgstr "Utolsó oldal »"
+
+#: gallery_assist.module:3451
+msgid "more..."
+msgstr "tovább..."
+
+#: gallery_assist.module:3620
+msgid "@lg_name translation of your custom Block name."
+msgstr "@lg_name nyelvű fordítása az egyedi blokknévnek."
+
+#: gallery_assist.module:3642
+msgid "Custom name translation"
+msgstr "Egyedi név lefordítása"
+
+#: gallery_assist.module:3644
+msgid "Translate your block custom name here"
+msgstr "Itt fordíthatja le az egyedi blokknevet"
+
+#: gallery_assist.module:3652
+msgid " translation of your custom block name."
+msgstr "az egyedi blokknév fordítása."
+
+#: gallery_assist.module:3662
+msgid "Gallery Assist node ID's"
+msgstr "Galériasegéd tartalom ID-k"
+
+#: gallery_assist.module:3669
+msgid "Order"
+msgstr "Sorrend"
+
+#: gallery_assist.module:3680
+msgid "Gallery Assist block items format"
+msgstr "Galériasegéd miniatűrbeállítások"
+
+#: gallery_assist.module:3692
+msgid "Item size"
+msgstr "Elem méret"
+
+#: gallery_assist.module:3705
+msgid "Item margin"
+msgstr "Elem margó"
+
+#: gallery_assist.module:3711
+msgid "Item padding"
+msgstr "Elem kitöltés"
+
+#: gallery_assist.module:3718
+msgid "Item border"
+msgstr "Elem keret"
+
+#: gallery_assist.module:3725
+msgid "Item border color #027AC6"
+msgstr "Elem keretszín #027AC6 (Garland)"
+
+#: gallery_assist.module:3742
+msgid "Gallery Assist visible nodes"
+msgstr "Megjelenített Galériák száma"
+
+#: gallery_assist.module:3757;552
+msgid "Galleries"
+msgstr "Galériák"
+
+#: gallery_assist.module:3758
+msgid "My Galleries"
+msgstr "Saját galériáim"
+
+#: gallery_assist.module:3759
+msgid "Gallery Block"
+msgstr "Galériablokk"
+
+#: gallery_assist.module:3876
+msgid "Force the Item height"
+msgstr "Elem magasságának erőltetése"
+
+#: gallery_assist.module:3878
+msgid "Enabled will be forced the height of the box to the image height."
+msgstr "Amennyiben bekapcsolja, a doboz magassága a kép magasságához lesz beállítva."
+
+#: gallery_assist.module:3885
+msgid "Set margin-top to 0 if needed."
+msgstr ""
+
+#: gallery_assist.module:4005
+msgid "Gallery Assist Container"
+msgstr "Galériasegéd doboza"
+
+#: gallery_assist.module:4006
+msgid "Container with the Gallery Assist items."
+msgstr "Galériasegéd elemeket tartalmazó doboz"
+
+#: gallery_assist.module:4082
+msgid "The image ID"
+msgstr "Kép ID"
+
+#: gallery_assist.module:4083
+msgid "The image name"
+msgstr "Képnév"
+
+#: gallery_assist.module:316
+msgid "administer gallery_assist"
+msgstr "galériasegéd adminisztrációja"
+
+#: gallery_assist.module:317
+msgid "view gallery_assist content"
+msgstr "galériasegéd tartalmak megtekintése"
+
+#: gallery_assist.module:318
+msgid "create gallery_assist content"
+msgstr "galériasegéd tartalmak létrehozása"
+
+#: gallery_assist.module:319
+msgid "delete own gallery_assist content"
+msgstr "galériasegéd tartalmak törlése (saját)"
+
+#: gallery_assist.module:320
+msgid "delete any gallery_assist content"
+msgstr "galériasegéd tartalmak törlése (bármilyen)"
+
+#: gallery_assist.module:321
+msgid "edit own gallery_assist content"
+msgstr "galériasegéd tartalmak szerkesztése (saját)"
+
+#: gallery_assist.module:322
+msgid "edit any gallery_assist content"
+msgstr "galériasegéd tartalmak szerkesztése (bármilyen)"
+
+#: gallery_assist.module:323
+msgid "administer gallery_assist blocks"
+msgstr "galériasegéd blokkok adminisztrációja"
+
+#: gallery_assist.module:332
+msgid "gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:332
+msgid "gallery_assist"
+msgstr "galériasegéd"
+
+#: gallery_assist.module:334
+msgid "administer gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:335
+msgid "view gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:335;336;337;338;339;340
+msgid " content"
+msgstr "tartalom"
+
+#: gallery_assist.module:336
+msgid "create gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:337
+msgid "delete own gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:338
+msgid "delete any gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:339
+msgid "edit own gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:340
+msgid "edit any gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:411
+msgid "Manage the gallery_assist asigments and customize the html output."
+msgstr "Galériasegéddel és az egyedi galériákkal kapcsolatos beállítások kezelése."
+
+#: gallery_assist.module:544
+msgid "Gallery Assist WARNING!"
+msgstr "Galériasegéd FIGYELMEZTETÉS!"
+
+#: gallery_assist.install:276
+msgid "It was not possible to create the gallery_assist directory. The files directory must be writable. Clarify the write permissions for the files folder and reinstall the module Gallery Assist."
+msgstr "Das gallery_assist Verzeichniss konnte nicht erstellt werden. Das Verzeichniss files muss beschreibbar sein. Klären Sie die Berechtigungen für das files Verzeichniss und installieren das Modul Gallery-Assistent erneut."
+
+#: gallery_assist.info:0
+msgid "Drupal content type with gallery functionality."
+msgstr "Drupal tartalomtípus galériafunkcionalitással."
+
+#: gallery_assist.info:0
+msgid "Media"
+msgstr "Média"
+

@@ -1,0 +1,7 @@
+/* $Id: gallery-assist-display.css,v 1.x 2009/11/21 20:05:09 jcmc Exp $ */
+
+#gallery-container.teaser {
+  border-right: 1px solid #000066;
+  padding-right: 5px;
+}
+

@@ -1,0 +1,338 @@
+/* $Id: gallery_assist.css,v 1.28 2010/06/01 16:07:50 jcmc Exp $ */
+
+#gallery-assist-users-help {
+  margin: 0 20px;
+}
+
+#gallery-assist-users-help h3 {
+  margin: 12px 0 5px 0;
+}
+
+.gallery-assist-settings-left {
+  float:left;
+  padding: 0 10px;
+  width:30%;
+}
+
+.gallery-assist-settings-left-half {
+  float:left;
+  padding: 0 10px;
+  width:45%;
+}
+
+.ga-clear-both {
+  clear: both;
+}
+
+.item-box {
+  float: left;
+}
+
+.image-box, 
+#block-gallery_assist-0 .gab-item-lnk {
+  text-align: center;
+  /* border:1px solid gray; */
+}
+
+/*
+.image-box:hover {
+  border:1px solid red;
+  background:#ffcc33;
+}
+*/
+
+/* gallery_assist item preview */
+#gallery-item-caption-title {
+  font-weight: bold;
+}
+
+/* pager */
+#ga-pager-box {
+  clear:both;
+}
+
+/* gallery_assist item preview pager */
+#ga-pager-box ul.pager {
+  text-align: left;
+  padding: 0 0 1em 0;
+}
+#ga-pager-box ul.pager li{
+  margin-top:10px;
+}
+#ga-pager-box ul li img.off {
+  height: 20px;
+}
+#ga-pager-box ul li img.on {
+  height: 25px;
+}
+
+#ga-pager-box ul li img.ic-off {
+  opacity:0.7;
+}
+#ga-pager-box ul li img.ic-on {
+  opacity:inherit;
+}
+
+#ga-pager-box ul li img.ic-off:hover {
+  opacity:inherit;
+}
+
+#exif-data {
+  margin-top: 2em;
+  padding: 2em;
+  border: 1px solid gray;
+}
+
+.gallery-container .title-box {
+  text-align:center;
+}
+
+/* gallery_assist shows as list */
+#gallery-container .item-box-list {
+  clear:left;
+  display:block;
+}
+
+#gallery-item-caption-title, .title-box-on-list {
+  font-weight: bold;
+}
+
+.item-box-row {
+  /*border-bottom:1px solid;
+  border-color:#AAAAAA;*/
+  padding:15px 10px 10px 10px;
+}
+
+.gallery-container .odd {
+  background:#EDF5FA;
+}
+
+/*
+.item-box {
+  margin-top:5px;
+}*/
+
+.ga-common-block-links {
+
+}
+
+#blok-gallery-container, 
+#blok-gallery-container.item-box {
+  background: transparent;
+  margin-top:0;
+}
+
+.ga-common-block-pics {
+  line-height: 0;
+  float: left;
+  margin: 2px;
+}
+
+.thmb_form_image {
+  height:80px;
+  width:80px;
+  text-align:center;
+}
+
+div.ga-comment-links-container,  
+div.ga-comment-links-container div.item-list, 
+div.ga-comment-links-container div.item-list ul, 
+div.ga-comment-links-container div.item-list ul li {
+  margin: 0;
+  padding: 0;
+}
+div.ga-comment-links-container div.item-list h3 {display:none;}
+div.ga-comment-links-container div.item-list ul li {
+  list-style: none;
+  background:transparent none;
+  list-style-image:none;
+  display:inline;
+}
+
+div#ga-pager-box  div.pager li a {color:#fff999;}
+
+/*
+#ga-gallery-block-0, 
+#ga-gallery-block-0.pics, 
+#ga-gallery-block-1, 
+#ga-gallery-block-1.pics {
+  : displa;
+}*/
+
+.gab-item-pic {
+  text-align: center;
+}
+
+.ga_titles {
+  width:70%;
+}
+
+.ga_titles {
+  white-space: normal;
+}
+
+.ga_created {
+  white-space: nowrap;
+}
+
+#ga-amount-achaived {
+  font-weight:bold;
+  margin: 10px 0;
+  padding-left: 10px;
+}
+
+#ga-form-delete {
+  width:1px;
+}
+
+#ga-form-item {
+  width:1px;
+}
+
+#ga-form-caption {
+  width:80%;
+}
+
+#ga-devel-by {
+  text-align: right;
+  font-size: 10px;
+  color:gray;
+}
+
+.ga-form-first {
+  width:100%;
+  display:block;
+}
+
+/*
+.ga-item-edit-link, .ga-item-edit-link a {
+  color:transparent;
+  font-style: italic;
+  font-size: 10px;
+  height: 18px;
+  padding: 0px 5px;
+  margin:-2px 0 0 0;
+}
+
+.ga-item-edit-link:hover, .ga-item-edit-link a:hover {
+  color: #222222;
+  background: #cccccc;
+  opacity: 0.7;
+}
+*/
+.ga-item-edit-link {
+  width: 100%;
+  opacity:0.1;
+  z-index:20;
+}
+.ga-item-edit-link:hover {
+  opacity: 0.9;
+}
+
+
+
+.ga-item-edit-link a {
+  font-style: italic;
+  font-size: 10px;
+  height: 18px;
+  padding: 0px 5px;
+  margin:-2px 0 0 0;
+  text-decoration: none;
+  color: #111;
+  background: yellow;
+}
+
+.ga-item-edit-link a:hover {
+  color: #111;
+  background: #ffcc66;
+}
+
+.ga-pager-box pager-item {
+  display: none;
+}
+.ga-form-weight {
+  width : 1px;
+}
+.ga-align-left {
+  text-align:left;
+}
+.ga-align-center {
+  text-align:center;
+}
+.ga-align-right {
+  text-align:right;
+}
+
+div.ga-back-link {
+  margin-right: 5px;
+}
+
+div.nav-links {
+  background: transparent;
+}
+/**
+ * Comment out to use icons for the back and edit one links.
+ */
+div.ga-edit-item-link {
+  background:transparent url(../images/icon-set.png) no-repeat scroll 0 0;
+  background-position: -16px 0;
+  height:16px;
+  width:16px;
+  overflow:hidden;
+
+}
+div.ga-edit-item-link:hover {
+  background:transparent url(../images/css-sprites.png) no-repeat scroll 0 0;
+  background-position: -16px 0;
+}
+div.ga-edit-item-link a {
+  background: transparent;
+  padding-left:20px;
+}
+div.ga-back-link {
+  background:transparent url(../images/icon-set.png) repeat scroll 0 0;
+  background-position: -16px -16px;
+  float:left;
+  height:16px;
+  overflow:hidden;
+  width:16px;
+}
+div.ga-back-link:hover {
+  background:transparent url(../images/css-sprites.png) repeat scroll 0 0;
+  background-position: -16px -16px;
+}
+div.ga-back-link a {
+  background: transparent;
+  padding-left:20px;
+}
+
+.ga-nowrap {
+  white-space: nowrap;
+}
+
+.ga-fullwidth {
+  width: 100%;
+}
+
+#ga-pager-box .item-list {
+  border:0;
+  background:transparent;
+}
+
+.ga-container-teaser-align-left {margin-right:auto;text-align:left;}
+.ga-container-teaser-align-right {}
+.ga-container-teaser-align-center {}
+.ga-container-teaser-float-left {}
+.ga-container-teaser-float-right {}
+.ga-container-page-align-left {}
+.ga-container-page-align-right {}
+.ga-container-page-align-center {}
+.ga-container-page-float-left {}
+.ga-container-page-float-right {}
+
+/* by zero point theme add the lines to the end of file style-zero.css
+body.layout-jello .page {
+  padding-left:0;
+  padding-right:0;
+}
+*/

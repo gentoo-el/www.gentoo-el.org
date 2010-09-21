@@ -1,0 +1,765 @@
+<?php
+// $Id: gallery_assist.install,v 1.40 2010/05/25 02:47:37 jcmc Exp $
+
+/**
+ * @file
+ * Install, update and uninstall functions and DB tables for the Gallery Assist module.
+ */
+
+/**
+ * Implementation of hook_schema().
+ */
+function gallery_assist_schema() {
+  $schema['gallery_assist'] = array(
+    'description' => 'Gallery Assist principal table.',
+    'fields' => array(
+      'gid' => array(
+        'description' => 'The primary identifier for a gallery.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'gref' => array(
+        'description' => 'The reference ID to the gallery, used by translations.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'ref' => array(
+        'description' => 'The reference identifier to the node, used by translations.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'lang' => array(
+        'description' => 'The language code by translations.',
+        'type' => 'varchar',
+        'length' => 8,
+        'not null' => TRUE,
+        'default' => ''),
+      'nid' => array(
+        'description' => 'The primary identifier from the node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'uid' => array(
+        'description' => 'The user ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'ganame' => array(
+        'description' => 'The gallery name.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''),
+      'description' => array(
+        'description' => 'Gallery description on profiles. Will come later...',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''),
+      'in_profile' => array(
+        'description' => 'Apears in the section of user profile -My Pictures-. Will come later...',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'comments' => array(
+        'description' => 'Allow post coments authenticate users. Will come later...',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'show_title' => array(
+        'description' => 'Show images titles by gallery group view.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'show_in_homepage_block' => array(
+        'description' => 'Image boxes shadow toggle.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'gallery_assist_weight' => array(
+        'description' => 'Weight of the gallery container by displaying the page.',
+        'type' => 'int',
+        'default' => 20),
+      'data' => array(
+        'description' => 'Contains the configuration data for the display galleries in the user profile. Will come later...',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE),
+      ),
+    'primary key' => array('gid'),
+  );
+
+  $schema['gallery_assist_item'] = array(
+    'description' => 'Table of the gallery assist items.',
+    'fields' => array(
+      'pid' => array(
+        'description' => 'The primary identifier for a gallery item.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'nid' => array(
+        'description' => 'The primary identifier from the node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        ),
+      'ref' => array(
+        'description' => 'The reference ID to the node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        ),
+      'gid' => array(
+        'description' => 'The gallery ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        ),
+      'gref' => array(
+        'description' => 'The reference ID to the gallery, used by translations.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        ),
+      'sid' => array(
+        'description' => 'The gallery ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 1,
+        ),
+      'uid' => array(
+        'description' => 'The user ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        ),
+      'fid' => array(
+        'description' => 'The file ID in the files table.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        ),
+      'filename' => array(
+        'description' => 'The filename in the files table.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''),
+      'opath' => array(
+        'description' => 'The path to the original images.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''),
+      'ppath' => array(
+        'description' => 'The path to the previews images.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''),
+      'tpath' => array(
+        'description' => 'The path to the thumbnails images.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''),
+      'weight' => array(
+        'description' => 'Set the items order.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0),
+      'copyright' => array(
+        'description' => 'Copyright of images if needed.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''),
+      'comments' => array(
+        'description' => 'Allow comments to images from galleries displayed in user profile. Will come later...',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      'cover' => array(
+        'description' => 'The cover image of this gallery',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      ),
+    'primary key' => array('pid'),
+  );
+
+  $schema['gallery_assist_translated'] = array(
+    'description' => 'Table for the multilingual manage of the fields title, caption or description etc of gallery assist items.',
+    'fields' => array(
+      'did' => array(
+        'description' => 'The primary identifier for a translation.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'nid' => array(
+        'description' => 'The primary identifier from the node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'gid' => array(
+        'description' => 'The gallery ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'gref' => array(
+        'description' => 'The reference ID to the gallery, used by translations.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'pid' => array(
+        'description' => 'The primary identifier for a gallery item.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'lang' => array(
+        'description' => 'The language code by translations.',
+        'type' => 'varchar',
+        'length' => 8,
+        'not null' => TRUE,
+        'default' => ''),
+      'ptitle' => array(
+        'description' => 'The gallery item name.',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => ''),
+      'palt' => array(
+        'description' => 'The filename of the gallery item image displayed as img alt.',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => ''),
+      'pdescription' => array(
+        'description' => 'The gallery item description text.',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE),
+      'format' => array(
+        'description' => 'The filter format for the pdescription.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
+      ),
+    'primary key' => array('did'),
+  );
+
+  $schema['gallery_assist_modules_settings'] = array(
+    'description' => 'Table to manage of the fields title, caption or description etc of gallery assist items.',
+    'fields' => array(
+      'gam' => array(
+        'description' => 'The primary identifier for setting entries.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'nid' => array(
+        'description' => 'The primary identifier from the node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'ref' => array(
+        'description' => 'The reference ID from the node, used by translations.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'gid' => array(
+        'description' => 'The gallery ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'gref' => array(
+        'description' => 'The reference ID from the gallery, used by translations.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'module' => array(
+        'description' => 'The modules settings data.',
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => ''),
+      'data' => array(
+        'description' => 'The modules settings data.',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE),
+      ),
+    'primary key' => array('gam'),
+  );
+
+  $schema['cache_gallery_assist_data'] = drupal_get_schema_unprocessed('system', 'cache');
+  $schema['cache_gallery_assist_data']['description'] = 'Cache table for gallery_assist to store pre-rendered queries, results, and display output.';
+  $schema['cache_gallery_assist_data']['fields']['serialized']['default'] = 1;
+
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function gallery_assist_install() {
+  drupal_install_schema('gallery_assist');
+
+  // Set default gallery_assist variables.
+  if (!file_check_directory(variable_get('gallery_assist_directory', file_directory_path() .'/gallery_assist'), 1)) {
+    drupal_set_message(t('It was not possible to create the gallery_assist directory. The files directory must be writable. Clarify the write permissions for the files folder and reinstall the module Gallery Assist.'), 'error');
+  }
+
+  // Set the default variables and default values for gallery assist and/or node types with assigment.
+  // The default values will be assigned to each new gallery_assist asigment.
+  // You can set as desired others default values here before installing this module.
+  $ga_variables = array(
+    'upload_thm' => 150,
+    'upload_prev' => 550,
+    'items_per_row' => 3,
+    'rows_per_page' => 2,
+    'thumbnail_size' => 100,
+    'thumbnail_size_plus' => 0,
+    'preview_size' => 550,
+    'item_margin' => 10,
+    'item_padding' => 20,
+    'item_border' => 1,
+    'item_border_color' => '#cbe2f1',
+    'show_backlink' => 0,
+    'show_toggle' => 0,
+    'position_toggle' => 0,
+    'title_substr' => 16,
+    'pager_symbol' => 0,
+    'pager_layout' => 'default',
+    'pager_position' => 'top',
+    'pager_visibles' => 3,
+    // Update 1
+    'show_title' => 0,
+    'show_layout' => 'grid',
+    'layout' => array(
+      'ga_align' => 'center',
+      'gap_align' => 'center',
+      't_ga_float' => 'none',
+      'p_ga_float' => 'none',
+    ),
+    'shadow' => 0,
+    // Update 3
+    'hide_in_teaser' => FALSE,
+    'show_download_link' => FALSE,
+    'item_effect' => FALSE,
+    'max_items' => FALSE,
+    'max_form_items' => 6,
+    'validate_upload' => array(
+      'file_size' => '',
+      'user_size' => '',
+      'resolution' => 0,
+      'extensions' => 'jpg jpeg gif png',
+    ),
+    'public_status' => 1,
+    'admin_public_status' => FALSE,
+    'pager_t_height' => 20,
+    'pager_t_active_height' => 25,
+    // User permissions.
+    'extra_layout_settings_allowed' => 0,
+    'common_settings_allowed' => 0,
+    'hide_teaser_container_allowed' => 0,
+    'display_download_link_allowed' => 0,
+    'container_format_allowed' => 0,
+    'gallery_container_weight_allowed' => 0,
+    'show_in_homepage_block_allowed' => 0,
+    'gallery_public_status_allowed' => 0,
+    'show_titles_allowed' => 0,
+    'show_in_userprofile_allowed' => 0,
+    'gallery_items_shadow_allowed' => 0,
+    // DB
+    'ga_db_order_field' => 'weight',
+    'ga_db_order' => 'ASC',
+  );
+
+  // Set the default variables and default values for gallery assist block gallery..
+  $ga_block_variables = array(
+    0 => array(
+      'bformat' => 'pic',
+      'item_size' => 50,
+      'item_margin' => 1,
+      'item_padding' => 0,
+      'item_border' => 0,
+      'item_border_color' => '#027AC6',
+      'visibles' => 6,
+    ),
+    1 => array(
+      'bformat' => 'lnk',
+      'item_size' => 50,
+      'block_item_margin' => 1,
+      'block_item_padding' => 0,
+      'item_border' => 0,
+      'item_border_color' => '#027AC6',
+      'visibles' => 6,
+    ),
+    2 => array(
+      'gallery' => '',
+      'item_size' => 50,
+      'item_margin' => 1,
+      'item_padding' => 0,
+      'item_border' => 0,
+      'item_border_color' => '#027AC6',
+      'visibles' => 6,
+      'order' => 'DESC',
+    ),
+  );
+
+  // One of the basic features of this module is the assign gallery-funktionality. 
+  // The set the variable at this point is the best method to develop efecctiv and simplified module code.
+  // (I mean with this the Assigment-Functionality)
+  variable_set('gallery_assist_default', 1);
+  variable_set('gallery_assist_default_data', $ga_variables);
+  variable_set('gallery_assist_gallery_assist', 1);
+  variable_set('gallery_assist_gallery_assist_data', $ga_variables);
+  variable_set('gallery_assist_block_data', $ga_block_variables);
+  variable_set('gallery_assist_editform_pager_limit', 10);
+  variable_set('gallery_assist_forms_possition', -2);
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function gallery_assist_uninstall() {
+  module_invoke('gallery_assist', 'delete_directory', variable_get('gallery_assist_directory', file_directory_path() .'/gallery_assist'));
+  
+  // Delete all gallery assist nodes form the node and the node_revisions tables.
+  $query = "SELECT n.nid FROM {node} n WHERE type = '%s'";
+  $result = db_query(db_rewrite_sql($query, 'n', 'nid'), 'gallery_assist');
+
+  while ($r = db_fetch_object($result)) {
+    node_delete($r->nid);
+  }
+
+  // Delete all gallery assist settings variables.
+  db_query("DELETE FROM {variable} WHERE name LIKE 'gallery_assist\_%'");
+
+  // Delete all database tables.
+  drupal_uninstall_schema('gallery_assist');
+
+}
+
+/**
+ * Implementation of hook_update_N().
+ */
+function gallery_assist_update_1() {
+
+  $default_settings = $node_type_settings = array();
+  $default_settings = variable_get('gallery_assist_default_data', FALSE);
+
+  $default_settings['show_title'] = 0;
+  $default_settings['show_layout'] = 'grid';
+  $default_settings['layout']['ga_align'] = 'center';
+  $default_settings['layout']['gap_align'] = 'center';
+  $default_settings['layout']['t_ga_float'] = 'none';
+  $default_settings['layout']['p_ga_float'] = 'none';
+  $default_settings['show_in_homepage_block'] = 0;
+
+  variable_set('gallery_assist_default_data', $default_settings);
+
+  $types = node_get_types();
+
+  foreach ($types as $n) {
+    
+    $nt_settings = variable_get('gallery_assist_'. $n->type .'_data', FALSE);
+    
+    if (variable_get('gallery_assist_'. $n->type, 0) == 1) {
+      
+      $node_type_settings['show_title'] = empty($nt_settings['show_title']) ? $nt_settings['show_title'] : 0;
+      $node_type_settings['show_layout'] = empty($nt_settings['show_layout']) ? $nt_settings['show_layout'] : 'grid';
+      $node_type_settings['layout']['ga_align'] = empty($nt_settings['layout']['ga_align']) ? $nt_settings['layout']['ga_align'] : 'center';
+      $node_type_settings['layout']['gap_align'] = empty($nt_settings['layout']['gap_align']) ? $nt_settings['layout']['gap_align'] : 'center';
+      $node_type_settings['layout']['t_ga_float'] = empty($nt_settings['layout']['t_ga_float']) ? $nt_settings['layout']['t_ga_float'] : 'none';
+      $node_type_settings['layout']['p_ga_float'] = empty($nt_settings['layout']['p_ga_float']) ? $nt_settings['layout']['p_ga_float'] : 'none';
+      $node_type_settings['show_in_homepage_block'] = empty($nt_settings['show_in_homepage_block']) ? $nt_settings['show_in_homepage_block'] : 0;
+
+      variable_set('gallery_assist_'. $n->type .'_data', $node_type_settings);
+    }
+  }
+
+  $old = variable_get('gallery_assist_block_data', FALSE);
+  
+  // Set the default variables and default values for gallery assist block gallery.
+  // Respect the old settings.
+  $ga_block_variables = array(
+    0 => array(
+      'bformat' => $old[0]['bformat'] ? $old[0]['bformat'] : 'pic',
+      'item_size' => $old[0]['item_size'] ? $old[0]['item_size'] : 50,
+      'item_margin' => $old[0]['item_margin'] ? $old[0]['item_margin'] : 1,
+      'item_padding' => $old[0]['item_padding'] ? $old[0]['item_padding'] : 0,
+      'item_border' => $old[0]['item_border'] ? $old[0]['item_border'] : 0,
+      'item_border_color' => $old[0]['item_border_color'] ? $old[0]['item_border_color'] : '#cbe2f1',
+      'visibles' => $old[0]['visibles'] ? $old[0]['visibles'] : 6,
+    ),
+    1 => array(
+      'bformat' => $old[1]['bformat'] ? $old[1]['bformat'] : 'lnk',
+      'item_size' => $old[1]['item_size'] ? $old[1]['item_size'] : 50,
+      'item_margin' => $old[1]['item_margin'] ? $old[1]['item_margin'] : 1,
+      'item_padding' => $old[1]['item_padding'] ? $old[1]['item_padding'] : 0,
+      'item_border' => $old[1]['item_border'] ? $old[1]['item_border'] : 0,
+      'item_border_color' => $old[1]['item_border_color'] ? $old[1]['item_border_color'] : '#cbe2f1',
+      'visibles' => $old[1]['visibles'] ? $old[1]['visibles'] : 6,
+    ),
+    2 => array(
+      'gallery' => $old[2]['gallery'] ? $old[2]['gallery'] : 'pic',
+      'item_size' => $old[2]['item_size'] ? $old[2]['item_size'] : 50,
+      'item_margin' => $old[2]['item_margin'] ? $old[2]['item_margin'] : 1,
+      'item_padding' => $old[2]['item_padding'] ? $old[2]['item_padding'] : 0,
+      'item_border' => $old[2]['item_border'] ? $old[2]['item_border'] : 0,
+      'item_border_color' => $old[2]['item_border_color'] ? $old[2]['item_border_color'] : '#cbe2f1',
+      'visibles' => $old[2]['visibles'] ? $old[2]['visibles'] : 6,
+    ),
+  );
+
+  variable_set('gallery_assist_block_data', $ga_block_variables);
+
+  return array();
+}
+
+/**
+ * Implementation of hook_update_N().
+ */
+function gallery_assist_update_2() {
+  $ret = array();
+  $db_field = array(
+    'type' => 'text',
+    'size' => 'big',
+    'not null' => TRUE,
+    'description' => 'Contains extra configuration data for each gallery.',
+  );
+  db_change_field($ret, 'gallery_assist', 'data', 'data', $db_field);
+  
+  $table = drupal_get_schema_unprocessed('system', 'cache');
+  $table['description'] = 'Cache table for gallery_assist to store pre-rendered queries, results, and display output.';
+  $table['fields']['serialized']['default'] = 1;
+
+  db_create_table($ret, 'cache_gallery_assist_data', $table);
+  cache_clear_all(NULL, 'cache_block');
+
+  return $ret;
+}
+
+/**
+ * Implementation of hook_update_N().
+ */
+function gallery_assist_update_3() {
+  $ret = array();
+
+  // DB Operations.
+  $result1 = db_query("SELECT gref, shadow, data from {gallery_assist}");
+
+  $my_data = array();
+  while ($r = db_fetch_object($result1)) {
+    $my_data[$r->gref] = $r;
+    $data = unserialize($r->data);
+    $data['shadow'] = $r->shadow;
+    $my_data[$r->gref]->show_in_homepage_block = $data['show_in_homepage_block'];
+    unset($data['show_in_homepage_block']);
+    unset($my_data[$r->gref]->shadow);
+    $my_data[$r->gref]->data = serialize($data);
+  }
+
+  $spec = array(
+    'show_in_homepage_block' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'default' => 0,
+      'description' => 'Marker that help to filter which galleries will be showed in the block Galleries.',
+    ),
+    'cover' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'default' => 0,
+      'description' => 'Marker that help to filter which galleries will be showed in the block Galleries.',
+    ),
+  );
+
+  db_add_field($ret, 'gallery_assist', 'show_in_homepage_block', $spec['show_in_homepage_block']);
+
+  if (count($my_data) > 1) {
+    foreach ($my_data as $k) {
+      $show_in_homepage_block = isset($k->show_in_homepage_block) && $k->show_in_homepage_block ? 1 : 0;
+      $data = $k->data;
+      $gref = $k->gref;
+      update_sql("UPDATE {gallery_assist} set show_in_homepage_block = $show_in_homepage_block, data = '$data' WHERE gref = $gref");
+  
+      $type = 'Update 2';
+      $message = 'Table <strong>%table_name</strong> was sucessfull altered.</br>';
+      $variables = array('%table_name' => 'gallery_assist', '@gid' => $k->gref, '@show_in_homepage_block' => $k->show_in_homepage_block);
+      watchdog($type, $message, $variables);
+    }
+  }
+
+  drupal_set_message('<p><strong>The feature "cover" is new. At now you or the registered users of your homepage (with Gallery Assist permissions) can choose a image as cover for each gallery.</strong></p>');
+
+  db_drop_field($ret, 'gallery_assist', 'shadow');
+
+  // Add the cover column..
+  //db_query("ALTER TABLE {gallery_assist_item} ADD cover INT UNSIGNED NOT NULL DEFAULT %d AFTER comments", 0);
+  // Set a cover for each existing gallery.
+  db_add_field($ret, 'gallery_assist_item', 'cover', $spec['cover']);  
+
+  // Set a image as cover in each existing gallery.
+  $q = "SELECT pid from {gallery_assist_item} GROUP BY gref";
+  $result2 = db_query($q);
+  while ($r2 = db_fetch_object($result2)) {
+    update_sql("UPDATE {gallery_assist_item} set cover = 1 WHERE pid = ". $r2->pid);
+  }
+
+  // Build or update settings variables.
+  $new_key = array(
+    'file_size' => '',
+    'user_size' => '',
+    'resolution' => 0,
+    'extensions' => 'jpg jpeg gif png',
+  );
+
+  $types = node_get_types();
+  $check['default'] = variable_get('gallery_assist_default_data', FALSE);
+  $check['default']['hide_in_teaser'] = FALSE;
+  $check['default']['show_download_link'] = FALSE;
+  $check['default']['item_effect'] = FALSE;
+  $check['default']['max_items'] = FALSE;
+  $check['default']['max_form_items'] = 6;
+  $check['default']['public_status'] = 1;
+  $check['default']['admin_public_status'] = FALSE;
+  $check['default']['validate_upload'] = $new_key;
+  $check['default']['pager_t_height'] = 20;
+  $check['default']['pager_t_active_height'] = 25;
+  // User permissions.
+  $check['default']['extra_layout_settings_allowed'] = 0;
+  $check['default']['common_settings_allowed'] = 0;
+  $check['default']['hide_teaser_container_allowed'] = 0;
+  $check['default']['display_download_link_allowed'] = 0;
+  $check['default']['container_format_allowed'] = 0;
+  $check['default']['gallery_container_weight_allowed'] = 0;
+  $check['default']['show_in_homepage_block_allowed'] = 0;
+  $check['default']['gallery_public_status_allowed'] = 0;
+  $check['default']['show_titles_allowed'] = 0;
+  $check['default']['show_in_userprofile_allowed'] = 0;
+  $check['default']['gallery_items_shadow_allowed'] = 0;
+  variable_set('gallery_assist_'. $v->type, $check['default']);
+
+  foreach ($types as $v) {
+    if (variable_get('gallery_assist_'. $v->type, 0) == 1) {
+      $check[$v->type] = variable_get('gallery_assist_'. $v->type .'_data', FALSE);
+      $check[$v->type]['hide_in_teaser'] = $check['default']['hide_in_teaser'];
+      $check[$v->type]['show_download_link'] = $check['default']['show_download_link'];
+      $check[$v->type]['item_effect'] = $check['default']['item_effect'];
+      $check[$v->type]['max_items'] = $check['default']['max_items'];
+      $check[$v->type]['max_form_items'] = $check['default']['max_form_items'];
+      $check[$v->type]['public_status'] = $check['default']['public_status'];
+      $check[$v->type]['admin_public_status'] = $check['default']['admin_public_status'];
+      $check[$v->type]['validate_upload'] = $new_key;
+      $check[$v->type]['pager_t_height'] = $check['default']['pager_t_height'];
+      $check[$v->type]['pager_t_active_height'] = $check['default']['pager_t_active_height'];
+      // User permissions.
+      $check[$v->type]['extra_layout_settings_allowed'] = 0;
+      $check[$v->type]['common_settings_allowed'] = 0;
+      $check[$v->type]['hide_teaser_container_allowed'] = 0;
+      $check[$v->type]['display_download_link_allowed'] = 0;
+      $check[$v->type]['container_format_allowed'] = 0;
+      $check[$v->type]['gallery_container_weight_allowed'] = 0;
+      $check[$v->type]['show_in_homepage_block_allowed'] = 0;
+      $check[$v->type]['gallery_public_status_allowed'] = 0;
+      $check[$v->type]['show_titles_allowed'] = 0;
+      $check[$v->type]['show_in_userprofile_allowed'] = 0;
+      $check[$v->type]['gallery_items_shadow_allowed'] = 0;
+
+      variable_set('gallery_assist_'. $v->type .'_data', $check[$v->type]);
+    }
+  }
+
+  $block_update = variable_get('gallery_assist_block_data', FALSE);
+  $block_update[2]['cover'] = 'DESC';
+  variable_set('gallery_assist_block_data', $block_update);
+
+  gallery_assist_clearthecache();
+
+  return $ret;
+}
+
+/**
+ * Implementation of hook_update_N().
+ */
+function gallery_assist_update_4() {
+  $ret = array();
+
+  
+  $schema['gallery_assist_modules_settings'] = array(
+    'description' => 'Table to manage setting from gallery assist submodules.',
+    'fields' => array(
+      'gam' => array(
+        'description' => 'The primary identifier for setting entries.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'nid' => array(
+        'description' => 'The primary identifier from the node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'ref' => array(
+        'description' => 'The reference ID from the node, used by translations.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'gid' => array(
+        'description' => 'The gallery ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'gref' => array(
+        'description' => 'The reference ID from the gallery, used by translations.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      'module' => array(
+        'description' => 'The modules settings data.',
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => ''),
+      'data' => array(
+        'description' => 'The modules settings data.',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE),
+      ),
+    'primary key' => array('gam'),
+  );
+  db_create_table($ret, 'gallery_assist_modules_settings', $schema['gallery_assist_modules_settings'] );
+
+  // Add the missing default params for ordering of gallery items by load from the DB.
+  $check['default'] = variable_get('gallery_assist_default_data', FALSE);
+  $check['default']['ga_db_order_field'] = isset($check['default']['ga_db_order_field']) && $check['default']['ga_db_order_field'] ? $check['default']['ga_db_order_field'] : 'weight';
+  $check['default']['ga_db_order'] = isset($check['default']['ga_db_order']) && $check['default']['ga_db_order'] ? $check['default']['ga_db_order'] : 'ASC';
+  variable_set('gallery_assist_'. $v->type, $check['default']);
+  // Add the missing assigment params for ordering of gallery items by load from the DB.
+  $types = node_get_types();
+  foreach ($types as $v) {
+    if (variable_get('gallery_assist_'. $v->type, 0) == 1) {
+      $check[$v->type] = variable_get('gallery_assist_'. $v->type .'_data', FALSE);
+      $check[$v->type]['ga_db_order_field'] = isset($check[$v->type]['ga_db_order_field']) && $check[$v->type]['ga_db_order_field'] ? $check[$v->type]['ga_db_order_field'] : 'weight';
+      $check[$v->type]['ga_db_order'] = isset($check[$v->type]['ga_db_order']) && $check[$v->type]['ga_db_order'] ? $check[$v->type]['ga_db_order'] : 'ASC';
+      
+      variable_set('gallery_assist_'. $v->type .'_data', $check[$v->type]);
+    }
+  }
+  
+  gallery_assist_clearthecache();
+  
+  return $ret;
+}

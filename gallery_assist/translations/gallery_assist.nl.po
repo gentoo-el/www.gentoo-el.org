@@ -1,0 +1,524 @@
+# $Id: gallery_assist.de.po,v 1.1 2009/10/11 00:20:09 jcmc Exp $
+#
+# Dutch translation of Drupal (general)
+# Copyright 2009 Juan Morejón <jcmc.devel@gmail.com>
+# Generated from files:
+#  gallery_assist.admin.inc, v 1.5 2009/09/29 18:42:00 jcmc
+#  gallery_assist.module, v 1.5 2009/10/06 16:10:00 jcmc
+#  gallery_assist.info, v 1.5 2009/07/22 15:03:00 jcmc
+#  gallery_assist_display.inc, v 1.5 2009/09/09 18:54:00 jcmc
+#  gallery_assist.install, v 1.5 2009/10/06 15:09:00 jcmc
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2009-10-08 17:15+0200\n"
+"PO-Revision-Date: 2009-10-08 17:15+0200\n"
+"Last-Translator: Marc Hoefman <marc.hoefman@gmail.com>\n"
+"Language-Team: Dutch <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: gallery_assist.admin.inc:19
+msgid "enabled"
+msgstr "Ingeschakeld"
+
+#: gallery_assist.admin.inc:19
+msgid "disabled"
+msgstr "Uitgeschakeld"
+
+#: gallery_assist.admin.inc:21 gallery_assist.module:47;250;313;195;206 gallery_assist.info:0
+msgid "Gallery Assist"
+msgstr "Galerij Assistent"
+
+#: gallery_assist.admin.inc:21
+msgid "Gallery Assist on @typename"
+msgstr ""
+
+#: gallery_assist.admin.inc:50;149
+msgid "Layout"
+msgstr "Layout"
+
+#: gallery_assist.admin.inc:57
+msgid "Thumbnails per row"
+msgstr "Miniaturen per rij"
+
+#: gallery_assist.admin.inc:64
+msgid "Rows per page"
+msgstr "Rijen per pagina"
+
+#: gallery_assist.admin.inc:71
+msgid "Cut item title text for display"
+msgstr "De lengte van de Titeltekst aanpassen."
+
+#: gallery_assist.admin.inc:80
+msgid "Items margin"
+msgstr "Item marge"
+
+#: gallery_assist.admin.inc:88
+msgid "Items padding"
+msgstr "Item padding"
+
+#: gallery_assist.admin.inc:95
+msgid "Items border"
+msgstr "Item rand"
+
+#: gallery_assist.admin.inc:104
+msgid "Items border color"
+msgstr "Item kleur van de rand"
+
+#: gallery_assist.admin.inc:111
+msgid "Back link"
+msgstr "Terug Link"
+
+#: gallery_assist.admin.inc:119
+msgid "Title links toggle"
+msgstr "Titel-Omschakelaar"
+
+#: gallery_assist.admin.inc:126
+msgid "Title links position"
+msgstr "Titel-Omschakelaar Positie"
+
+#: gallery_assist.admin.inc:135
+msgid "Pager"
+msgstr "Pager"
+
+#: gallery_assist.admin.inc:141
+msgid "Type"
+msgstr "Type"
+
+#: gallery_assist.admin.inc:144
+msgid "Numeric"
+msgstr "Numerisch"
+
+#: gallery_assist.admin.inc:144
+msgid "Icons"
+msgstr "Iconen"
+
+#: gallery_assist.admin.inc:157
+msgid "Position"
+msgstr "Positie"
+
+#: gallery_assist.admin.inc:160
+msgid "top"
+msgstr "boven"
+
+#: gallery_assist.admin.inc:160
+msgid "bottom"
+msgstr "onder"
+
+#: gallery_assist.admin.inc:160
+msgid "both"
+msgstr "beide"
+
+#: gallery_assist.admin.inc:165
+msgid "Quantity of visible links"
+msgstr "Aantal zichtbare links"
+
+#: gallery_assist.admin.inc:180;253 gallery_assist.module:1757
+msgid "Save"
+msgstr "Bewaren"
+
+#: gallery_assist.admin.inc:222
+msgid "Gallery Assist Extras"
+msgstr "Galeriy-Assistent Extras"
+
+#: gallery_assist.admin.inc:231
+msgid "Assigments"
+msgstr "Toewijzingen"
+
+#: gallery_assist.admin.inc:235
+msgid "Assign the gallery functionality to other content types."
+msgstr "De Galerij-Functionaliteit toewijzen aan andere Inhoudstypes."
+
+#: gallery_assist.admin.inc:290
+msgid "Sizes"
+msgstr "Maten"
+
+#: gallery_assist.admin.inc:297
+msgid "Upload"
+msgstr "Upload"
+
+#: gallery_assist.admin.inc:304
+msgid "Thumbnail upload size"
+msgstr "Miniaturen - upload grootte"
+
+#: gallery_assist.admin.inc:313
+msgid "Preview Upload Size"
+msgstr "Preview Upload Grootte"
+
+#: gallery_assist.admin.inc:323
+msgid "Display"
+msgstr "Weergave"
+
+#: gallery_assist.admin.inc:334
+msgid "Thumbnail display size"
+msgstr "Miniaturen weergave-grootte"
+
+#: gallery_assist.admin.inc:342
+msgid "Preview display size"
+msgstr "Preview weergave-grootte"
+
+#: gallery_assist.admin.inc:350
+msgid "Extra thumbnail custom size"
+msgstr "Extra miniatuur-groottes"
+
+#: gallery_assist.admin.inc:367
+msgid "ImagaCache presets"
+msgstr "ImagaCache presets"
+
+#: gallery_assist.admin.inc:379
+msgid "Thumbnail preset"
+msgstr "Miniatuur voorinstelling"
+
+#: gallery_assist.admin.inc:382
+msgid "Current used setting"
+msgstr "De huidige toegepaste instelling"
+
+#: gallery_assist.admin.inc:387
+msgid "Preview preset"
+msgstr "voorinstelling Voorbeeldweergave"
+
+#: gallery_assist.admin.inc:390
+msgid "Current used setting: @prev_presetname"
+msgstr ""
+
+#: gallery_assist.admin.inc:397
+msgid "Module developed by <a target=\"_blank\" href=\"@ga_creator_link\">Juan Morejón</a> from the <a target=\"_blank\" href=\"@qtg_link\">Quiptime Group</a>"
+msgstr "Module ontwikkeld door <a target=\"_blank\" href=\"@ga_creator_link\">Juan Morejón</a> van de <a target=\"_blank\" href=\"@qtg_link\">Quiptime Groep</a>"
+
+#: gallery_assist_display.inc:57 gallery_assist.module:1490
+msgid "next ›"
+msgstr "volgende ›"
+
+#: gallery_assist_display.inc:60 gallery_assist.module:1488
+msgid "‹ previous"
+msgstr "‹ vorige"
+
+#: gallery_assist.module:39
+msgid "The \"Gallery Assist\" module create a node type with gallery functionality. The gallery functionalities can be assigned to other content types."
+msgstr ""
+"De \"Galerij-Assistent\" module creërt een inhoudstype met"
+"Galerij Functionaliteit. Deze Galerij functies kunnen aan "
+"andere Inhoudstypes toegewezen worden."
+
+#: gallery_assist.module:40
+msgid "It offers the following features:"
+msgstr "Ze biedt volgende functies:"
+
+#: gallery_assist.module:41
+msgid "Configurable presets independently of the CCK, Imagecache and Image modules."
+msgstr ""
+"Configureerbare Formaten, onafhankeljk van de CCK, ImageCache en Image modules."
+
+
+#: gallery_assist.module:42
+msgid "Configurable display options."
+msgstr "Configureerbare Weergave opties"
+
+#: gallery_assist.module:43
+msgid "Configurable gallery and picture pager."
+msgstr "Configureerbare gallerij en Afbeeldingen Weergave"
+
+#: gallery_assist.module:44
+msgid "Support for multilingualism - i18n module compatible."
+msgstr "Meertalige ondersteuning - overeenkomstigh de i18n module."
+
+#: gallery_assist.module:45
+msgid "The gallery functionality can be assigned to others node types and can be configured separately for each one."
+msgstr ""
+"De Gallerij Functionaliteit kan aan andere Inhoudstypes toegewezen worden en"
+"kan voor elk apart geconfigureerd worden."
+
+#: gallery_assist.module:46
+msgid "By this gallery module solution are images not nodes, images are items that belong to the nodes of content types with gallery assigment."
+msgstr ""
+"Deze galerij module biedt een oplossing waarbij afbeeldingen geen nodes zijn, "
+"afbeeldingen zijn items die behoren tot de node van Inhoudstypes met "
+"toegewezen Galerij functionaliteit."
+
+#: gallery_assist.module:47
+msgid "%mname <a href=\"@gallery_assist_examples\">examples</a>."
+msgstr "%mname <a href=\"@gallery_assist_examples\">Voorbeelden</a>. "
+
+#: gallery_assist.module:48
+msgid "Why save the node before add items to the gallery?"
+msgstr ""
+"Waarom de node Opslaan zonder eerst items aan de gallerij"
+"toe te voegen?"
+
+#: gallery_assist.module:49
+msgid "The node id is needed in order to generate the gallery folder name. Thereby we avoid unnecessary transfer in case the editor breaks the creation process without saving."
+msgstr ""
+"De node ID is nodig omdat eerst de gallerijfolder wordt aangemaakt."
+"Hierbij vermijden we onnodige transfers wanneer de editor de aanmaak"
+"van de galerij zou stoppen zonder eerst alles op te slaan"
+
+#: gallery_assist.module:74
+msgid "Gallery Assist Help."
+msgstr "Galeriy-Assistent Hulp"
+
+#: gallery_assist.module:88;1843
+msgid "Gallery"
+msgstr "Galerij"
+
+#: gallery_assist.module:90
+msgid "Drupal content type with gallery functionality. It allows the assignment of this gallery functionality to other node types."
+msgstr ""
+"Drupal Inhoudstype met Galerij Functionaliteit. Deze Functionaliteit"
+"kan aan andere Inhoudstypes toegewezen worden."
+
+#: gallery_assist.module:92
+msgid "Gallery title"
+msgstr "Galerij Titel"
+
+#: gallery_assist.module:94
+msgid "Gallery description"
+msgstr "Gallerj - Beschrijving"
+
+#: gallery_assist.module:272
+msgid "Extras"
+msgstr "Extras"
+
+#: gallery_assist.module:486
+msgid "This node muss be saved before you can add items to the gallery. Read more about in the <a href=\"@help_link\">@help</a>."
+msgstr ""
+"Deze galerij moet eerst opgeslagen worden vooraleer u afbeeldingen kan toevoegen."
+
+#: gallery_assist.module:486
+msgid "help"
+msgstr "hulp"
+
+#: gallery_assist.module:494
+msgid "Settings to this Gallery"
+msgstr "Instellingen voor deze Gallerij"
+
+#: gallery_assist.module:502;698
+msgid "Show titles"
+msgstr "Toon de Titels"
+
+#: gallery_assist.module:504
+msgid "Is this checkbox enabled, the image titles be displayed."
+msgstr "Wanneer aangevinkt worden de titels van de afbeeldingen getoond."
+
+#: gallery_assist.module:511
+msgid "Shadow"
+msgstr "Schaduw"
+
+#: gallery_assist.module:513
+msgid "By enable display gallery_assist the item title as image capture."
+msgstr "Wanneer ingeschakeld, dan wordt de titel van elke element in de galerij getoond."
+
+#: gallery_assist.module:518;902
+msgid "Weight"
+msgstr "Gewicht"
+
+#: gallery_assist.module:521
+msgid "Choose a weight value to decide witch position will be having your gallery container."
+msgstr ""
+"Kies een waarde voor Gewicht om de volgorde en positie te bepalen"
+"waar de afbeelding in de galerij zal getoond worden."
+
+#: gallery_assist.module:533
+msgid "Gallery: Add and edit gallery items"
+msgstr "Galerie: Toevoegen en Bewerken van items in de gallerij"
+
+#: gallery_assist.module:539
+msgid "Click Update to upload a new file or to save your changes in this section."
+msgstr ""
+"klik Update om de nieuwe afbeeldingen op te laden naar de server of om uw"
+"veranderingen in deze sectie te bewaren."
+
+#: gallery_assist.module:544
+msgid "If to many items you can use the <strong>Edit one item</strong> link displayed by the item view."
+msgstr ""
+
+#: gallery_assist.module:606
+msgid "Title"
+msgstr "Titel"
+
+#: gallery_assist.module:607
+msgid "Copyright"
+msgstr "Copyright"
+
+#: gallery_assist.module:608
+msgid "Caption"
+msgstr "Beschrijving van de item"
+
+#: gallery_assist.module:624
+msgid "Add new item"
+msgstr "Nieuwe item toevoegen"
+
+#: gallery_assist.module:632
+msgid "Update"
+msgstr "Bewaren"
+
+#: gallery_assist.module:637;1762
+msgid "Please wait..."
+msgstr "Even wachten..."
+
+#: gallery_assist.module:693
+msgid "Hide titles"
+msgstr "Verberg titels"
+
+#: gallery_assist.module:743
+msgid "Submitted by !username on @datetime"
+msgstr "Ingediend door !username am @datetime"
+
+#: gallery_assist.module:746;1383
+msgid "D, m/d/Y - h:i"
+msgstr "D, m/d/Y - h:i"
+
+#: gallery_assist.module:760
+msgid "6919- Validation error, please try again. If this error persists, please contact the site administrator."
+msgstr ""
+"6919- Fout bij het Valideren, probeer opnieuw. Neem contact met"
+"de administrator wanneer de fout blijft."
+
+#: gallery_assist.module:780
+msgid "Import finished. To see your changes <a href=\"@refresh_here\">refresh here<> or go to the <a href=\"@node_view\">node view</a>."
+msgstr ""
+
+#: gallery_assist.module:902
+msgid "Delete"
+msgstr "Verwijder"
+
+#: gallery_assist.module:902
+msgid "Item"
+msgstr "Item"
+
+#: gallery_assist.module:902
+msgid "Image capture"
+msgstr "Beschrijving van de item"
+
+#: gallery_assist.module:1423
+msgid "Back to the gallery"
+msgstr "Terug naar de galerij"
+
+#: gallery_assist.module:1427
+msgid "Edit this item"
+msgstr "Bewerk deze item"
+
+#: gallery_assist.module:1487
+msgid "« first"
+msgstr "« eerste"
+
+#: gallery_assist.module:1491
+msgid "last »"
+msgstr "laatste »"
+
+#: gallery_assist.module:1672
+msgid "Back to"
+msgstr "Terug naar"
+
+#: gallery_assist.module:1780
+msgid "My Galleries."
+msgstr "Mijn Gallerijen"
+
+#: gallery_assist.module:1781;1809;1813
+msgid "My Galleries"
+msgstr "Mijn Gallerijen"
+
+#: gallery_assist.module:1789
+msgid "Gallery Assist block display type"
+msgstr "Galerij-Assistent Blok Weergave Type"
+
+#: gallery_assist.module:1796
+msgid "Choose a block display type"
+msgstr "Kies een Blok Weergave-Type"
+
+#: gallery_assist.module:105
+msgid "administer gallery_assist"
+msgstr "administratie van Gallerij_assistent"
+
+#: gallery_assist.module:106
+msgid "view gallery_assist content"
+msgstr "weergeven van Galerij-Assistent Inhoud"
+
+#: gallery_assist.module:107
+msgid "create gallery_assist content"
+msgstr "aanmaken van Galerij-Assistent Inhoud"
+
+#: gallery_assist.module:108
+msgid "delete own gallery_assist content"
+msgstr "verwijder eigen Galerij-Assistent inhoud"
+
+#: gallery_assist.module:109
+msgid "delete any gallery_assist content"
+msgstr "verwijder gelijk welke Galerij-Assistent inhoud"
+
+#: gallery_assist.module:110
+msgid "edit own gallery_assist content"
+msgstr "bewerk eigen Galerie-Assistent inhoud"
+
+#: gallery_assist.module:111
+msgid "edit any gallery_assist content"
+msgstr "bewerk gelijk welke Galerij-Assistent inhoud"
+
+#: gallery_assist.module:120
+msgid "gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:120
+msgid "gallery_assist"
+msgstr ""
+
+#: gallery_assist.module:122
+msgid "administer gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:123
+msgid "view gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:123;124;125;126;127;128
+msgid " content"
+msgstr " Inhoud"
+
+#: gallery_assist.module:124
+msgid "create gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:125
+msgid "delete own gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:126
+msgid "delete any gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:127
+msgid "edit own gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:128
+msgid "edit any gallery_assist_"
+msgstr ""
+
+#: gallery_assist.module:200
+msgid "Manage the gallery_assist asigments and customize the html output."
+msgstr ""
+"Beheer van de Gallerij functionaliteit en aanpassen van de html output."
+
+
+#: gallery_assist.module:323
+msgid "Gallery Assist WARNING!"
+msgstr "Gallery Assist WAARSCHUWING!"
+
+#: gallery_assist.install:269
+msgid "It was not possible to create the gallery_assist directory. The files directory must be writable. Clarify the write permissions for the files folder and reinstall the module Gallery Assist."
+msgstr ""
+"Het was niet mogelijk om een gallery_assist folder aan te maken."
+"Controleer de schrijftoelating voor de files folder"
+"en installeer Gallery Assist opnieuw."
+
+#: gallery_assist.info:0
+msgid "Drupal content type with gallery functionality."
+msgstr "Drupal Inhoudstype met Gallerij Functionaliteit."
+
+#: gallery_assist.info:0
+msgid "Media"
+msgstr "Media"

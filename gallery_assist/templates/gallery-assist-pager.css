@@ -1,0 +1,19 @@
+/* $Id: gallery-assist-pager.css,v 1.0 2009/11/21 20:05:09 jcmc Exp $ */
+
+/*
+ * Hidde the following pager icons.
+ * 
+.item-list .pager li.pager-next, 
+.item-list .pager li.pager-previous,
+*/
+.item-list .pager li.pager-ellipsis, 
+.item-list .pager li.pager-last, 
+.item-list .pager li.pager-first {
+  display:none;
+}
+
+#gallery-container.teaser {
+  border-right: 1px solid #000066;
+  padding-right: 5px;
+}
+
