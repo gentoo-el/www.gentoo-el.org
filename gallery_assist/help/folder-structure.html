@@ -1,15 +1,29 @@
-<!-- $Id: folder-structure.html,v 1.1.2.1 2010/04/06 00:48:48 jcmc Exp $ -->
-The folder of Gallery Assist should be easy to understand.
+<!-- $Id: folder-structure.html,v 1.5 2010/10/28 20:31:48 jcmc Exp $ -->
 
-A global gallery folder (<strong>gallery_assist</strong>) contains all galleries created through this module.
+Gallery Assist (GA) folder structure.
 
-A gallery user folder (named after the <strong>UID</strong> of the user) contains the galleries belonging to that user.
+The folder structure of GA is easy to understand. It depends on the following cases:
 
-The gallery presets folders are:
+<h3>ImageCache not available</h3>
+A global gallery folder (<strong>gallery_assist</strong>) wich contains all galleries created through GA.<br />
+A gallery user folder (called with the <strong>User-ID</strong>) wich contains the galleries belongin to the respectively user.<br />
+The gallery preset folders.
+
 <ul>
-<li><strong>img</strong>: contains mini thumbnails for the Gallery Assist pager</li>
-<li><strong>thm</strong>: contains thumbnails of the gallery as long as Gallery Assist ImageCache is not installed</li>
-<li><strong>prev</strong>: contains the preview images of the gallery as long as Gallery Assist ImageCache is not installed</li>
+<li>
+<strong>img</strong>:<br />
+Contains mini thumbnails for the GA pager.</li>
+<li>
+<strong>thm</strong>:<br />
+Contains the thumbnails of the gallery so long <em>Gallery Assist ImageCache</em> is not installed.</li>
+<li>
+<strong>prev</strong>:<br />
+Contains the preview images of the gallery so long <em>Gallery Assist ImageCache</em> is not installed.</li>
 </ul>
 
-Once <i>Gallery Assist ImageCache</i> is installed, Gallery Assist thumbnails and preview images are not longer produced by the Gallery Assist module. The ImageCache does it instead.
+<h3>ImageCache available</h3>
+The <?php print l('ImageCache', 'http://www.drupal.org/project/imagecache'); ?> module and the <?php print l('Gallery Assist ImageCache', 'http://www.drupal.org/project/gallery_assist_ic'); ?> module are activated.
+A little <?php print l('docu about Gallery Assist ImageCache', 'node/61'); ?> (GAIC).
+
+Thumbnails and preview images are no longer produced from GA.<br />
+At this point is ImageCache responsible for this task.

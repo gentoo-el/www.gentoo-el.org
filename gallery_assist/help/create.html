@@ -1,0 +1,35 @@
+<!-- $Id: create.html,v 1.4 2010/10/28 20:31:48 jcmc Exp $ -->
+
+Create a Gallery Assist (GA) gallery.
+
+Go to <em>Create content</em> and select the <?php print l('Gallery Assist node type', 'node/58'); ?> called "<strong>Gallery</strong>" or other node type with <?php print l('Gallery Assist Assignment', 'node/58'); ?>.<br />
+Give a name to your article and save. Gallery Assist extend the article with a new field or object (the gallery container) so the module need the NID as argument for the creation of the <?php print l('gallery folder structure', 'node/59'); ?>.
+
+Once the article is saved click to edit it.<br />
+Two new fieldsets are added to the node edit form:
+
+<ol>
+  <li>Fieldset &quot;<?php print l('Gallery Assist (GA) settings', 'node/55'); ?>&quot;</li>
+  <li>The Fieldset &quot;<strong><u>Gallery Assist (GA): Add and edit items</u></strong>&quot; wich will be just explained.</li>
+</ol>
+
+Select the files you want to add to this gallery and click update to upload.<br />
+If the pictures have a copyright use the field <strong>Temp copyright</strong> to avoid unnecessary work.
+
+In the background, the folder structure will be created if not exist, images are stored, copied and new formatted as necessary.<br />
+If this process failed, please read the <a href="#">list of posible causes</a> for this issue and pubilc the issue through the Drupal Issues Reporting System (at your accout profile in drupal.org).
+
+If images were successfully uploaded, the form will be rebuild with the new changes.
+
+Now you can:
+
+<ol>
+	<li>Add new images to the gallery.</li>
+	<li>Change the captions and the copyright information as wanted.</li>
+	<li>Change the order of the pictures thanks to the functionality of tabledrag.</li>
+	<li>Add a description to each image.</li>
+</ol>
+
+You can to add a description to the gallery, task that belong only the Drupal node process.
+
+Are you satisfied with the results, save the node and view it.

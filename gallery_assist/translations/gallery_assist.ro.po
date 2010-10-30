@@ -1,4 +1,4 @@
-# $Id: gallery_assist.ro.po,v 1.2 2010/05/18 22:27:33 jcmc Exp $
+# $Id: gallery_assist.ro.po,v 1.5 2010/10/28 20:31:48 jcmc Exp $
 #
 # Romanian translation of Drupal (general)
 # Copyright 2009 Juan Morejón <jcmc.devel@google.com>

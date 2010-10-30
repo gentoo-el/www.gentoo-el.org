@@ -1,5 +1,5 @@
 <?php
-// $Id: gallery_assist_list_display.inc,v 1.x 2009/11/22 03:09:34 jcmc Exp $
+// $Id$
 
 /**
  * @file
@@ -116,10 +116,10 @@ function gallery_assist_display_list($node, $opt='', $owner='') {
     }
     $node->gallconf[$node->type]['op'] = 'teaser';
   
-    if ($conf['layout']['ga_align'] != 'none' || $conf['layout']['t_ga_float'] != 'none') {
+    if ($conf['ga_align'] != 'none' || $conf['t_ga_float'] != 'none') {
       
       //ALIGN TEASER
-      switch ($conf['layout']['ga_align']) {
+      switch ($conf['ga_align']) {
         case 'center':
         case 'left':
           $stl['l'] = 'margin-right:auto';
@@ -132,7 +132,7 @@ function gallery_assist_display_list($node, $opt='', $owner='') {
       }
 
       //FLOAT TEASER
-      switch ($conf['layout']['t_ga_float']) {
+      switch ($conf['t_ga_float']) {
         case 'left':
           $stl['l'] = 'float:left';
           $stl['mr'] = 'margin-right:10px';
@@ -158,10 +158,10 @@ function gallery_assist_display_list($node, $opt='', $owner='') {
     }
     $node->gallconf[$node->type]['op'] = 'page';
     
-    if ($conf['layout']['gap_align'] != 'none' || $conf['layout']['p_ga_float'] != 'none') { //(styles)
+    if ($conf['gap_align'] != 'none' || $conf['p_ga_float'] != 'none') { //(styles)
 
       //ALIGN PAGE
-      switch ($conf['layout']['gap_align']) {
+      switch ($conf['gap_align']) {
         case 'center':
         case 'left':
           $stl['l'] = 'margin-right:auto';
@@ -175,7 +175,7 @@ function gallery_assist_display_list($node, $opt='', $owner='') {
       }
 
       //FLOAT PAGE
-      switch ($conf['layout']['p_ga_float']) {
+      switch ($conf['p_ga_float']) {
         case 'left':
           $stl['l'] = 'float:left';
           $stl['mr'] = 'margin-right:10px';
@@ -201,7 +201,8 @@ function gallery_assist_display_list($node, $opt='', $owner='') {
 
   if (count($my_boxes) > $node->gall_pager->show && $opt == 'page') {
     $links = implode($my_separator, $link);
-    $pager .= theme('gallery_assist_pager', $links, $extras);
+    $node_light = new stdClass();
+    $pager .= theme('gallery_assist_pager', $node_light, $links, $extras);
   }
 
   $node->gallconf[$node->type]['my_attr'] = $node->gallconf[$node->type]['items_per_row'] == 'unlimited' ? '' : drupal_attributes($my_attr_array);
@@ -284,7 +285,7 @@ function gallery_assist_item_box_list($type, $item, $conf, $img) {
  *
  * @ingroup themeable
  */
-function theme_gallery_assist_item_box_list($ga_item_list_attr, $ga_item_box, $ga_item_title, $ga_item_copyright, $ga_item_desc, $ga_edit_link = '', $ga_item_attr) {
+function theme_gallery_assist_item_box_list($ga_item_list_attr, $ga_item_box, $ga_item_title, $ga_item_copyright, $ga_item_desc, $ga_edit_link = '', $ga_item_attr = '') {
   $output  = '      <!-- Gallery Assist Item -->'."\n";
   $output .= '      <div'. $ga_item_list_attr .'>'."\n";
   $output .= '        <div'. $ga_item_attr .'>'."\n";
@@ -383,9 +384,16 @@ function gallery_assist_image_box_list($type, $item, $conf, $img) {
 
   $get_values = $_GET;
   unset($get_values['q']);
-  $link = l('[edit]', 'node/ga_edit_one/'. $item->my_nid .'/'. $item->pid, array('query' => $get_values));
-  $a_link = '<div id="image-box-'. $item->pid .'-links" class="'. $type .' image-box-links">[ '. $link .' ]</div>'."\n";
-  $edit_link  = $user->uid == 1 || $user->uid == $item->uid || user_access('edit gallery_assist content', $user) || user_access('edit gallery_assist_'. $type .' content', $user) ? $link : '';
+  $edit_text = t('[edit]');
+  $delete_text = t('[delete]');
+  $elink = l($edit_text, 'node/ga_edit_one/'. $item->my_nid .'/'. $item->pid, array('query' => $get_values));
+  $elink .= l($delete_text, 'node/ga_del_one/'. $item->my_nid .'/'. $item->pid, array('query' => $get_values));
+//  $a_link = '<div id="image-box-'. $item->pid .'-links" class="'. $type .' image-box-links">[ '. $elink .' ]</div>'."\n";
+  $node = new stdClass;
+  $node->nid = $item->my_nid;
+  $node->uid = $item->uid;
+  $node->type = $type;
+  $edit_link  = $user->uid == 1 || $user->uid == $item->uid || gallery_assist_check_access($node, 'edit') ? $elink : '';
 
   $output  = '<div'. drupal_attributes($my_box_attr) .'>'."\n";
   $output .= '  <div'. drupal_attributes($my_sheet_attr) .'>'."\n";
@@ -409,10 +417,21 @@ function gallery_assist_image_box_list($type, $item, $conf, $img) {
 function gallery_assist_title_box_list($item, $conf) {
   $points = drupal_strlen($item->ptitle) > $conf['title_substr'] ? "..." : '';
   $title = drupal_substr($item->ptitle, 0, $conf['title_substr']) . $points;
+  $op = empty($conf['ga_item_title_type']) ? 0 : $conf['ga_item_title_type'];
 
-  $output  = '<div id="title-box-'. $item->pid .'" class="'. $item->nodetype .' title-box-on-list">'."\n";
-  $output .= l($title, 'node/'. $item->my_nid .'/'. $item->pid, array('html' => TRUE, 'attributes' => array('title' => $item->ptitle)));
-  $output .= '</div>'."\n";
+  switch ($op) {
+    case 0:
+      $output  = '<div id="title-box-'. $item->pid .'" class="'. $item->nodetype .' title-box-on-list">'."\n";
+      $output .= l($title, 'node/'. $item->my_nid .'/'. $item->pid, array('html' => TRUE, 'attributes' => array('title' => $item->ptitle)));
+      $output .= '</div>'."\n";
+    break;
+
+      case 1: 
+      $output  = '<div id="title-box-'. $item->pid .'" class="'. $item->nodetype .' title-box-on-list">'."\n";
+      $output .= $title;
+      $output .= '</div>'."\n";
+    break;
+  }
 
   return $output;
 }

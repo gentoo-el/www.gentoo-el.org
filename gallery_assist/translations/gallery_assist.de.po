@@ -1,4 +1,4 @@
-# $Id: gallery_assist.de.po,v 1.9 2010/05/18 22:27:33 jcmc Exp $
+# $Id: gallery_assist.de.po,v 1.13 2010/10/28 20:31:48 jcmc Exp $
 #
 # German translation of Drupal (general)
 # Copyright 2010 jcmc <jcmc.devel@gmail.com>>
@@ -318,7 +318,7 @@ msgstr "privat"
 
 #: gallery_assist.admin.inc:368;956 gallery_assist_node_settings.inc:56
 msgid "public"
-msgstr "öffentlisch"
+msgstr "öffentlich"
 
 #: gallery_assist.admin.inc:368;956 gallery_assist_node_settings.inc:56
 msgid "public for all"
@@ -435,7 +435,7 @@ msgid "Replace files"
 msgstr "Dateien überschreiben"
 
 #: gallery_assist.admin.inc:577
-msgid "Gallery functionality assigments"
+msgid "Gallery functionality assignments"
 msgstr "Galerie-Funktionalitätszuweisung"
 
 #: gallery_assist.admin.inc:581
@@ -789,7 +789,7 @@ msgid "Edit the settings from Gallery Assist for this content type -> <a href=\"
 msgstr "Gallery Assist Konfiguration für diesen Artikeltypes editieren -> <a href=\"@myPath\">%contenType</a>"
 
 #: gallery_assist.module:790
-msgid "This node must be saved FIRST before you can add IMAGES to the gallery. Read more about in the <a href=\"@help_link\">help</a>."
+msgid "This article must be saved FIRST before you can add IMAGES to the gallery. Read more about in the <a href=\"@help_link\">help</a>."
 msgstr ""
 "Bilder können, nur nach speichern dieses Artikels, der Galerie "
 "hinzugefügt werden."
@@ -1145,7 +1145,7 @@ msgid "edit any gallery_assist_"
 msgstr ""
 
 #: gallery_assist.module:411
-msgid "Manage the gallery_assist asigments and customize the html output."
+msgid "Manage the gallery_assist assignments and customize the html output."
 msgstr ""
 "Administrieren die Zuweisung von Galerie-Funktionalität und Anpassung "
 "der HTML Ausgabe."

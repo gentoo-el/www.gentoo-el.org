@@ -1,5 +1,5 @@
 <?php
-// $Id: gallery-assist-display.tpl.php,v 1.0 2009/11/19 16:11:12 jcmc Exp $
+// $Id$
 
 /**
  * @file

@@ -1,5 +1,5 @@
 <?php
-// $Id: gallery_assist.admin.inc,v 1.31 2010/06/01 16:07:50 jcmc Exp $
+// $Id: gallery_assist.admin.inc,v 1.41 2010/10/29 13:00:16 jcmc Exp $
 
 /**
  * @file
@@ -36,12 +36,14 @@ function gallery_assist_info_data() {
   while ($r = db_fetch_object($result)) {
     $info_file = drupal_parse_info_file(drupal_get_path('module', $r->name) .'/'. $r->name .'.info');
 
-    $rows[] = array(
-      array('data' => ga_bold($info_file['name'], $r->status), 'class' => 'ga-nowrap'),
-      array('data' => $r->status == 1 ? 'enabled' : 'disabled'),
-      array('data' => ($r->name == 'gallery_assist' ? GALLERY_ASSIST_VNO : $info_file['version']), 'class' => 'ga-nowrap'),
-      array('data' => $info_file['description'], 'style' => 'ga-fullwidth')
-    );
+    if (!empty($info_file['name'])) {
+      $rows[] = array(
+        array('data' => ga_bold($info_file['name'], $r->status), 'class' => 'ga-nowrap'),
+        array('data' => $r->status == 1 ? 'enabled' : 'disabled'),
+        array('data' => $info_file['version'], 'class' => 'ga-nowrap'),
+        array('data' => $info_file['description'], 'style' => 'ga-fullwidth')
+      );
+    }
   }
   $plural = count($rows) > 1 ? 's' : '';
   $header = array(
@@ -130,7 +132,7 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     '#title' => t('Thumbnails per row'),
     '#options' => drupal_map_assoc(array(t('unlimited'), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)),
     '#default_value' => $settings['items_per_row'],
-    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
+    '#prefix' => '<div class="gallery-assist-settings-left-half">',
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['gallery_assist_'. $type .'_rows_per_page'] = array(
@@ -138,7 +140,7 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     '#default_value' => $settings['rows_per_page'],
     '#type' => 'select',
     '#options' => drupal_map_assoc(array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)),
-    //'#suffix' => '</div>',
+    '#suffix' => '</div>',
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['gallery_assist_'. $type .'_t_items_per_row'] = array(
@@ -148,12 +150,12 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     '#default_value' => $settings['t_items_per_row'],
     '#description' => t('Default is 0. Use this value to overwrite the teaser nummber of thumbnails pro row.'),
   );
-
+$test = module_invoke('image', 'image_get_presets');
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['thumbnails'] = array(
     '#type' => 'fieldset',
     '#title' => t('Thumbnails'),
-    //'#prefix' => '<div class="ga-clear-both">',
-    //'#suffix' => '</div>',
+    '#prefix' => '<div class="ga-clear-both">',
+    '#suffix' => '</div>',
     '#class' => 'ga-clear-both',
   );
 
@@ -162,7 +164,7 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     '#title' => t('Items margin'),
     '#options' => drupal_map_assoc(array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)),
     '#default_value' => $settings['item_margin'],
-    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
+    '#prefix' => '<div class="gallery-assist-settings-left-half">',
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['thumbnails']['gallery_assist_'. $type .'_item_padding'] = array(
@@ -170,7 +172,7 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     '#title' => t('Items padding'),
     '#options' => drupal_map_assoc(array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)),
     '#default_value' => $settings['item_padding'],
-    ////'#suffix' => '</div>',
+    '#suffix' => '</div>',
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['thumbnails']['gallery_assist_'. $type .'_item_border'] = array(
@@ -185,7 +187,7 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     '#size' => '15',
     '#class' => 'farbtastic-picker',
     '#title' => t('Items border color'),
-    '#default_value' => $settings['item_border_color'],
+    '#default_value' => check_plain($settings['item_border_color']),
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['help_links'] = array(
@@ -200,24 +202,25 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     '#options' => array(0 => t('off'), 1 => t('on')),
     '#default_value' => $settings['show_backlink'],
     '#description' => $desc['layout']['show_backlink'],
+    '#prefix' => '<div class="gallery-assist-settings-left-half">',
   );
 
-  $desc['layout']['show_title'] = t('With creation of the article are images-titles shown.');
-  $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['help_links']['gallery_assist_'. $type .'_show_title'] = array(
-    '#type' => 'select',
-    '#title' => t('Display titles'),
-    '#options' => array(0 => t('off'), 1 => t('on')),
-    '#default_value' => $settings['show_title'] ? $settings['show_title'] : 0,
-    '#description' => $desc['layout']['show_title'],
-  );
+//  $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['help_links']['gallery_assist_'. $type .'_show_title'] = array(
+//    '#type' => 'select',
+//    '#title' => t('Display titles'),
+//    '#options' => array(0 => t('off'), 1 => t('on')),
+//    '#default_value' => $settings['show_title'] ? $settings['show_title'] : 0,
+//    '#description' => $desc['layout']['show_title'],
+//  );
 
   $desc['layout']['title_substr'] = t('Adjust the length of the titles to the width of the miniatures.');
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['help_links']['gallery_assist_'. $type .'_title_substr'] = array(
     '#title' => t('Cut item title text for display'),
-    '#default_value' => $settings['title_substr'],
+    '#default_value' => check_plain($settings['title_substr']),
     '#type' => 'textfield',
     '#size' => 10,
     '#description' => $desc['layout']['title_substr'],
+    '#suffix' => '</div>',
   );
 
   $desc['layout']['show_toggle'] = t('Toggle to show or hide the images titles.');
@@ -242,50 +245,50 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['teaser'] = array(
     '#type' => 'fieldset',
     '#title' => t('Teaser container'),
-    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
-    ////'#suffix' => '</div>',
+    '#prefix' => '<div class="gallery-assist-settings-left-half">',
+    '#suffix' => '</div>',
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['page'] = array(
     '#type' => 'fieldset',
     '#title' => t('Page container'),
-    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
-    ////'#suffix' => '</div>',
+    '#prefix' => '<div class="gallery-assist-settings-left-half">',
+    '#suffix' => '</div>',
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['nodes'] = array(
     '#type' => 'fieldset',
     '#title' => t('Node settings defaults'),
     //'#prefix' => '<div style="clear:both;" class="clear-block">',
-    ////'#suffix' => '</div>',
+    //'#suffix' => '</div>',
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['teaser']['gallery_assist_'. $type .'_ga_align'] = array(
     '#type' => 'select',
     '#title' => t('Teaser container align'),
     '#options' => array('none' => t('none'), 'left' => t('left'), 'center' => t('center'), 'right' => t('right')),
-    '#default_value' => $settings['layout']['ga_align'],
+    '#default_value' => $settings['ga_align'],
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['teaser']['gallery_assist_'. $type .'_t_ga_float'] = array(
     '#type' => 'select',
     '#title' => t('Teaser container float'),
     '#options' => array('none' => t('none'), 'left' => t('left'), 'right' => t('right')),
-    '#default_value' => $settings['layout']['t_ga_float'],
+    '#default_value' => $settings['t_ga_float'],
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['page']['gallery_assist_'. $type .'_gap_align'] = array(
     '#type' => 'select',
     '#title' => t('Page container align'),
     '#options' => array('none' => t('none'), 'left' => t('left'), 'center' => t('center'), 'right' => t('right')),
-    '#default_value' => $settings['layout']['gap_align'],
+    '#default_value' => $settings['gap_align'],
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['page']['gallery_assist_'. $type .'_p_ga_float'] = array(
     '#type' => 'select',
     '#title' => t('Page container float'),
     '#options' => array('none' => t('none'), 'left' => t('left'), 'right' => t('right')),
-    '#default_value' => $settings['layout']['p_ga_float'],
+    '#default_value' => $settings['p_ga_float'],
   );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_layout']['nodes'][0] = array();
@@ -331,11 +334,31 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     ////'#suffix' => '</div>',
   );
 
+  $desc['pager']['pager_align'] = t('Weight of the gallery pager in the GA Image View relative to the image-container.');
+  $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_pager']['gallery_assist_'. $type .'_pager_align'] = array(
+    '#title' => t('Pager align'),
+    '#default_value' => $settings['pager_align'],
+    '#type' => 'select',
+    '#options' => array('center' => t('center'), 'left' => t('left'), 'right' => t('right')),
+    '#description' => $desc['pager']['position'],
+    ////'#suffix' => '</div>',
+  );
+
+  $desc['pager']['format'] = t('Choose a format for the pager. <br /> - Full: Display first, previous, ellips, next and last links.<br /> - Minimized: Display previous and next links.');
+  $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_pager']['gallery_assist_'. $type .'_pager_format'] = array(
+    '#title' => t('Format'),
+    '#default_value' => $settings['pager_format'],
+    '#type' => 'select',
+    '#options' => array(0 => t('full'), 1 => t('minimized')),
+    '#description' => $desc['pager']['format'],
+    ////'#suffix' => '</div>',
+  );
+
   $desc['pager']['visibles'] = t('Choose how many items should having the GA-pager on this node type.');
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_pager']['gallery_assist_'. $type .'_pager_visibles'] = array(
+    '#type' => 'textfield',
     '#title' => t('Quantity of visible links'),
     '#default_value' => $settings['pager_visibles'],
-    '#type' => 'textfield',
     '#size' => 10,
     '#description' => $desc['pager']['visibles'],
   );
@@ -343,20 +366,20 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
   $desc['pager']['pager_t_height'] = t('');
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_pager']['gallery_assist_'. $type .'_pager_t_height'] = array(
     '#title' => t('Thumbnail height'),
-    '#default_value' => $settings['pager_t_height'],
+    '#default_value' => check_plain($settings['pager_t_height']),
     '#type' => 'textfield',
     '#size' => 10,
-    '#description' => $desc['pager']['pager_t_height'],
+    '#description' => check_plain($desc['pager']['pager_t_height']),
     '#access' => is_numeric($settings['pager_presetid']) ? FALSE : TRUE,
   );
 
   $desc['pager']['pager_t_active_height'] = t('');
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_pager']['gallery_assist_'. $type .'_pager_t_active_height'] = array(
     '#title' => t('Thumbnail height: active'),
-    '#default_value' => $settings['pager_t_active_height'],
+    '#default_value' => check_plain($settings['pager_t_active_height']),
     '#type' => 'textfield',
     '#size' => 10,
-    '#description' => $desc['pager']['pager_t_active_height'],
+    '#description' => check_plain($desc['pager']['pager_t_active_height']),
     '#access' => is_numeric($settings['pager_presetid']) ? FALSE : TRUE,
   );
 
@@ -386,34 +409,23 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     //'#access' => FALSE,
   );
 
-  if (empty($settings['show_download_link'])) {
-    //$settings['show_download_link'] = 1;
-  }
-  $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_others']['gallery_assist_'. $type .'_show_download_link'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Display the download link'),
-    '#default_value' => $settings['show_download_link'],
-    '#description' => t('If cheked the download link is displayed. The value can be setted for each node and for each gallery item.'),
-    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
-  );
-
-  $h_li = array(
-    t('privat: <em>Only the owner can see the gallery.</em>'),
-    t('public: <em>Public for all authenticated users.</em>'),
-    t('public for all: <em>Public for all users and anonymous.</em>'),
-  );
-  $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_others']['gallery_assist_'. $type .'_public_status'] = array(
-    '#type' => 'select',
-    '#title' => t('Gallery Public Status'),
-    '#default_value' => $settings['public_status'],
-    '#options' => array(0 => t('privat'), 1 => t('public'), 2 => t('public for all')),
-    '#description' => theme('item_list', $h_li, NULL, 'ul'),
-  );
+//  $h_li = array(
+//    t('privat: <em>Only the owner can see the gallery.</em>'),
+//    t('public: <em>Public for all authenticated users.</em>'),
+//    t('public for all: <em>Public for all users and anonymous.</em>'),
+//  );
+//  $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_others']['gallery_assist_'. $type .'_public_status'] = array(
+//    '#type' => 'select',
+//    '#title' => t('Gallery Public Status'),
+//    '#default_value' => $settings['public_status'],
+//    '#options' => array(0 => t('privat'), 1 => t('public'), 2 => t('public for all')),
+//    '#description' => theme('item_list', $h_li, NULL, 'ul'),
+//  );
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_others']['gallery_assist_'. $type .'_max_items'] = array(
     '#type' => 'textfield',
     '#title' => t('Images per node'),
-    '#default_value' => $settings['max_items'],
+    '#default_value' => check_plain($settings['max_items']),
     '#size' => 8,
     '#description' => t('Allowed amount of images per article (node)'),
   );
@@ -433,6 +445,24 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
     '#size' => 8
   );
 
+  if (module_exists('pathauto')) {
+    $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_others']['gallery_assist_'. $type .'_build_aliases'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Build aliases.'),
+      '#description' => t('The module pathauto is activated. Check to build aliases from gallery items.'),
+      '#default_value' => $settings['build_aliases'],
+      '#size' => 8
+    );
+  }
+
+  $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_others']['gallery_assist_'. $type .'_hide_node_first_notice'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Hide GA head notice'),
+    '#default_value' => variable_get("hide_node_first_notice_for_{$type}", FALSE),
+    '#description' => t('Hide the notice "This node must be saved FIRST ..." that appears on the top of the creation of a node. <br />If module "<a href="@mnb" target="_blank">More node buttos</a>" is installed and you have enabled the "<a href="@screens" target="_blank">Save and continue</a>" button is this notice not more necessary.', array('@mnb' => url('http://www.drupal.org/project/more_node_buttons'), '@screens' => url('http://www.assist-series.com/content/use-module-more-node-buttons-ga'))),
+    '#size' => 8
+  );
+
   if (module_exists('gallery_assist_item')) {
     $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_item'] = array(
       '#type' => 'fieldset',
@@ -445,7 +475,7 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_users_perms'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Settings permissions.'),
+    '#title' => t('Permission settings'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
     '#description' => t('Allow gallery owners the configuration of some settings on their nodes with gallerie functionality.'),
@@ -459,7 +489,7 @@ function gallery_assist_settings($form_state, $type = 'gallery_assist', $type_na
 
   $form['gallery_assist_'. $type .'_settings'][$type]['gallery_assist_'. $type .'_users_perms']['gallery_assist_'. $type .'_gallery_public_status_allowed'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Gallery Assist (GA) settings'),
+    '#title' => t('Gallery Assist (GA): settings::Common::Public status'),
     '#default_value' => $settings['gallery_public_status_allowed'],
   );
 
@@ -584,12 +614,14 @@ function gallery_assist_settings_info($type, $settings) {
     'upload_thm' => t('Thumbnail upload size'),
     'upload_prev' => t('Preview upload sizev'),
     'items_per_row' => t('Items per row'),
+    't_items_per_row' => t('Thumbnails per row for the teaser'),
     'rows_per_page' => t('Rows per page'),
     'thumbnail_size' => t('Thumbnail size'),
     'thumbnail_size_plus' => t('Thumbnail size plus'),
     'preview_size' => t('Preview size'),
     'item_margin' => t('Item margin'),
     'item_padding' => t('Item padding'),
+    'show_in_homepage_block' => t('Show in block'),
     'item_border' => t('Item border'),
     'item_border_color' => t('Item border color'),
     'show_backlink' => t('Show backlink'),
@@ -602,6 +634,7 @@ function gallery_assist_settings_info($type, $settings) {
     'pager_visibles' => t('Pager visibles'),
     'show_title' => t('Show title'),
     'show_layout' => t('Show layout'),
+    'force_image_height' => t('Force image height'),
     'ga_align' => t('Gallery container align setting in the teaser view'),
     'gap_align' => t('Gallery container align setting in the page view'),
     't_ga_float' => t('Gallery container float setting in the teaser view'),
@@ -627,46 +660,70 @@ function gallery_assist_settings_info($type, $settings) {
     'display_download_link_allowed' => t('Allow users to overwrite the display download link setting'),
     'container_format_allowed' => t('Allow users to overwrite the container format setting'),
     'gallery_container_weight_allowed' => t('Allow users to overwrite the gallery container weight setting'),
-    'show_in_homepage_block_allowed' => t('show_in_homepage_block_allowed'),
-    'gallery_public_status_allowed' => t('gallery_public_status_allowed'),
-    'show_titles_allowed' => t('show_titles_allowed'),
-    'show_in_userprofile_allowed' => t('show_in_userprofile_allowed'),
-    'gallery_items_shadow_allowed' => t('gallery_items_shadow_allowed'),
+    'show_in_homepage_block_allowed' => t('Allow users to overwrite the show_in_homepage_block setting'),
+    'gallery_public_status_allowed' => t('Allow users to overwrite the gallery_public_status setting'),
+    'show_titles_allowed' => t('Allow users to overwrite the show_titles setting'),
+    'show_in_userprofile_allowed' => t('Allow users to overwrite the show_in_userprofile setting'),
+    'gallery_items_shadow_allowed' => t('Allow users to overwrite the gallery_items_shadow setting'),
     'ga_db_order_field' => t('DB-Order field'),
     'ga_db_order' => t('Order'),
+    'use_imagecache' => t('Imagecache as preset builder'),
+    'thm_presetname' => t('Thumbnail preset name'),
+    'prev_presetname' => t('Preview preset name'),
+    'thm_presetid' => t('Thumbnail preset id'),
+    'prev_presetid' => t('Preview preset id'),
+    'gallery_call_type' => 'Gallery call type',
+    'ga_public_status' => t('Public status'),
+    'pager_presetid' => t('Pager preset id'),
+    'pager_presetname' => t('Pager preset name'),
+    'pager_format' => t('Pager format'),
+    'ga_item_title_type' => t('Item titles type'),
+    'graphlinks' => t('Use graphic links'),
+    'in_profile' => t('Show gallery in the user profile view'),
+    'disable_margin_top' => t('Disable the margin-top css format'),
+    'gallery_assist_weight' => t('Gallery container weight'),
   );
 
   foreach ($settings as $k => $v) {
-    if ($k == 'layout') {
-      foreach ($settings['layout'] as $lk => $lv) {
-        $content[$lk] = array(
-          '#value' => '<div><em>'. $names[$lk] .'</em>: <strong>'. $lv .'</strong></div>',
-        );
+//    if ($k == 'layout') {
+//      foreach ($settings['layout'] as $lk => $lv) {
+//        if (empty($names[$lk])) {
+//          $names[$lk] = $k;
+//        }
+//        $content[$lk] = array(
+//          '#value' => '<div><em>'. $names[$lk] .'</em>: <strong>'. $lv .'</strong></div>',
+//        );
+//      }
+//    }
+//    elseif ($k == 'validate_upload') {
+//      foreach ($settings['validate_upload'] as $vk => $vv) {
+//        if (empty($names[$vk])) {
+//          $names[$vk] = $vk;
+//        }
+//        $content[$vk] = array(
+//          '#value' => '<div><em>'. $names[$vk] .'</em>: <strong>'. $vv .'</strong></div>',
+//        );
+//      }
+//    }
+//    else {
+      if (empty($names[$k])) {
+        $names[$k] = $k;
       }
-    }
-    elseif ($k == 'validate_upload') {
-      foreach ($settings['validate_upload'] as $vk => $vv) {
-        $content[$vk] = array(
-          '#value' => '<div><em>'. $names[$vk] .'</em>: <strong>'. $vv .'</strong></div>',
-        );
-      }
-    }
-    else {
       $content[$k] = array(
         '#value' => '<div><em>'. $names[$k] .'</em>: <strong>'. $v .'</strong></div>',
       );
-    }
+//    }
   }
 
   return $content;
 }
 
 /**
- * List all existing content types for the assigment of the gallery functionality.
+ * List all existing content types for the assignment of the gallery functionality.
  *
  * @ingroup forms
  */
-function _gallery_assist_assigments_form() {
+function _gallery_assist_assignments_form() {
   $form = array();
 
   $types = node_get_types();
@@ -674,13 +731,13 @@ function _gallery_assist_assigments_form() {
   foreach ($types as $typ => $v) {
     $default_value = variable_get('gallery_assist_'. $v->type, 0);
 
-    $form['gallery_assist_assigments']['gallery_assist_'. $v->type] = array(
+    $form['gallery_assist_assignments']['gallery_assist_'. $v->type] = array(
       '#type' => 'checkbox',
       '#title' => $v->name,
       '#default_value' => $default_value,
     );
 
-    $form['gallery_assist_assigments']['gallery_assist_'. $v->type .'_changed'] = array(
+    $form['gallery_assist_assignments']['gallery_assist_'. $v->type .'_changed'] = array(
       '#type' => 'hidden',
       '#value' => $default_value,
     );
@@ -727,18 +784,18 @@ function gallery_assist_settings_extras() {
     '#description' => 'If you choose "Replace files" existing files will be replaced by uploading files through the new file with the same name.<br>If you choose "Rename files" new files with same name as existing files will be renamed with a counter at the end.',
   );
 
-  // Assigments
+  // Assignments
   if (user_access('administer gallery_assist')) {
-    $form['gallery_assist_extras']['gallery_assist_assigments'] = array(
+    $form['gallery_assist_extras']['gallery_assist_assignments'] = array(
       '#type' => 'fieldset',
-      '#title' => t('Gallery functionality assigments'),
+      '#title' => t('Gallery functionality assignments'),
       '#collapsible' => TRUE,
       '#collapsed' => TRUE,
       '#weight' => -50,
       '#description' => t('Assign the gallery functionality to other content types.'),
     );
 
-    $form['gallery_assist_extras']['gallery_assist_assigments'] += _gallery_assist_assigments_form();
+    $form['gallery_assist_extras']['gallery_assist_assignments'] += _gallery_assist_assignments_form();
   }
 
   if (module_exists('imce')) {
@@ -767,8 +824,8 @@ function gallery_assist_settings_extras() {
 
   $form['gallery_assist_extras']['others']['gallery_assist_forms_possition'] = array(
     '#type' => 'textfield',
-    '#title' => t('Gallery Assist form fiedsets weight'),
-    '#description' => t('A little help tu set the weight of fieldsets.'),
+    '#title' => t('Gallery Assist form fieldsets weight'),
+    '#description' => t('A little help to set the weight of fieldsets.'),
     '#default_value' => variable_get('gallery_assist_forms_possition', -2),
     '#size' => 8
   );
@@ -845,10 +902,8 @@ function _gallery_assist_sizes_settings_form($type, $settings = array()) {
   $form['gallery_assist_'. $type .'_sizes']['gallery_assist_'. $type .'_sizes']['gallery_assist_'. $type .'_upload'] = array(
     '#type' => 'fieldset',
     '#title' => t('Upload'),
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
-    ////'#suffix' => '</div>',
+    '#prefix' => '<div class="gallery-assist-settings-left-half">',
+    '#suffix' => '</div>',
   );
 
   $form['gallery_assist_'. $type .'_sizes']['gallery_assist_'. $type .'_sizes']['gallery_assist_'. $type .'_upload']['gallery_assist_'. $type .'_upload_thm'] = array(
@@ -869,10 +924,8 @@ function _gallery_assist_sizes_settings_form($type, $settings = array()) {
   $form['gallery_assist_'. $type .'_sizes']['gallery_assist_'. $type .'_sizes']['gallery_assist_'. $type .'_lsizes'] = array(
     '#type' => 'fieldset',
     '#title' => t('Display'),
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
-    ////'#suffix' => '</div>',
+    '#prefix' => '<div class="gallery-assist-settings-left-half">',
+    '#suffix' => '</div>',
   );
 
   if ($settings['thumbnail_size'] == '' && $settings['thumbnail_size'] == 0) {
@@ -984,28 +1037,16 @@ function _gallery_assist_get_ic_settings_form($type, $settings) {
 }
 
 /**
- * This function print the copyright of this module at the back-end interface.
- *
- * @ingroup forms
- */
-function gallery_assist_copyright() {
-  return t('Module developed by <a target="_blank" href="@ga_creator_link">Juan Morejón</a> from the <a target="_blank" href="@qtg_link">Quiptime Group</a>', array(
-    '@ga_creator_link' => url('http://simple.puntolatinoclub.de'),
-    '@qtg_link' => url('http://www.quiptime.com'),
-  ));
-}
-
-/**
  * Menu callback for the upload settings form.
  * A takeover from upload module.
  */
 function gallery_assist_upload_settings($type, $settings) {
-  if (!empty($settings['validate_upload']['resolution'])) {
-    $sizes = explode('x', $settings['validate_upload']['resolution']);
+  if (!empty($settings['resolution'])) {
+    $sizes = explode('x', $settings['resolution']);
     $compare1 = $sizes[0] > $sizes[1] ? $sizes[0] : $sizes[1];
     $compare2 = module_exists('imagecache') && variable_get('gallery_assist_use_imagecache', 0) == 1 ? $settings['preview_size'] : $settings['upload_prev'];
     if ($compare1 < $compare2) {
-      $settings['validate_upload']['resolution'] = $compare2 .'x'. $compare2;
+      $settings['resolution'] = $compare2 .'x'. $compare2;
     }
   }
 
@@ -1021,7 +1062,7 @@ function gallery_assist_upload_settings($type, $settings) {
   $form['ga_upload_settings'][$type]['gallery_assist_'. $type .'_resolution'] = array(
     '#type' => 'textfield',
     '#title' => t('Maximum resolution for uploaded images'),
-    '#default_value' => empty($settings['validate_upload']['resolution']) ? 0 : $settings['validate_upload']['resolution'],
+    '#default_value' => empty($settings['resolution']) ? 0 : $settings['resolution'],
     '#size' => 15,
     '#maxlength' => 10,
     '#description' => $desc['upload']['resolution'],
@@ -1032,7 +1073,7 @@ function gallery_assist_upload_settings($type, $settings) {
   $form['ga_upload_settings'][$type]['gallery_assist_'. $type .'_extensions'] = array(
     '#type' => 'textfield',
     '#title' => t('Default permitted file extensions'),
-    '#default_value' => $settings['validate_upload']['extensions'],
+    '#default_value' => $settings['extensions'],
     '#maxlength' => 255,
     '#description' => $desc['upload']['extensions'],
   );
@@ -1041,7 +1082,7 @@ function gallery_assist_upload_settings($type, $settings) {
   $form['ga_upload_settings'][$type]['gallery_assist_'. $type .'_file_size'] = array(
     '#type' => 'textfield',
     '#title' => t('Default maximum file size per upload'),
-    '#default_value' => ($settings['validate_upload']['file_size'] / 1024) / 1024,
+    '#default_value' => ($settings['file_size'] / 1024) / 1024,
     '#size' => 5,
     '#maxlength' => 5,
     '#description' => $desc['upload']['file_size'],
@@ -1052,7 +1093,7 @@ function gallery_assist_upload_settings($type, $settings) {
   $form['ga_upload_settings'][$type]['gallery_assist_'. $type .'_user_size'] = array(
     '#type' => 'textfield',
     '#title' => t('Default total file size per user'),
-    '#default_value' => ($settings['validate_upload']['user_size'] / 1024) / 1024,
+    '#default_value' => ($settings['user_size'] / 1024) / 1024,
     '#size' => 5,
     '#maxlength' => 5,
     '#description' => $desc['upload']['user_size'],
@@ -1076,18 +1117,26 @@ function _gallery_assist_settings_nodes($settings, $type) {
     '#type' => 'select',
     '#title' => t('Field to order'),
     '#default_value' => $settings['ga_db_order_field'],
-    '#options' => array('a.weight' => 'Weight', 'f.timestamp' => 'Upload date', 'a.filename' => 'File name', 'tp.ptitle' => 'Image title'),
-    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
-    ////'#suffix' => '</div>',
+    '#options' => array(
+      'a.weight' => t('Weight'), 
+      'f.timestamp' => t('Upload date'), 
+      'a.filename' => t('File name'), 
+      'tp.ptitle' => t('Image title')
+    ),
+    '#prefix' => '<div class="gallery-assist-settings-left-half">',
+    '#suffix' => '</div>',
   );
 
   $form['load_modi']['gallery_assist_'. $type .'_ga_db_order'] = array(
     '#type' => 'select',
     '#title' => t('Order type'),
     '#default_value' => $settings['ga_db_order'],
-    '#options' => array('DESC' => 'Descending', 'ASC' => 'Ascending'),
+    '#options' => array(
+      'DESC' => t('Descending'), 
+      'ASC' => t('Ascending')
+    ),
     //'#prefix' => '<div class="gallery-assist-settings-left-half">',
-    ////'#suffix' => '</div>',
+    //'#suffix' => '</div>',
   );
 
   $form['common'] = array(
@@ -1110,7 +1159,7 @@ function _gallery_assist_settings_nodes($settings, $type) {
     '#type' => 'select',
     '#title' => t('Gallery Public Status'),
     '#default_value' => $settings['ga_public_status'],
-    '#options' => array(0 => t('privat'), 1 => t('public'), 2 => t('public for all')),
+    '#options' => array(0 => t('public'), 1 => t('privat') ,2 => t('public for all')),
     '#description' => theme('item_list', $h_li, NULL, 'ul'),
   );
 
@@ -1133,13 +1182,25 @@ function _gallery_assist_settings_nodes($settings, $type) {
     '#type' => 'markup',
     '#value' => '</div><div>',
   );
-
-  $this['show_title'] = $settings['show_title'] == 1 ? t('Uncheck to hide the images titles.') : t('Check to display the image titles.');
+  
+  $this['show_title'] = $settings['show_title'] == 1 ? t('Uncheck to hide the images titles. With the creation of the article are images-titles shown.') : t('Check to display the image titles. With the creation of the article are images-titles shown.');
   $form['common']['gallery_assist_'. $type .'_show_title'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show titles'),
     '#default_value' => $settings['show_title'],
     '#description' => $this['show_title'],
+  );
+
+  $toptions = array(0 => t('Linked'), 1 => t('Text only'));
+  if (module_exists('gallery_assist_lightboxes') && variable_get('gallery_assist_lightbox', FALSE) != 'none') {
+    $toptions[2] = t('Linked to the lightbox');
+  }
+  $form['common']['gallery_assist_'. $type .'_ga_item_title_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Titles format'),
+    '#options' => $toptions,
+    '#default_value' => $settings['ga_item_title_type'],
+    '#access' => isset($settings['show_title']) ? TRUE : FALSE,
   );
 
   $form['common']['gallery_assist_'. $type .'_in_profile'] = array(
@@ -1177,30 +1238,30 @@ function _gallery_assist_settings_nodes($settings, $type) {
     '#title' => t('Extra layout settings'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    //'#description' => gallery_assist_advanced_help_builder($this['help']['layout']),
+    '#description' => gallery_assist_advanced_help_builder($this['help']['layout']),
   );
 
   $form['layout']['teaser'] = array(
     '#type' => 'fieldset',
     '#title' => t('Teaser container'),
-    //'#prefix' => '<div class="gallery-assist-settings-left">',
-    ////'#suffix' => '</div>',
+    '#prefix' => '<div class="gallery-assist-settings-left">',
+    '#suffix' => '</div>',
     '#description' => t('Settings of the gallery container in the teaser view.'),
   );
 
   $form['layout']['page'] = array(
     '#type' => 'fieldset',
     '#title' => t('Page container'),
-    //'#prefix' => '<div class="gallery-assist-settings-left">',
-    ////'#suffix' => '</div>',
+    '#prefix' => '<div class="gallery-assist-settings-left">',
+    '#suffix' => '</div>',
     '#description' => t('Settings of the gallery container in the page view.'),
   );
 
   $form['layout']['preview'] = array(
     '#type' => 'fieldset',
     '#title' => t('Preview'),
-    //'#prefix' => '<div class="gallery-assist-settings-left">',
-    ////'#suffix' => '</div>',
+    '#prefix' => '<div class="gallery-assist-settings-left">',
+    '#suffix' => '</div>',
     '#description' => t('Settings of the gallery container in the image preview.'),
   );
 
@@ -1221,26 +1282,23 @@ function _gallery_assist_settings_nodes($settings, $type) {
     '#type' => 'checkbox',
     '#title' => t('Display the download link'),
     '#default_value' => $settings['show_download_link'],
-    //'#prefix' => '<div class="gallery-assist-settings-left-30">',
-    ////'#suffix' => '</div>',
+    '#prefix' => '<div class="gallery-assist-settings-left-30">',
+    '#suffix' => '</div>',
+  );
+
+  $form['layout']['preview']['gallery_assist_'. $type .'_gallery_call_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Gallery call type'),
+    '#default_value' => $settings['gallery_call_type'],
+    '#options' => array(0 => t('default'), 1 => t('single call'), 2 => t('single call random')),
+    '#description' => t('Choose a option to jump directly to the first image (cover) or a random image without to view the page. Default is the normaly node call.'),
+    //'#prefix' => '<div class="gallery-assist-settings-left-half">',
   );
 
   $form['layout']['preview']['gallery_assist_'. $type .'_show_download_link_old'] = array(
     '#type' => 'hidden',
     '#value' => $settings['show_download_link'],
   );
-
-  if (module_exists('gallery_assist_comments')) {
-    $form['layout']['preview']['gallery_assist_'. $type .'_comments'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Enable or disable comments for the items of this gallery'),
-      '#default_value' => $settings['comments'],
-    );
-    $form['layout']['preview']['comments_old'] = array(
-      '#type' => 'hidden',
-      '#value' => $settings['comments'],
-    );
-  }
 
   return $form;
 }

@@ -1,4 +1,4 @@
-# $Id: gallery_assist.es.po,v 1.2 2010/05/18 22:27:33 jcmc Exp $
+# $Id: gallery_assist.es.po,v 1.6 2010/10/28 20:31:48 jcmc Exp $
 #
 # Spanish translation of Drupal (general)
 # Copyright 2010 jcmc <jcmc.devel@gmail.com>
@@ -429,7 +429,7 @@ msgid "Replace files"
 msgstr "Reemplazar archivos"
 
 #: gallery_assist.admin.inc:577
-msgid "Gallery functionality assigments"
+msgid "Gallery functionality assignments"
 msgstr "Asignación de la funcionalidad de galería"
 
 #: gallery_assist.admin.inc:581
@@ -785,7 +785,7 @@ msgid "Edit the settings from Gallery Assist for this content type -> <a href=\"
 msgstr "Editar la configuración del Assistente de Galería para este tipo de artículo -> <a href=\"@myPath\">%contenType</a>"
 
 #: gallery_assist.module:790
-msgid "This node must be saved FIRST before you can add IMAGES to the gallery. Read more about in the <a href=\"@help_link\">help</a>."
+msgid "This article must be saved FIRST before you can add IMAGES to the gallery. Read more about in the <a href=\"@help_link\">help</a>."
 msgstr "Para poder añadir imágenes a la galería debe de ser guardado primeramente el artículo <a href=\"@help_link\">help</a>."
 
 #: gallery_assist.module:800
@@ -1126,7 +1126,7 @@ msgid "edit any gallery_assist_"
 msgstr ""
 
 #: gallery_assist.module:411
-msgid "Manage the gallery_assist asigments and customize the html output."
+msgid "Manage the gallery_assist assignments and customize the html output."
 msgstr ""
 "Administrar las asignaciones del Asistente de Galería y personalizar "
 "la salida HTML."

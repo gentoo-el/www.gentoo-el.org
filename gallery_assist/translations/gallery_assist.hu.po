@@ -1,4 +1,4 @@
-# $Id: gallery_assist.hu.po,v 1.2 2010/05/18 22:27:33 jcmc Exp $
+# $Id: gallery_assist.hu.po,v 1.6 2010/10/28 20:31:48 jcmc Exp $
 #
 # Hungarian translation of Drupal (general)
 # Copyright YEAR NAME <EMAIL@ADDRESS>
@@ -422,7 +422,7 @@ msgid "Replace files"
 msgstr "Fájlok áthelyezése"
 
 #: gallery_assist.admin.inc:577
-msgid "Gallery functionality assigments"
+msgid "Gallery functionality assignments"
 msgstr "Galériafunkcionalitás-hozzárendelések"
 
 #: gallery_assist.admin.inc:581
@@ -770,7 +770,7 @@ msgid ""
 "<p>\tI think the last two parameters are self-explanatory. This is not a html guide ;.).</p>\n"
 "\n"
 "<h2 class=\"book-heading\">Create a Gallery Assist gallery</h2>\n"
-"<p>Go to <em>Create content</em> and select the <a href=\"@assigments\">Gallery Assist node type</a> <span class=\"print-footnote\"></span> called \"<strong>Gallery</strong>\" or other node type with <a href=\"@assigments\">Gallery Assist Assigment</a> <span class=\"print-footnote\"></span>.<br />\n"
+"<p>Go to <em>Create content</em> and select the <a href=\"@assignments\">Gallery Assist node type</a> <span class=\"print-footnote\"></span> called \"<strong>Gallery</strong>\" or other node type with <a href=\"@assignments\">Gallery Assist Assignment</a> <span class=\"print-footnote\"></span>.<br />\n"
 "Give a name to your article and save. Gallery Assist extend the article with a new field or object (the gallery container) so the module need the NID as argument for the creation of the <a href=\"@folders\">gallery folder structure</a> <span class=\"print-footnote\"></span>.</p>\n"
 "<p>Once the article is saved click to edit it.<br />\n"
 "Two new fieldsets are added to the node edit form:</p>\n"
@@ -793,12 +793,12 @@ msgid ""
 "<p>You can to add a description to the gallery, task that belong only the Drupal node process.</p>\n"
 "<p>Are you satisfied with the results, save the node and view it.</p>\n"
 "\n"
-"<h2 class=\"book-heading\"><a name=\"node-type-and-assigments\"></a>Gallery Assist node type and assigments</h2>\n"
+"<h2 class=\"book-heading\"><a name=\"node-type-and-assignments\"></a>Gallery Assist node type and assignments</h2>\n"
 "<p>The module Gallery Assist provide the node type \"Gallery\" prepared with gallery functionality.</p>\n"
 "<p>The gallery functionality can be assigned to all other node types.<br />\n"
-"In this case and for the documentation I call these <strong>assigment</strong>(<strong>s</strong>).</p>\n"
+"In this case and for the documentation I call these <strong>assignment</strong>(<strong>s</strong>).</p>\n"
 "<p>You can manage the Gallery Assist permissions and combine them using all the possibilities offered by Drupal.</p>\n"
-"<p>Please pay close atension when sharing permissions to assigments.<br />\n"
+"<p>Please pay close atension when sharing permissions to assignments.<br />\n"
 "Users with permissions to create galleries in an assignment need permissions to create the node type.</p>\n"
 "<p>Each assignment can be managed separately.</p>\n"
 "<p>This module provide you a broad spectrum of layout options.</p>\n"
@@ -825,7 +825,7 @@ msgid ""
 "<h2 class=\"book-heading\">Gallery Assist ImageCache</h2>\n"
 "<p>The installation is equal as by the other modules. </p>\n"
 "<p>Dependencies are Gallery Assist and ImageCache.</p>\n"
-"<p>Once activated \"Gallery Assist ImageCache\" create a default ImageCache preset for Gallery Assist and a preset for each node type with the Gallery Assist functionality (assigment). </p>\n"
+"<p>Once activated \"Gallery Assist ImageCache\" create a default ImageCache preset for Gallery Assist and a preset for each node type with the Gallery Assist functionality (assignment). </p>\n"
 "<p>The module manage in the background the size settings variables wich Gallery Assist need to build and display the gallery container.</p>\n"
 "<p>You should consider:<br />\n"
 "At the moment this module is installed and activated ImageCache takeover the creation from thumbnails and preview images.<br />\n"
@@ -962,8 +962,8 @@ msgid "<div id=\"ga-devel-by\">Edit the settings from Gallery Assist for this co
 msgstr "<div id=\"ga-devel-by\">Erre a tartalomtípusra vonatkozó beállításokat a Galériasegédben szerkesztheti -> <a href=\"@myPath\">%contenType</a></div>"
 
 #: gallery_assist.module:786
-msgid "This node must be saved FIRST before you can add IMAGES to the gallery. Read more about in the <a href=\"@help_link\">help</a>."
-msgstr "KÉPEK hozzáadásához a tartalmat ELŐSZÖR le kell menteni. További információ a <a href=\"@help_link\">súgóban</a>."
+msgid "This article must be saved FIRST before you can add IMAGES to the gallery. Read more about in the <a href=\"@help_link\">help</a>."
+msgstr "Ezt a cikket kell menteni, MIELőTT képeket vehet fel a galériába. Tudjon meg többet a <a href=\"@help_link\">segítséget</a>."
 
 #: gallery_assist.module:796
 msgid "Read the short help in case you are not secure by this settings."
@@ -1294,7 +1294,7 @@ msgid "edit any gallery_assist_"
 msgstr ""
 
 #: gallery_assist.module:411
-msgid "Manage the gallery_assist asigments and customize the html output."
+msgid "Manage the gallery_assist assignments and customize the html output."
 msgstr "Galériasegéddel és az egyedi galériákkal kapcsolatos beállítások kezelése."
 
 #: gallery_assist.module:544

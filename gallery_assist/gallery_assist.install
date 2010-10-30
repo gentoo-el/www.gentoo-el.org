@@ -1,5 +1,5 @@
 <?php
-// $Id: gallery_assist.install,v 1.40 2010/05/25 02:47:37 jcmc Exp $
+// $Id: gallery_assist.install,v 1.45 2010/10/28 20:31:47 jcmc Exp $
 
 /**
  * @file
@@ -193,6 +193,12 @@ function gallery_assist_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default' => 0),
+      'aid' => array(
+        'description' => 'The alias (pathauto) identifier',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0),
       ),
     'primary key' => array('pid'),
   );
@@ -315,11 +321,12 @@ function gallery_assist_install() {
   drupal_install_schema('gallery_assist');
 
   // Set default gallery_assist variables.
-  if (!file_check_directory(variable_get('gallery_assist_directory', file_directory_path() .'/gallery_assist'), 1)) {
+  variable_set('gallery_assist_directory', file_directory_path() .'/gallery_assist');
+  if (!file_check_directory(variable_get('gallery_assist_directory', FALSE), 1)) {
     drupal_set_message(t('It was not possible to create the gallery_assist directory. The files directory must be writable. Clarify the write permissions for the files folder and reinstall the module Gallery Assist.'), 'error');
   }
 
-  // Set the default variables and default values for gallery assist and/or node types with assigment.
+  // Set the default variables and default values for gallery assist and/or node types with assignment.
   // The default values will be assigned to each new gallery_assist asigment.
   // You can set as desired others default values here before installing this module.
   $ga_variables = array(
@@ -345,12 +352,12 @@ function gallery_assist_install() {
     // Update 1
     'show_title' => 0,
     'show_layout' => 'grid',
-    'layout' => array(
+    //'layout' => array(
       'ga_align' => 'center',
       'gap_align' => 'center',
       't_ga_float' => 'none',
       'p_ga_float' => 'none',
-    ),
+    //),
     'shadow' => 0,
     // Update 3
     'hide_in_teaser' => FALSE,
@@ -358,13 +365,13 @@ function gallery_assist_install() {
     'item_effect' => FALSE,
     'max_items' => FALSE,
     'max_form_items' => 6,
-    'validate_upload' => array(
+    //'validate_upload' => array(
       'file_size' => '',
       'user_size' => '',
       'resolution' => 0,
       'extensions' => 'jpg jpeg gif png',
-    ),
-    'public_status' => 1,
+    //),
+    'ga_public_status' => 1,
     'admin_public_status' => FALSE,
     'pager_t_height' => 20,
     'pager_t_active_height' => 25,
@@ -381,8 +388,11 @@ function gallery_assist_install() {
     'show_in_userprofile_allowed' => 0,
     'gallery_items_shadow_allowed' => 0,
     // DB
-    'ga_db_order_field' => 'weight',
+    'ga_db_order_field' => 'a.weight',
     'ga_db_order' => 'ASC',
+    // Update 5
+    'ga_item_title_type' => 0,
+    'pager_align' => 'center'
   );
 
   // Set the default variables and default values for gallery assist block gallery..
@@ -419,7 +429,7 @@ function gallery_assist_install() {
 
   // One of the basic features of this module is the assign gallery-funktionality. 
   // The set the variable at this point is the best method to develop efecctiv and simplified module code.
-  // (I mean with this the Assigment-Functionality)
+  // (I mean with this the Assignment-Functionality)
   variable_set('gallery_assist_default', 1);
   variable_set('gallery_assist_default_data', $ga_variables);
   variable_set('gallery_assist_gallery_assist', 1);
@@ -435,6 +445,14 @@ function gallery_assist_install() {
 function gallery_assist_uninstall() {
   module_invoke('gallery_assist', 'delete_directory', variable_get('gallery_assist_directory', file_directory_path() .'/gallery_assist'));
   
+  // Delete all entries in the file table.
+  $query = "SELECT fid FROM {gallery_assist_item}";
+  $result = db_query($query);
+
+  while ($r = db_fetch_object($result)) {
+    db_query('DELETE FROM {files} WHERE fid = %d', $r->fid);
+  }
+
   // Delete all gallery assist nodes form the node and the node_revisions tables.
   $query = "SELECT n.nid FROM {node} n WHERE type = '%s'";
   $result = db_query(db_rewrite_sql($query, 'n', 'nid'), 'gallery_assist');
@@ -448,7 +466,6 @@ function gallery_assist_uninstall() {
 
   // Delete all database tables.
   drupal_uninstall_schema('gallery_assist');
-
 }
 
 /**
@@ -633,7 +650,7 @@ function gallery_assist_update_3() {
   $check['default']['item_effect'] = FALSE;
   $check['default']['max_items'] = FALSE;
   $check['default']['max_form_items'] = 6;
-  $check['default']['public_status'] = 1;
+  $check['default']['ga_public_status'] = 1;
   $check['default']['admin_public_status'] = FALSE;
   $check['default']['validate_upload'] = $new_key;
   $check['default']['pager_t_height'] = 20;
@@ -660,7 +677,7 @@ function gallery_assist_update_3() {
       $check[$v->type]['item_effect'] = $check['default']['item_effect'];
       $check[$v->type]['max_items'] = $check['default']['max_items'];
       $check[$v->type]['max_form_items'] = $check['default']['max_form_items'];
-      $check[$v->type]['public_status'] = $check['default']['public_status'];
+      $check[$v->type]['ga_public_status'] = $check['default']['ga_public_status'];
       $check[$v->type]['admin_public_status'] = $check['default']['admin_public_status'];
       $check[$v->type]['validate_upload'] = $new_key;
       $check[$v->type]['pager_t_height'] = $check['default']['pager_t_height'];
@@ -744,16 +761,17 @@ function gallery_assist_update_4() {
 
   // Add the missing default params for ordering of gallery items by load from the DB.
   $check['default'] = variable_get('gallery_assist_default_data', FALSE);
-  $check['default']['ga_db_order_field'] = isset($check['default']['ga_db_order_field']) && $check['default']['ga_db_order_field'] ? $check['default']['ga_db_order_field'] : 'weight';
-  $check['default']['ga_db_order'] = isset($check['default']['ga_db_order']) && $check['default']['ga_db_order'] ? $check['default']['ga_db_order'] : 'ASC';
+  $check['default']['ga_db_order_field'] = 'a.weight';
+  $check['default']['ga_db_order'] = 'ASC';
   variable_set('gallery_assist_'. $v->type, $check['default']);
-  // Add the missing assigment params for ordering of gallery items by load from the DB.
+
+  // Add the missing assignment params for ordering of gallery items by load from the DB.
   $types = node_get_types();
   foreach ($types as $v) {
     if (variable_get('gallery_assist_'. $v->type, 0) == 1) {
       $check[$v->type] = variable_get('gallery_assist_'. $v->type .'_data', FALSE);
-      $check[$v->type]['ga_db_order_field'] = isset($check[$v->type]['ga_db_order_field']) && $check[$v->type]['ga_db_order_field'] ? $check[$v->type]['ga_db_order_field'] : 'weight';
-      $check[$v->type]['ga_db_order'] = isset($check[$v->type]['ga_db_order']) && $check[$v->type]['ga_db_order'] ? $check[$v->type]['ga_db_order'] : 'ASC';
+      $check[$v->type]['ga_db_order_field'] = 'a.weight';
+      $check[$v->type]['ga_db_order'] = 'ASC';
       
       variable_set('gallery_assist_'. $v->type .'_data', $check[$v->type]);
     }
@@ -761,5 +779,59 @@ function gallery_assist_update_4() {
   
   gallery_assist_clearthecache();
   
+  return $ret;
+}
+
+/**
+ * Implementation of hook_update_N().
+ */
+function gallery_assist_update_5() {
+  $ret = array();
+
+  // Add a identifier for the created path alias to the gallery items.
+  $aid = array(
+    'aid' => array(
+      'type' => 'int',
+      'not null' => TRUE,
+      'default' => 0,
+      'description' => 'Url alias Identifier by using pathauto.',
+    )
+  );
+  db_add_field($ret, 'gallery_assist_item', 'aid', $aid['aid']);
+
+  $types = array('default' => 'Default');
+  $types += gallery_assist_get_assignments(TRUE);
+
+  foreach (array_keys($types) as $type) {
+    $layout = array();
+    $validate_upload = array();
+    // Get the configuration data.
+    $settings = variable_get('gallery_assist_'. $type .'_data', FALSE);
+
+    // Extract the layout array.
+    $layout = $settings['layout'];
+    unset($settings['layout']);
+
+    // Extract the validate_upload array.
+    $validate_upload = $settings['validate_upload'];
+    unset($settings['validate_upload']);
+
+    // Merge all to one level array.
+    $new_settings = array_merge ($settings, $layout, $validate_upload);
+
+    // Add the new variables.
+    $new_settings['ga_item_title_type'] = 0;
+    $new_settings['pager_align'] = 'center';
+    $new_settings['t_thm_link_format'] = 'item';
+
+    // Save the system variable.
+    variable_set('gallery_assist_'. $type .'_data', $new_settings);
+  }
+
+  variable_set('gallery_assist_directory', file_directory_path() .'/gallery_assist');
+
+  $cq = "TRUNCATE TABLE {cache_gallery_assist_data}";
+  db_query($cq);
+
   return $ret;
 }

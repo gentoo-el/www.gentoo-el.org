@@ -1,12 +1,12 @@
-; $Id: gallery_assist.info,v 1.36 2010/06/01 16:07:50 jcmc Exp $
+; $Id: gallery_assist.info,v 1.44 2010/10/28 20:33:22 jcmc Exp $
 name = Gallery Assist
-description = Drupal content type with gallery functionality. <br /><a href="http://drupal.org/project/gallery_assist#additional_modules" target="_blank">Additional modules.</a>, <a href="http://simple.puntolatinoclub.de/docu/gallery-assist" target="_blank">Visit the documentation.</a>
-package = "Media"
+description = Drupal gallery modul. Provides gallery functionalities to node types.<br /><a href="http://drupal.org/project/gallery_assist#additional_modules" >Additional modules.</a>, <a href="http://simple.puntolatinoclub.de/docu/gallery-assist">Visit the documentation.</a>
+package = "Gallery Assist"
 core = 6.x
 
-; Information added by drupal.org packaging script on 2010-06-01
-version = "6.x-1.15"
+; Information added by drupal.org packaging script on 2010-10-29
+version = "6.x-1.16"
 core = "6.x"
 project = "gallery_assist"
-datestamp = "1275408907"
+datestamp = "1288358145"
 

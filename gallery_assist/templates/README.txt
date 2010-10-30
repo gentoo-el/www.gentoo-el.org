@@ -1,4 +1,4 @@
-// $Id: README.txt,v 1.0 2009/12/03 12:50:05 jcmc Exp $
+// $Id$
 
 Gallery Assist template examples
 --------------------------------

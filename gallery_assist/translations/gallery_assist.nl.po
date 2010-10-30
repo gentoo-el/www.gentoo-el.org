@@ -1,4 +1,4 @@
-# $Id: gallery_assist.de.po,v 1.1 2009/10/11 00:20:09 jcmc Exp $
+# $Id$
 #
 # Dutch translation of Drupal (general)
 # Copyright 2009 Juan Morejón <jcmc.devel@gmail.com>
@@ -127,7 +127,7 @@ msgid "Gallery Assist Extras"
 msgstr "Galeriy-Assistent Extras"
 
 #: gallery_assist.admin.inc:231
-msgid "Assigments"
+msgid "Assignments"
 msgstr "Toewijzingen"
 
 #: gallery_assist.admin.inc:235
@@ -234,7 +234,7 @@ msgstr ""
 "kan voor elk apart geconfigureerd worden."
 
 #: gallery_assist.module:46
-msgid "By this gallery module solution are images not nodes, images are items that belong to the nodes of content types with gallery assigment."
+msgid "By this gallery module solution are images not nodes, images are items that belong to the nodes of content types with gallery assignment."
 msgstr ""
 "Deze galerij module biedt een oplossing waarbij afbeeldingen geen nodes zijn, "
 "afbeeldingen zijn items die behoren tot de node van Inhoudstypes met "
@@ -499,7 +499,7 @@ msgid "edit any gallery_assist_"
 msgstr ""
 
 #: gallery_assist.module:200
-msgid "Manage the gallery_assist asigments and customize the html output."
+msgid "Manage the gallery_assist assignments and customize the html output."
 msgstr ""
 "Beheer van de Gallerij functionaliteit en aanpassen van de html output."
 

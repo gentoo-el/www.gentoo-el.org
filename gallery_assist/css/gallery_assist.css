@@ -1,4 +1,4 @@
-/* $Id: gallery_assist.css,v 1.28 2010/06/01 16:07:50 jcmc Exp $ */
+/* $Id: gallery_assist.css,v 1.35 2010/10/28 20:31:47 jcmc Exp $ */
 
 #gallery-assist-users-help {
   margin: 0 20px;
@@ -193,7 +193,7 @@ div#ga-pager-box  div.pager li a {color:#fff999;}
   width:80%;
 }
 
-#ga-devel-by {
+#ga-devel-by, #gallery-assist-node-info {
   text-align: right;
   font-size: 10px;
   color:gray;
@@ -274,36 +274,75 @@ div.nav-links {
  * Comment out to use icons for the back and edit one links.
  */
 div.ga-edit-item-link {
-  background:transparent url(../images/icon-set.png) no-repeat scroll 0 0;
-  background-position: -16px 0;
-  height:16px;
-  width:16px;
-  overflow:hidden;
-
+  background: transparent url(../images/gallery-assist-sprite.png) no-repeat scroll 0 0;
+  background-position: 0px 0;
+  height: 22px;
+  width: 22px;
+  overflow: hidden;
 }
 div.ga-edit-item-link:hover {
-  background:transparent url(../images/css-sprites.png) no-repeat scroll 0 0;
-  background-position: -16px 0;
+  background: transparent url(../images/gallery-assist-sprite.png) no-repeat scroll 0 0;
+  background-position: 0 0;
 }
 div.ga-edit-item-link a {
   background: transparent;
-  padding-left:20px;
+  display: block;
+  text-indent: -900px;
 }
 div.ga-back-link {
-  background:transparent url(../images/icon-set.png) repeat scroll 0 0;
-  background-position: -16px -16px;
-  float:left;
-  height:16px;
-  overflow:hidden;
-  width:16px;
+  background: transparent url(../images/gallery-assist-sprite.png) repeat scroll 0 0;
+  background-position: -22px 0px;
+  float: left;
+  height: 22px;
+  overflow: hidden;
+  width: 22px;
+}
+div.ga-node-edit-link:hover {
+  background:transparent url(../images/gallery-assist-sprite.png) repeat scroll 0 0;
+  background-position: -44px 0px;
+}
+div.ga-node-edit-link a {
+  background: transparent;
+  display: block;
+  text-indent: -900px;
+}
+div.ga-node-edit-link {
+  background: transparent url(../images/gallery-assist-sprite.png) repeat scroll -44px 0;
+  display: inline;
+  float: left;
+  height: 22px;
+  margin-right: 0.5em;
+  overflow: hidden;
+  width: 22px;
 }
 div.ga-back-link:hover {
-  background:transparent url(../images/css-sprites.png) repeat scroll 0 0;
-  background-position: -16px -16px;
+  background:transparent url(../images/gallery-assist-sprite.png) repeat scroll 0 0;
+  background-position: -22px 0px;
 }
 div.ga-back-link a {
   background: transparent;
-  padding-left:20px;
+  padding-left:30px;
+}
+/**
+ * Comment out to use icons for other links.
+ */
+.ga-graph-download-link:hover {
+  background:transparent url(../images/gallery-assist-sprite.png) repeat scroll 0 0;
+  background-position: -66px 0px;
+}
+.ga-graph-download-link a {
+  background: transparent;
+  display: block;
+  text-indent: -900px;
+}
+.ga-graph-download-link {
+  background: transparent url(../images/gallery-assist-sprite.png) repeat scroll -66px 0;
+  display: inline;
+  float: left;
+  height: 22px;
+  margin-right: 0.5em;
+  overflow: hidden;
+  width: 22px;
 }
 
 .ga-nowrap {
@@ -336,3 +375,34 @@ body.layout-jello .page {
   padding-right:0;
 }
 */
+
+.gallery_assist .image-box {
+  border: 1px solid #CCCCCC;
+}
+.gallery_assist .image-box:hover {
+  border: 1px solid #3B5998;
+}
+
+#prev-img-box {
+  margin:0 auto;
+}
+
+.ga-no-wrap {
+  white-space: nowrap;
+}
+
+/* test view as grid */
+.ga-views-test-grid .view-content table tr td  {
+  vertical-align: top;
+}
+
+/* Menu trail links format */
+.gab-item-lnk a.active img {
+  opacity: 1;
+}
+.gab-item-lnk a img {
+  opacity: 0.7;
+}
+.gab-item-lnk a img:hover {
+  opacity:1;
+}
