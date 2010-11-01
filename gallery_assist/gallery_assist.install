@@ -1,5 +1,5 @@
 <?php
-// $Id: gallery_assist.install,v 1.45 2010/10/28 20:31:47 jcmc Exp $
+// $Id: gallery_assist.install,v 1.47 2010/11/01 08:26:08 jcmc Exp $
 
 /**
  * @file
@@ -800,32 +800,34 @@ function gallery_assist_update_5() {
   db_add_field($ret, 'gallery_assist_item', 'aid', $aid['aid']);
 
   $types = array('default' => 'Default');
-  $types += gallery_assist_get_assignments(TRUE);
+  $types += node_get_types();
 
-  foreach (array_keys($types) as $type) {
-    $layout = array();
-    $validate_upload = array();
-    // Get the configuration data.
-    $settings = variable_get('gallery_assist_'. $type .'_data', FALSE);
+  foreach ($types as $v) {
+    if (variable_get("gallery_assist_{$v->type}", 0) == 1) {
+      $layout = array();
+      $validate_upload = array();
+      // Get the configuration data.
+      $settings = variable_get('gallery_assist_'. $type .'_data', FALSE);
 
-    // Extract the layout array.
-    $layout = $settings['layout'];
-    unset($settings['layout']);
+      // Extract the layout array.
+      $layout = $settings['layout'];
+      unset($settings['layout']);
 
-    // Extract the validate_upload array.
-    $validate_upload = $settings['validate_upload'];
-    unset($settings['validate_upload']);
+      // Extract the validate_upload array.
+      $validate_upload = $settings['validate_upload'];
+      unset($settings['validate_upload']);
 
-    // Merge all to one level array.
-    $new_settings = array_merge ($settings, $layout, $validate_upload);
+      // Merge all to one level array.
+      $new_settings = array_merge ($settings, $layout, $validate_upload);
 
-    // Add the new variables.
-    $new_settings['ga_item_title_type'] = 0;
-    $new_settings['pager_align'] = 'center';
-    $new_settings['t_thm_link_format'] = 'item';
+      // Add the new variables.
+      $new_settings['ga_item_title_type'] = 0;
+      $new_settings['pager_align'] = 'center';
+      $new_settings['t_thm_link_format'] = 'item';
 
-    // Save the system variable.
-    variable_set('gallery_assist_'. $type .'_data', $new_settings);
+      // Save the system variable.
+      variable_set('gallery_assist_'. $type .'_data', $new_settings);
+    }
   }
 
   variable_set('gallery_assist_directory', file_directory_path() .'/gallery_assist');

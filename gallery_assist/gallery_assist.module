@@ -1,5 +1,5 @@
 <?php
-// $Id: gallery_assist.module,v 1.74 2010/10/29 13:00:15 jcmc Exp $
+// $Id: gallery_assist.module,v 1.76 2010/11/01 08:33:27 jcmc Exp $
 
 /**
  * @file
@@ -1014,10 +1014,12 @@ function _gallery_assist_form(&$node) {
     $limit_message = t('<div id="ga-amount-achaived" class="message warning">'. t('The maximum allowed number of uploads (@max-amount) was achieved.', array('@max-amount' => $node->gallconf[$node->type]['max_items'])) .'</div>');
   }
 
-  $used_space = file_space_used($node->uid);
-  if ($node->gallconf[$node->type]['user_size'] >= $used_space) {
-    $display_field = FALSE;
-    $limit_message = t('<div id="ga-amount-achaived" class="message warning">'. t('Your disk quota of @quota KB was achieved.', array('@quota' => $node->gallconf[$node->type]['user_size'])) .'</div>');
+  if ($node->gallconf[$node->type]['user_size'] > 0) {
+    $used_space = file_space_used($node->uid);
+    if ($node->gallconf[$node->type]['user_size'] >= $used_space) {
+      $display_field = FALSE;
+      $limit_message = t('<div id="ga-amount-achaived" class="message warning">'. t('Your disk quota of @quota KB was achieved.', array('@quota' => $node->gallconf[$node->type]['user_size'])) .'</div>');
+    }
   }
 
   if ($display_field) {
@@ -1273,7 +1275,7 @@ function gallery_assist_settings_submit(&$form, $form_state) {
       'pager_align' => $form_state['values']['gallery_assist_'. $type .'_pager_align'],
     );
 
-    variable_set("hide_node_notice_for_{$type}", $form_state['values']['gallery_assist_'. $type .'_hide_node_notice']);
+    variable_set("hide_node_first_notice_for_{$type}", $form_state['values']['gallery_assist_'. $type .'_hide_node_first_notice']);
 
     if (module_exists('imagecache') && is_numeric($form_state['values']['gallery_assist_'. $type .'_pager_presetid'])) {
       $preset = imagecache_preset($gallery_assist_update_data['pager_presetid']);
@@ -3801,7 +3803,7 @@ function theme_gallery_assist_pager($node_light, $links, $extras = array()) {
 function gallery_assist_prepare_thms($item = array(), $conf = array()) {
 
   $title  = $item->ptitle;
-  $title .= $item->copyright ? ' | (c)' . $item->copyright : '';
+  $title .= $item->copyright ? ' | © ' . $item->copyright : '';
 
   if (module_exists('imagecache') && $conf['use_imagecache'] == 1) {
     $my_img = theme('imagecache', $conf['thm_presetname'], $item->opath, $item->palt, $title, $item->my_img_attr, FALSE);
@@ -3824,7 +3826,7 @@ function gallery_assist_prepare_thms($item = array(), $conf = array()) {
 function gallery_assist_prepare_prev($item = array(), $conf = array()) {
 
   $title  = $item->ptitle;
-  $title .= $item->copyright ? ' | (c)' . $item->copyright : '';
+  $title .= $item->copyright ? ' | © ' . $item->copyright : '';
   if (module_exists('imagecache') && $conf['use_imagecache'] == 1) {
     $my_img = theme('imagecache', $conf['prev_presetname'], $item->opath, $item->palt, $title, $item->my_img_attr, FALSE);
   }

@@ -1,5 +1,5 @@
 <?php
-// $Id: gallery_assist_node_settings.inc,v 1.21 2010/10/28 20:31:47 jcmc Exp $
+// $Id: gallery_assist_node_settings.inc,v 1.22 2010/10/30 14:28:02 jcmc Exp $
 
 /**
  * @file
