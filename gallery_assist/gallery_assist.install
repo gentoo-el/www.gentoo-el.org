@@ -1,5 +1,5 @@
 <?php
-// $Id: gallery_assist.install,v 1.47 2010/11/01 08:26:08 jcmc Exp $
+// $Id: gallery_assist.install,v 1.48 2010/11/10 15:40:23 jcmc Exp $
 
 /**
  * @file
@@ -800,14 +800,14 @@ function gallery_assist_update_5() {
   db_add_field($ret, 'gallery_assist_item', 'aid', $aid['aid']);
 
   $types = array('default' => 'Default');
-  $types += node_get_types();
+  $types += node_get_types('names');
 
-  foreach ($types as $v) {
-    if (variable_get("gallery_assist_{$v->type}", 0) == 1) {
+  foreach (array_keys($types) as $type) {
+    if (variable_get("gallery_assist_{$type}", 0) == 1) {
       $layout = array();
       $validate_upload = array();
       // Get the configuration data.
-      $settings = variable_get('gallery_assist_'. $type .'_data', FALSE);
+      $settings = variable_get('gallery_assist_'. $type .'_data', array());
 
       // Extract the layout array.
       $layout = $settings['layout'];

@@ -11,9 +11,9 @@ project = "gallery_assist"
 datestamp = "1288311058"
 
 
-; Information added by drupal.org packaging script on 2010-11-01
-version = "6.x-1.17"
+; Information added by drupal.org packaging script on 2010-11-10
+version = "6.x-1.18"
 core = "6.x"
 project = "gallery_assist"
-datestamp = "1288600848"
+datestamp = "1289404244"
 
