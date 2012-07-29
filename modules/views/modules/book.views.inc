@@ -1,5 +1,4 @@
 <?php
-// $Id: book.views.inc,v 1.5.4.2 2009/11/30 19:44:09 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for book.module
@@ -31,7 +30,6 @@ function book_views_data() {
     'help' => t('The book the node is in.'),
     'relationship' => array(
       'base' => 'node',
-      'base field' => 'bid',
       'handler' => 'views_handler_relationship',
       'label' => t('Book'),
     ),

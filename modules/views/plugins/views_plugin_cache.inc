@@ -1,5 +1,4 @@
 <?php
-// $Id: views_plugin_cache.inc,v 1.5 2009/06/24 02:45:01 merlinofchaos Exp $
 
 /**
  * The base plugin to handle caching.
@@ -59,6 +58,20 @@ class views_plugin_cache extends views_plugin {
    *   The cache type, either 'query', 'result' or 'output'.
    */
    function cache_expire($type) { }
+   
+   /**
+    * Determine expiration time in the cache table of the cache type
+    * or CACHE_PERMANENT if item shouldn't be removed automatically from cache.
+    *
+    * Plugins must override this to implement expiration in the cache table.
+    *
+    * @param $type
+    *   The cache type, either 'query', 'result' or 'output'.
+    */
+  function cache_set_expire($type) {
+    return CACHE_PERMANENT;
+  }
+
 
   /**
    * Save data to the cache.
@@ -76,12 +89,12 @@ class views_plugin_cache extends views_plugin {
           'total_rows' => $this->view->total_rows,
           'pager' => $this->view->pager,
         );
-        cache_set($this->get_results_key(), $data, $this->table);
+        cache_set($this->get_results_key(), $data, $this->table, $this->cache_set_expire($type));
         break;
       case 'output':
         $this->gather_headers();
         $this->storage['output'] = $this->view->display_handler->output;
-        cache_set($this->get_output_key(), $this->storage, $this->table);
+        cache_set($this->get_output_key(), $this->storage, $this->table, $this->cache_set_expire($type));
         break;
     }
   }
@@ -252,6 +265,7 @@ class views_plugin_cache extends views_plugin {
         'build_info' => $this->view->build_info,
         'roles' => array_keys($user->roles),
         'super-user' => $user->uid == 1, // special caching for super user.
+        'language' => $GLOBALS['language'],
       );
       foreach (array('exposed_info', 'page', 'sort', 'order') as $key) {
         if (isset($_GET[$key])) {
@@ -272,6 +286,8 @@ class views_plugin_cache extends views_plugin {
         'result' => $this->view->result,
         'roles' => array_keys($user->roles),
         'super-user' => $user->uid == 1, // special caching for super user.
+        'theme' => $GLOBALS['theme'],
+        'language' => $GLOBALS['language'],
       );
 
       $this->_output_key = $this->view->name . ':' . $this->display->id . ':output:' . md5(serialize($key_data));

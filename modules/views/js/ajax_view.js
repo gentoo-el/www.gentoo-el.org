@@ -1,4 +1,3 @@
-// $Id: ajax_view.js,v 1.19.2.2 2009/11/30 22:47:05 merlinofchaos Exp $
 
 /**
  * @file ajaxView.js
@@ -47,12 +46,14 @@ Drupal.behaviors.ViewsAjaxView = function() {
       ajax_path = ajax_path[0];
     }
     $.each(Drupal.settings.views.ajaxViews, function(i, settings) {
-      var view = '.view-dom-id-' + settings.view_dom_id;
-      if (!$(view).size()) {
-        // Backward compatibility: if 'views-view.tpl.php' is old and doesn't
-        // contain the 'view-dom-id-#' class, we fall back to the old way of
-        // locating the view:
-        view = '.view-id-' + settings.view_name + '.view-display-id-' + settings.view_display_id;
+      if (settings.view_dom_id) {
+        var view = '.view-dom-id-' + settings.view_dom_id;
+        if (!$(view).size()) {
+          // Backward compatibility: if 'views-view.tpl.php' is old and doesn't
+          // contain the 'view-dom-id-#' class, we fall back to the old way of
+          // locating the view:
+          view = '.view-id-' + settings.view_name + '.view-display-id-' + settings.view_display_id;
+        }
       }
 
 
@@ -87,7 +88,7 @@ Drupal.behaviors.ViewsAjaxView = function() {
               $('.views-throbbing', object).remove();
             }
           },
-          error: function() { alert(Drupal.t("An error occurred at @path.", {'@path': ajax_path})); $('.views-throbbing', object).remove(); },
+          error: function(xhr) { Drupal.Views.Ajax.handleErrors(xhr, ajax_path); $('.views-throbbing', object).remove(); },
           dataType: 'json'
         });
 
@@ -122,6 +123,7 @@ Drupal.behaviors.ViewsAjaxView = function() {
                 settings
               );
               $(this).click(function () {
+                $.extend(viewData, Drupal.Views.parseViewArgs($(this).attr('href'), settings.view_base_path));
                 $(this).addClass('views-throbbing');
                 $.ajax({
                   url: ajax_path,
@@ -133,9 +135,17 @@ Drupal.behaviors.ViewsAjaxView = function() {
                     // to browse newly loaded content after e.g. clicking a pager
                     // link.
                     var offset = $(target).offset();
+                    // We can't guarantee that the scrollable object should be
+                    // the body, as the view could be embedded in something
+                    // more complex such as a modal popup. Recurse up the DOM
+                    // and scroll the first element that has a non-zero top.
+                    var scrollTarget = target;
+                    while ($(scrollTarget).scrollTop() == 0 && $(scrollTarget).parent()) {
+                      scrollTarget = $(scrollTarget).parent()
+                    }
                     // Only scroll upward
-                    if (offset.top - 10 < $(window).scrollTop()) {
-                      $('html,body').animate({scrollTop: (offset.top - 10)}, 500);
+                    if (offset.top - 10 < $(scrollTarget).scrollTop()) {
+                      $(scrollTarget).animate({scrollTop: (offset.top - 10)}, 500);
                     }
                     // Call all callbacks.
                     if (response.__callbacks) {
@@ -144,7 +154,7 @@ Drupal.behaviors.ViewsAjaxView = function() {
                       });
                     }
                   },
-                  error: function() { $(this).removeClass('views-throbbing'); alert(Drupal.t("An error occurred at @path.", {'@path': ajax_path})); },
+                  error: function(xhr) { $(this).removeClass('views-throbbing'); Drupal.Views.Ajax.handleErrors(xhr, ajax_path); },
                   dataType: 'json'
                 });
 

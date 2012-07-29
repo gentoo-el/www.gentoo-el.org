@@ -1,5 +1,4 @@
 <?php
-//$Id: user.views.inc,v 1.59 2009/09/15 17:28:45 merlinofchaos Exp $
 /**
  * @file
  * Provide views data and handlers for user.module
@@ -89,6 +88,11 @@ function user_views_data() {
     'argument' => array(
       'handler' => 'views_handler_argument_string',
     ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+      'title' => t('User raw name'),
+      'help' => t('The user or author name. This filter do not check if the user exists. Only useful for string comparisons.')
+    ),
   );
 
   // mail
@@ -106,6 +110,9 @@ function user_views_data() {
     'filter' => array(
       'handler' => 'views_handler_filter_string',
     ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
   );
 
   // language
@@ -121,6 +128,9 @@ function user_views_data() {
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_node_language',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_node_language',
     ),
   );
 
@@ -191,7 +201,7 @@ function user_views_data() {
     ),
   );
 
-  // published status
+  // active status
   $data['users']['status'] = array(
     'title' => t('Active'), // The item it appears as on the UI,
     'help' => t('Whether a user is active or blocked.'), // The help that appears on the UI,
@@ -277,6 +287,7 @@ function user_views_data() {
       'name table' => 'role',
       'name field' => 'name',
       'empty field name' => t('No role'),
+      'zero is null' => TRUE,
       'numeric' => TRUE,
     ),
   );
@@ -305,6 +316,64 @@ function user_views_data() {
       'left_table' => 'users_roles',
       'left_field' => 'rid',
       'field' => 'rid',
+    ),
+  );
+
+  // ----------------------------------------------------------------------
+  // authmap table
+
+  $data['authmap']['table']['group']  = t('User');
+  $data['authmap']['table']['join'] = array(
+     // Directly links to users table.
+    'users' => array(
+      'left_field' => 'uid',
+      'field' => 'uid',
+    ),
+    'node' => array(
+      'left_table' => 'users',
+      'left_field' => 'uid',
+      'field' => 'uid',
+    ),
+  );
+  $data['authmap']['aid'] = array(
+    'title' => t('Authmap ID'),
+    'help' => t('The Authmap ID.'),
+    'field' => array(
+      'handler' => 'views_handler_field_numeric',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_numeric',
+      'numeric' => TRUE,
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_numeric',
+      'numeric' => TRUE,
+    ),
+  );
+  $data['authmap']['authname'] = array(
+    'title' => t('Authentication name'),
+    'help' => t('The unique authentication name.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
+    ),
+  );
+  $data['authmap']['module'] = array(
+    'title' => t('Authentication module'),
+    'help' => t('The name of the module managing the authentication entry.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
     ),
   );
 
