@@ -269,6 +269,7 @@ function mollom_admin_configure_form(&$form_state, $mollom_form = NULL) {
           '#options' => $elements,
           '#default_value' => $enabled_fields,
           '#required' => $mollom_form['mode'] == MOLLOM_MODE_ANALYSIS,
+          '#description' => t('Only enable fields that accept text (not numbers). Omit fields that contain sensible data (e.g., credit card numbers) or computed/auto-generated values, as well as author information fields (e.g., name, e-mail).'),
         );
 
         $form['mollom']['strictness'] = array(

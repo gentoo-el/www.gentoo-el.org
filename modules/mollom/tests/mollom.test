@@ -1664,6 +1664,13 @@ class MollomFallbackModeTestCase extends MollomWebTestCase {
     $this->drupalGet('user/password', array('watchdog' => WATCHDOG_EMERG));
     $this->assertNoCaptchaField();
     $this->assertText($this->fallback_message);
+
+    // Verify that the form cannot be submitted.
+    $edit = array(
+      'name' => $this->admin_user->name,
+    );
+    $this->drupalPost(NULL, $edit, t('E-mail new password'), array('watchdog' => WATCHDOG_EMERG));
+    $this->assertNoText(t('Further instructions have been sent to your e-mail address.'));
   }
 
   /**

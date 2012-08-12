@@ -246,6 +246,7 @@ class MollomDrupalTest extends MollomDrupal {
       $this->configuration_map['privateKey'] = 'mollom_test_private_key';
     }
 
+    // Load and set publicKey and privateKey configuration values.
     parent::__construct();
 
     // Any Mollom API request requires valid API keys, or no API calls can be
@@ -267,7 +268,7 @@ class MollomDrupalTest extends MollomDrupal {
     // Verifying keys may return an authentication error, from which we will
     // automatically recover below, so do not write the request log (yet).
     $this->writeLog = FALSE;
-    if (!empty($this->publicKey)) {
+    if (!empty($this->publicKey) && !empty($this->privateKey)) {
       $result = $this->verifyKeys();
     }
     else {
@@ -277,8 +278,9 @@ class MollomDrupalTest extends MollomDrupal {
 
     // If current keys are invalid, create and save new testing API keys.
     if ($result === self::AUTH_ERROR) {
-      $this->createKeys();
-      $this->saveKeys();
+      if ($this->createKeys()) {
+        $this->saveKeys();
+      }
     }
   }
 
@@ -307,12 +309,14 @@ class MollomDrupalTest extends MollomDrupal {
     $this->oAuthStrategy = $oAuthStrategy;
 
     // Set class properties.
-    if (is_array($result) && isset($result['publicKey'])) {
+    if (is_array($result) && !empty($result['publicKey']) && !empty($result['privateKey'])) {
       $this->publicKey = $result['publicKey'];
       $this->privateKey = $result['privateKey'];
+      return TRUE;
     }
     else {
       unset($this->publicKey, $this->privateKey);
+      return FALSE;
     }
   }
 
@@ -322,22 +326,6 @@ class MollomDrupalTest extends MollomDrupal {
   public function saveKeys() {
     $this->saveConfiguration('publicKey', $this->publicKey);
     $this->saveConfiguration('privateKey', $this->privateKey);
-  }
-
-  /**
-   * Overrides Mollom::createCaptcha().
-   *
-   * Temporary fix to show proper image CAPTCHAs when testing mode is enabled.
-   *
-   * @todo Remove after REST Testing API has been fixed.
-   */
-  public function createCaptcha(array $data = array()) {
-    $result = parent::createCaptcha($data);
-    if (isset($data['type']) && $data['type'] === 'image' && isset($result['url']) && strpos($result['url'], 'url-to-a-captcha') !== FALSE) {
-      $protocol = (!empty($data['ssl']) ? 'https' : 'http');
-      $result['url'] = $protocol . '://rest.mollom.com/' . self::API_VERSION . '/captcha/image/test.png';
-    }
-    return $result;
   }
 }
 

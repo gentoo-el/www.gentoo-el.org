@@ -281,7 +281,10 @@ function mollom_menu() {
  *   FALSE otherwise.
  */
 function _mollom_access($permission = FALSE) {
-  return variable_get('mollom_public_key', '') && variable_get('mollom_private_key', '') && (!$permission || user_access($permission));
+  $mollom = mollom();
+  $public_key = $mollom->loadConfiguration('publicKey');
+  $private_key = $mollom->loadConfiguration('privateKey');
+  return !empty($public_key) && !empty($private_key) && (!$permission || user_access($permission));
 }
 
 /**
@@ -700,8 +703,8 @@ function mollom_form_alter(&$form, &$form_state, $form_id) {
         $form['mollom']['privacy'] = array(
           '#prefix' => '<div class="description mollom-privacy">',
           '#suffix' => '</div>',
-          '#value' => t('By submitting this form, you accept the <a href="@privacy-policy-url">Mollom privacy policy</a>.', array(
-            '@privacy-policy-url' => 'http://mollom.com/web-service-privacy-policy',
+          '#value' => t('By submitting this form, you accept the <a href="@privacy-policy-url" class="mollom-target">Mollom privacy policy</a>.', array(
+            '@privacy-policy-url' => '//mollom.com/web-service-privacy-policy',
           )),
           '#weight' => 10,
         );
@@ -1751,9 +1754,6 @@ function mollom_form_add_captcha(&$element, &$form_state) {
   // Otherwise, we have a communication or configuration error.
   else {
     $element['captcha']['#access'] = FALSE;
-    $element['captcha']['#required'] = FALSE;
-    $form_state['mollom']['require_analysis'] = FALSE;
-    $form_state['mollom']['require_captcha'] = FALSE;
     // Trigger fallback mode.
     _mollom_fallback();
   }
@@ -2577,7 +2577,7 @@ function mollom_get_captcha(&$form_state) {
         'query' => array('url' => $url),
         'external' => TRUE,
       ));
-      $output = '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="110" height="50">';
+      $output = '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="//download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="110" height="50">';
       $output .= '<param name="allowFullScreen" value="false" />';
       $output .= '<param name="movie" value="' . $source . '" />';
       $output .= '<param name="loop" value="false" />';
@@ -2594,6 +2594,7 @@ function mollom_get_captcha(&$form_state) {
 
     case 'image':
       $captcha = theme('image', $url, t('Type the characters you see in this picture.'), '', NULL, FALSE);
+      $captcha = '<a href="//mollom.com/captcha" class="mollom-target">' . $captcha . '</a>';
       $output = '<span class="mollom-captcha-content mollom-image-captcha">' . $captcha . '</span>';
       $output .= ' (<a href="#" class="mollom-switch-captcha mollom-audio-captcha">' . t('verify using audio') . '</a>)';
       break;
@@ -2773,6 +2774,9 @@ function mollom_moderate_access($data, $action) {
  * Returns whether the OAuth request signature is valid.
  */
 function mollom_moderate_validate_oauth() {
+  // For inbound moderation requests, only the production API keys are valid.
+  // The testing mode API keys cannot be trusted. Therefore, this validation
+  // is based on the the stored variables only.
   $publicKey = variable_get('mollom_public_key', '');
   $privateKey = variable_get('mollom_private_key', '');
   if ($publicKey === '' || $privateKey === '') {
