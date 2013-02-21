@@ -36,9 +36,12 @@ function getMollomCaptcha() {
     path += '/' + mollomContentId;
   }
 
-  // Retrieve a CAPTCHA:
-  $.getJSON(Drupal.settings.basePath + path,
-    function (data) {
+  // Retrieve a new CAPTCHA.
+  $.ajax({
+    url: Drupal.settings.basePath + path,
+    type: 'POST',
+    dataType: 'json',
+    success: function (data) {
       if (!(data && data.content)) {
         return;
       }
@@ -51,7 +54,7 @@ function getMollomCaptcha() {
       // Focus on the CAPTCHA input.
       $('input[name="mollom[captcha]"]', context).focus();
     }
-  );
+  });
   return false;
 }
 

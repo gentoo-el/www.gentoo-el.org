@@ -57,6 +57,13 @@ function mollom_requirements($phase = 'runtime', $check = TRUE) {
         '!admin-message' => $admin_message,
       ));
     }
+    // Bad request: Invalid client system time: Too large offset from UTC.
+    elseif ($status['keys valid'] === Mollom::REQUEST_ERROR) {
+      $requirements['mollom']['value'] = t('Client error');
+      $requirements['mollom']['description'] = t('The server time of this site is incorrect. The time of the operating system is not synchronized with the Coordinated Universal Time (UTC), which prevents a successful authentication with Mollom. The maximum allowed offset is @minutes minutes. Please consult your hosting provider or server operator to correct the server time.', array(
+        '@minutes' => Mollom::TIME_OFFSET_MAX / 60,
+      ));
+    }
     // Invalid API keys.
     elseif ($status['keys valid'] === Mollom::AUTH_ERROR) {
       $requirements['mollom']['value'] = t('Invalid');
@@ -224,6 +231,13 @@ function mollom_schema() {
         'type' => 'text',
         'not null' => FALSE,
         'serialize' => TRUE,
+      ),
+      'unsure' => array(
+        'description' => 'Action to perform when text analysis is unsure.',
+        'type' => 'varchar',
+        'length' => 24,
+        'not null' => TRUE,
+        'default' => 'captcha',
       ),
       'discard' => array(
         'description' => 'Whether to discard (1) or retain (0) bad posts.',
@@ -897,6 +911,23 @@ function mollom_update_6205() {
   $result = db_query('SELECT contentId FROM {mollom} GROUP BY contentId HAVING COUNT(contentId) > 1');
   while ($contentId = db_result($result)) {
     $ret[] = update_sql("DELETE FROM {mollom} WHERE contentId = '$contentId'");
+  }
+  return $ret;
+}
+
+/**
+ * Add {mollom_form}.unsure field.
+ */
+function mollom_update_6206() {
+  $ret = array();
+  if (!db_column_exists('mollom_form', 'unsure')) {
+    db_add_field($ret, 'mollom_form', 'unsure', array(
+      'description' => 'Action to perform when text analysis is unsure.',
+      'type' => 'varchar',
+      'length' => 24,
+      'not null' => TRUE,
+      'default' => 'captcha',
+    ));
   }
   return $ret;
 }

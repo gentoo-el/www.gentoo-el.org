@@ -98,7 +98,7 @@ function mollom_test_form(&$form_state, $mid = NULL) {
     $form_state['storage'] = array();
   }
   if (isset($mid) && ($record = mollom_test_load($mid))) {
-    $form_state['storage'] = $record;
+    $form_state['storage'] = (array) $record;
   }
   $form_state['storage'] += array(
     'mid' => $mid,
@@ -245,7 +245,7 @@ function mollom_mollom_test_presave($record) {
  * Loads a {mollom_test} data record by id.
  */
 function mollom_test_load($mid) {
-  return db_fetch_array(db_query('SELECT * FROM {mollom_test} WHERE mid = %d', array($mid)));
+  return db_fetch_object(db_query('SELECT * FROM {mollom_test} WHERE mid = %d', array($mid)));
 }
 
 /**
@@ -279,9 +279,7 @@ function mollom_test_save($record) {
  */
 function mollom_test_delete_multiple(array $mids) {
   foreach ($mids as $mid) {
-    // @todo The core entity system expects objects.
-    $record = (object) mollom_test_load($mid);
-    if ($record) {
+    if ($record = mollom_test_load($mid)) {
       module_invoke_all('entity_delete', $record, 'mollom_test');
     }
   }
@@ -293,7 +291,7 @@ function mollom_test_delete_multiple(array $mids) {
 /**
  * Implements non-existing hook_entity_delete() on behalf of Mollom module.
  */
-function mollom_entity_delete($entity, $type) {
+function mollom_test_entity_delete($entity, $type) {
   mollom_data_delete('mollom_test', $entity->mid);
 }
 
@@ -301,10 +299,10 @@ function mollom_entity_delete($entity, $type) {
  * Form constructor for deleting a Mollom test item.
  */
 function mollom_test_delete_form(&$form_state, $record) {
-  $form['mid'] = array('#type' => 'value', '#value' => $record['mid']);
+  $form['mid'] = array('#type' => 'value', '#value' => $record->mid);
   return confirm_form($form,
-    t('Are you sure you want to delete the %title?', array('%title' => $record['title'])),
-    'mollom-test/form/' . $record['mid'],
+    t('Are you sure you want to delete the %title?', array('%title' => $record->title)),
+    'mollom-test/form/' . $record->mid,
     NULL,
     t('Delete')
   );
