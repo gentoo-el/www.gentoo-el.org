@@ -21,6 +21,11 @@ function mollom_test_menu() {
     'page arguments' => array('mollom_test_delete_form', 2),
     'access callback' => TRUE,
   );
+  $items['mollom-test/form/views/reset'] = array(
+    'page callback' => 'mollom_test_views_reset',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -90,53 +95,81 @@ function mollom_test_mollom_form_info($form_id) {
 }
 
 /**
+ * Page callback; Resets the mollom_test_form() [page] view counter.
+ */
+function mollom_test_views_reset() {
+  variable_del('mollom_test.form.views');
+  cache_clear_all();
+  drupal_goto();
+}
+
+/**
  * Form builder for Mollom test form.
  */
 function mollom_test_form(&$form_state, $mid = NULL) {
-  // Drupal 6 defaults 'storage' to NULL.
-  if (!isset($form_state['storage'])) {
-    $form_state['storage'] = array();
+  if (!empty($form_state['storage'])) {
+    $values = $form_state['storage'];
   }
-  if (isset($mid) && ($record = mollom_test_load($mid))) {
-    $form_state['storage'] = (array) $record;
+  else {
+    $values = array();
+    if (isset($mid) && ($record = mollom_test_load($mid))) {
+      $values = (array) $record;
+    }
+    $values += array(
+      'mid' => $mid,
+      'title' => '',
+      'body' => '',
+      'exclude' => '',
+      'parent' => array('child' => ''),
+      'field' => array(),
+      'status' => 1,
+    );
   }
-  $form_state['storage'] += array(
-    'mid' => $mid,
-    'title' => '',
-    'body' => '',
-    'exclude' => '',
-    'parent' => array('child' => ''),
-    'field' => array(),
-    'status' => 1,
-  );
   // Always add an empty field the user can submit.
-  $form_state['storage']['field']['new'] = '';
+  $values['field']['new'] = '';
+
+  // Output a page view counter for page/form cache testing purposes.
+  $count = variable_get('mollom_test.form.views', 1);
+  $reset_link = l('Reset', 'mollom-test/form/views/reset', array('query' => drupal_get_destination()));
+  $form['views'] = array(
+    '#value' => '<p>' . 'Views: ' . $count++ . ' ' . $reset_link . '</p>',
+  );
+  variable_set('mollom_test.form.views', $count);
+
+  // Conditionally enable form caching.
+  if (variable_get('mollom_test.form.cache', FALSE)) {
+    // D6 auto-enables form caching and rebuilding if 'storage' is non-empty.
+    if (!isset($form_state['storage'])) {
+      $form_state['storage'] = $values;
+    }
+    $form['#cache'] = TRUE;
+  }
 
   $form['#tree'] = TRUE;
   $form['mid'] = array(
     '#type' => 'hidden',
-    '#value' => $form_state['storage']['mid'],
+    '#value' => $values['mid'],
   );
   $form['title'] = array(
     '#type' => 'textfield',
     '#title' => 'Title',
-    '#default_value' => $form_state['storage']['title'],
+    '#default_value' => $values['title'],
     '#required' => TRUE,
   );
   $form['body'] = array(
     '#type' => 'textfield',
     '#title' => 'Body',
-    '#default_value' => $form_state['storage']['body'],
+    '#default_value' => $values['body'],
   );
   $form['exclude'] = array(
     '#type' => 'textfield',
     '#title' => 'Some other field',
-    '#default_value' => $form_state['storage']['exclude'],
+    '#default_value' => $values['exclude'],
   );
   $form['parent']['child'] = array(
     '#type' => 'textfield',
     '#title' => 'Nested element',
-    '#default_value' => $form_state['storage']['parent']['child'],
+    '#default_value' => $values['parent']['child'],
   );
 
   $form['field'] = array(
@@ -144,7 +177,7 @@ function mollom_test_form(&$form_state, $mid = NULL) {
     '#title' => 'Field',
   );
   $weight = 0;
-  foreach ($form_state['storage']['field'] as $delta => $value) {
+  foreach ($values['field'] as $delta => $value) {
     $form['field'][$delta] = array(
       '#type' => 'textfield',
       '#title' => 'Field ' . $delta,
@@ -163,7 +196,7 @@ function mollom_test_form(&$form_state, $mid = NULL) {
   $form['status'] = array(
     '#type' => 'checkbox',
     '#title' => 'Published',
-    '#default_value' => $form_state['storage']['status'],
+    '#default_value' => $values['status'],
     // For simplicity, re-use Mollom module's administration permission.
     '#access' => user_access('administer mollom'),
   );
